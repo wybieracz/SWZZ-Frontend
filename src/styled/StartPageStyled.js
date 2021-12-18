@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 const StartBody = styled.div`
-padding: 80px;
+padding: 360px;
 text-align: center;
 &:h1{
   font-family: "Open Sans", sans-serif;
@@ -9,10 +9,18 @@ text-align: center;
 }
 `;
 
+const StartSubheading = styled.span`
+color: #6c757d!important;
+`;
+
 const StartButtonWrapper = styled.div`
 display: flex;
 align-items: center;
 justify-content: center;
+flex: 1 1 0%;
+flex-direction: row;
+justify-content: space-evenly;
+margin: 5% 15%;
 `;
 
 const StartButton = styled.button`
@@ -20,8 +28,7 @@ border-radius: 40px;
 background: rgb(209, 209, 209);
 color: #adadad;
 height: 40px;
-width: 200px;
-margin-top: 1%;
+width: 250px;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -38,4 +45,4 @@ font-weight: bold;
 color: rgb(46, 46, 46);
 `;
 
-export { StartBody, StartButtonWrapper, StartButton, StartButtonText };
+export { StartBody, StartSubheading, StartButtonWrapper, StartButton, StartButtonText };

@@ -1,16 +1,15 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { HomeBody } from "../styled/HomeStyled";
+import { HomeBody, HomeSubheading } from "../styled/HomeStyled";
 
 export default function Home() {
 
   const funkcja = () => {
     const requestOptions = {
       method: 'GET',
-      mode: 'no-cors',
       headers: { 'Content-Type': 'text/plain' }
-  };
-  fetch('https://dev-swzz-be-app.azurewebsites.net/api/ApplicationUser', requestOptions)
+    };
+    fetch('https://dev-swzz-be-app.azurewebsites.net/api/ApplicationUser', requestOptions)
       .then(response => response.json())
       .then(data => console.log(data));
   }
@@ -18,11 +17,13 @@ export default function Home() {
   return (
     <HomeBody>
       <h1>System wspomagania zarządzania zadaniami</h1>
-      <p className="text-muted">Projekt IO</p>
-      <Button onClick={() => funkcja()}>
-        Kliknij mnie
-      </Button>
+      <HomeSubheading>Projekt IO</HomeSubheading>
+      <div>
+        <Button onClick={() => funkcja()}>
+          Test
+        </Button>
+      </div>
     </HomeBody>
-    
+
   );
 }

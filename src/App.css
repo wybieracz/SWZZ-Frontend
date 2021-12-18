@@ -7,4 +7,37 @@
   .pro-sidebar > .pro-sidebar-inner,
   .pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item {
   background-color: rgb(228, 228, 228);
+  
+}
+
+.pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-header {
+  border-top: 1px solid rgba(10, 10, 10, 0.2);
+  border-bottom: 1px solid rgba(10, 10, 10, 0.2);
+}
+
+.pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-footer {
+  border-top: 1px solid rgba(10, 10, 10, 0.2);
+  padding: 0px;
+  margin-bottom: 70px;
+}
+
+.pro-sidebar .pro-menu {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.pro-sidebar {
+  width: 15%;
+  min-width: 15%;
+  position: fixed;
+}
+
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
+  padding: 0px;
+}
+
+.dpmxtT {
+  font-weight: bold;
+  color: black;
+  padding: 25px 0px;
 }

@@ -1,7 +1,7 @@
 import { ProSidebar, SidebarHeader, SidebarFooter, SidebarContent, Menu, MenuItem } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
 import 'react-pro-sidebar/dist/css/styles.css';
-import { SidebarBody, SidebarButtonWrapper, SidebarButton, SidebarText, SidebarHeaderText, SidebarHeaderItem, SidebarContentItem, SidebarFooterItem } from "../styled/SidebarStyled.js";
+import { SidebarBody, SidebarButton, SidebarButtonText, SidebarHeaderText, SidebarHeaderItem, SidebarContentItem, SidebarContentText } from "../styled/SidebarStyled.js";
 
 export default function Sidebar() {
     return (
@@ -9,46 +9,42 @@ export default function Sidebar() {
             <ProSidebar>
                 <SidebarHeader>
                     <Menu>
-                        <SidebarHeaderItem>
-                            <MenuItem>
+                        <MenuItem>
+                            <SidebarHeaderItem>
                                 <Link to="/home">
                                     <SidebarHeaderText>Jan Kowalski</SidebarHeaderText>
                                 </Link>
-                            </MenuItem>
-                        </SidebarHeaderItem>
+                            </SidebarHeaderItem>
+                        </MenuItem>
                     </Menu>
                 </SidebarHeader>
                 <SidebarContent>
                     <Menu>
-                        <SidebarContentItem>
-                            <MenuItem>
+                        <MenuItem>
+                            <SidebarContentItem>
                                 <Link to="/group/home">
-                                    <SidebarText>Home</SidebarText>
+                                    <SidebarContentText>Home</SidebarContentText>
                                 </Link>
-                            </MenuItem>
-                        </SidebarContentItem>
-                        <SidebarContentItem>
-                            <MenuItem>
+                            </SidebarContentItem>
+                        </MenuItem>
+                        <MenuItem>
+                            <SidebarContentItem>
                                 <Link to="/group/work">
-                                    <SidebarText>Work</SidebarText>
+                                    <SidebarContentText>Work</SidebarContentText>
                                 </Link>
-                            </MenuItem>
-                        </SidebarContentItem>
+                            </SidebarContentItem>
+                        </MenuItem>
                     </Menu>
                 </SidebarContent>
                 <SidebarFooter>
                     <Menu>
-                        <SidebarFooterItem>
-                            <MenuItem>
-                                <SidebarButtonWrapper>
-                                    <SidebarButton>
-                                        <Link to="/">
-                                            <SidebarText>Logout</SidebarText>
-                                        </Link>
-                                    </SidebarButton>
-                                </SidebarButtonWrapper>
-                            </MenuItem>
-                        </SidebarFooterItem>
+                        <MenuItem>
+                            <SidebarButton>
+                                <Link to="/">
+                                    <SidebarButtonText>Logout</SidebarButtonText>
+                                </Link>
+                            </SidebarButton>
+                        </MenuItem>
                     </Menu>
                 </SidebarFooter>
             </ProSidebar>

@@ -9,4 +9,8 @@ text-align: center;
 }
 `;
 
-export { HomeBody };
+const HomeSubheading = styled.span`
+color: #6c757d!important;
+`;
+
+export { HomeBody, HomeSubheading };
