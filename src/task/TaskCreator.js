@@ -1,8 +1,8 @@
 import { TextField } from '@material-ui/core'
-import useInputState from "./hooks/useInputState";
+import useInputState from "../hooks/useInputState";
 import React, { useState } from "react";
-import { CardHeader, CardFooter, Buttons } from "./styled/TaskStyled";
-import { TaskCreatorContainer } from "./styled/TaskCreatorStyled";
+import { CardHeader, CardFooter, Buttons } from "../styled/TaskStyled";
+import { TaskCreatorContainer } from "../styled/TaskCreatorStyled";
 import { v4 as uuidv4 } from 'uuid';
 
 export default function TaskCreator ({ add }) {

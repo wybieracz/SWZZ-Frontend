@@ -1,6 +1,6 @@
 import { Draggable } from "react-beautiful-dnd";
 import React from "react";
-import { CardHeader, CardFooter, Buttons, DragItem } from "./styled/TaskStyled";
+import { CardHeader, CardFooter, Buttons, DragItem } from "../styled/TaskStyled";
 
 export default function TaskCard({ element, index, remove, setIsUnderEdit }) {
     return (

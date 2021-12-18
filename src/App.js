@@ -1,7 +1,8 @@
-import TaskList from "./TaskList";
+import React from "react";
+import Router from "./Router"
 
-function App() {
-  return <TaskList />;
+export default function App() {
+  return (
+    <Router />
+  );
 }
-
-export default App;

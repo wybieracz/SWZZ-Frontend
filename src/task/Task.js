@@ -1,4 +1,4 @@
-import useInputState from "./hooks/useInputState";
+import useInputState from "../hooks/useInputState";
 import React, { useState } from "react";
 import TaskEditor from "./TaskEditor";
 import TaskCard from "./TaskCard";

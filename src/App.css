@@ -1,0 +1,10 @@
+.Main {
+  position: relative;
+  margin-left: 15%;
+}
+
+.pro-sidebar-content,
+  .pro-sidebar > .pro-sidebar-inner,
+  .pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item {
+  background-color: rgb(228, 228, 228);
+}

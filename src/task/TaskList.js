@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import TaskListColumn from "./TaskListColumn";
-import { TaskListContainer, ListGrid } from "./styled/TaskListStyled";
+import { TaskListContainer, ListGrid } from "../styled/TaskListStyled";
 import { testData } from "./testData";
 import { cutTask, pasteTask, editTask } from "./TaskListUtility";
 

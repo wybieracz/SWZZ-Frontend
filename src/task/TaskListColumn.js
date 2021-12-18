@@ -2,7 +2,7 @@ import { Droppable } from "react-beautiful-dnd";
 import Task from "./Task";
 import TaskCreator from "./TaskCreator";
 import React from "react";
-import { ColumnHeader, ColumnBody, TaskListColumnContainer } from "./styled/TaskListColumnStyled";
+import { ColumnHeader, ColumnBody, TaskListColumnContainer } from "../styled/TaskListColumnStyled";
 
 export default function TaskListColumn ({ prefix, elements, remove, edit, add }) {
   return (
