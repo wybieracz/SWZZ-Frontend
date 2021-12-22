@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const HomeBody = styled.div`
+const GroupBody = styled.div`
 position: relative;
 margin-left: 15%;
 padding: 30px;
@@ -11,8 +11,4 @@ text-align: center;
 }
 `;
 
-const HomeSubheading = styled.span`
-color: #6c757d!important;
-`;
-
-export { HomeBody, HomeSubheading };
+export { GroupBody };

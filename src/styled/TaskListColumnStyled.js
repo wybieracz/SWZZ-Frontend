@@ -6,7 +6,7 @@ margin-bottom: 20px;
 `;
 
 const ColumnBody = styled.div`
-    height: 100%;
+height: 100%;
 `;
 
 const TaskListColumnContainer = styled.div`

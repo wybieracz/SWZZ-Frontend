@@ -1,9 +1,27 @@
 import { ProSidebar, SidebarHeader, SidebarFooter, SidebarContent, Menu, MenuItem } from 'react-pro-sidebar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'react-pro-sidebar/dist/css/styles.css';
 import { SidebarBody, SidebarButton, SidebarButtonText, SidebarHeaderText, SidebarHeaderItem, SidebarContentItem, SidebarContentText } from "../styled/SidebarStyled.js";
 
 export default function Sidebar() {
+
+    const navigate = useNavigate();
+
+    async function LogOut() {
+
+        let result = await fetch("https://dev-swzz-be-app.azurewebsites.net/logout", {
+            method: 'POST',
+            headers: {
+                "Content-Type": 'application/json'
+            }
+        })
+
+        result = await result.status
+        console.log(result);
+        if (result >= 200 && result < 300)
+            navigate("/");
+    }
+
     return (
         <SidebarBody>
             <ProSidebar>
@@ -39,10 +57,8 @@ export default function Sidebar() {
                 <SidebarFooter>
                     <Menu>
                         <MenuItem>
-                            <SidebarButton>
-                                <Link to="/">
-                                    <SidebarButtonText>Logout</SidebarButtonText>
-                                </Link>
+                            <SidebarButton onClick={LogOut}>
+                                <SidebarButtonText>Logout</SidebarButtonText>
                             </SidebarButton>
                         </MenuItem>
                     </Menu>

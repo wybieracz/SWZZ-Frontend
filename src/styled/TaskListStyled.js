@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 const TaskListContainer = styled.div`
-  padding: 10px;
+position: relative;
+margin-left: 15%;
+padding: 10px;
 `;
 
 const ListGrid = styled.div`

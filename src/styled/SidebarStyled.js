@@ -1,7 +1,8 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const SidebarBody = styled.div`
 height: 100%;
+min-width: 250px;
 width: 15%;
 position: fixed;
 top: 0;
@@ -15,6 +16,7 @@ background: rgb(209, 209, 209);
 color: #adadad;
 height: 40px;
 width: 11%;
+min-width: 183px;
 position: fixed;
 display: flex;
 align-items: center;

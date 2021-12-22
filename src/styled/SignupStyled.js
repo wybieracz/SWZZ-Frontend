@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const SignupBody = styled.div`
 padding: 60px 0;
@@ -29,13 +29,14 @@ border-radius: 40px;
 background: rgb(209, 209, 209);
 color: #adadad;
 height: 40px;
-width: 100%;
+width: 482px;
+text-align: center;
 &:hover{
   background:rgb(161, 161, 161);
 }
 `;
 
-const SignupButtonText = styled.span`
+const SignupButtonText = styled.div`
 font-size: 18px;
 font-weight: bold;
 color: rgb(46, 46, 46);

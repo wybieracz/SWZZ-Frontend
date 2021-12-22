@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import TaskListColumn from "./TaskListColumn";
 import { TaskListContainer, ListGrid } from "../styled/TaskListStyled";
 import { testData } from "./testData";
+import Sidebar from "../containers/Sidebar";
 import { cutTask, pasteTask, editTask } from "./TaskListUtility";
 
 const columns = ["todo", "inProgress", "done"];
@@ -10,7 +11,6 @@ const columns = ["todo", "inProgress", "done"];
 export default function TaskList() {
 
   const [elements, setElements] = useState(testData);
-  //useEffect(() => {}, []);
 
   const handleDragEnd = (result) => {
     if (!result.destination) {
@@ -67,8 +67,8 @@ export default function TaskList() {
               key={listKey}
               prefix={listKey}
               remove={handleRemoveTask}
-              edit = {handleEditTask}
-              add = {handleAddTask}
+              edit={handleEditTask}
+              add={handleAddTask}
             />
           ))}
         </ListGrid>

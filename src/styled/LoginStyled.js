@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const LoginBody = styled.div`
 padding: 60px 0;
@@ -33,7 +33,8 @@ border-radius: 40px;
 background: rgb(209, 209, 209);
 color: #adadad;
 height: 40px;
-width: 100%;
+width: 324px;
+text-align: center;
 &:hover{
   background:rgb(161, 161, 161);
 }
