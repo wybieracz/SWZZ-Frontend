@@ -22,12 +22,6 @@ async function getTasks() {
 export default function TaskList() {
 
   const [elements, setElements] = useState(testData);
-<<<<<<< HEAD
-  useEffect(() => {
-    getTasks();
-  }, []);
-=======
->>>>>>> develop
 
   useEffect(() => {
     getTasks();
