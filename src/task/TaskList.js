@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import TaskListColumn from "./TaskListColumn";
 import { TaskListContainer, ListGrid } from "../styled/TaskListStyled";
@@ -28,6 +28,10 @@ export default function TaskList() {
   }, []);
 =======
 >>>>>>> develop
+
+  useEffect(() => {
+    getTasks();
+  }, []);
 
   const handleDragEnd = (result) => {
     if (!result.destination) {
