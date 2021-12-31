@@ -14,7 +14,7 @@ export default function TaskCard({ element, index, remove, setIsUnderEdit }) {
                         {...provided.dragHandleProps}
                     >
                         <CardHeader>{element.title}</CardHeader>
-                        <span>{element.content}</span>
+                        <span>{element.description}</span>
                         <CardFooter>
                         <span>{element.prefix}</span>
                         <Buttons>

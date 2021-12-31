@@ -4,29 +4,29 @@ export const testData = {
         id: "item-1",
         prefix: "todo",
         title: "First title",
-        content: "First task content."
+        description: "First task description."
       }
     ],
-    inProgress: [
+    doing: [
       {
         id: "item-2",
-        prefix: "inProgress",
+        prefix: "doing",
         title: "Second title",
-        content: "Second task content."
+        description: "Second task description."
       },
       {
         id: "item-3",
-        prefix: "inProgress",
+        prefix: "doing",
         title: "Third title",
-        content: "Third task content."
+        description: "Third task description."
       }
     ],
-    done: [
+    closed: [
       {
         id: "item-4",
-        prefix: "done",
+        prefix: "closed",
         title: "Fourth title",
-        content: "Fourth task content."
+        description: "Fourth task description."
       }
     ]
 };

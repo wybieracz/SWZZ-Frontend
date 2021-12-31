@@ -1,9 +1,9 @@
 import { Draggable } from "react-beautiful-dnd";
-import { TextField } from '@material-ui/core'
 import React from "react";
-import { CardHeader, CardFooter, Buttons, DragItem } from "../styled/TaskStyled";
+import { CardFooter, Buttons, DragItem } from "../styled/TaskStyled";
+import { Form } from "react-bootstrap";
 
-export default function TaskEditor ({ element, index, title, handleTitleChange, content, handleContentChange, handleSubmit }) {
+export default function TaskEditor ({ element, index, title, handleTitleChange, description, handleDescriptionChange, handleSubmit }) {
     return (
         <Draggable draggableId={element.id} index={index}>
         {(provided, snapshot) => {
@@ -14,8 +14,14 @@ export default function TaskEditor ({ element, index, title, handleTitleChange, 
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
-                    <CardHeader><TextField margin="normal" value={title} onChange={handleTitleChange} fullWidth multiline/></CardHeader>
-                    <TextField margin="normal" value={content} onChange={handleContentChange} fullWidth multiline/>
+                    <Form>
+                        <Form.Group className="mb-3" controlId="Title">
+                            <Form.Control type="email" value={title} placeholder="Title" onChange={handleTitleChange} />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="Description">
+                            <Form.Control as="textarea" value={description} rows={3} placeholder="Description" onChange={handleDescriptionChange} />
+                        </Form.Group>
+                    </Form>
                     <CardFooter>
                     <span>{element.prefix}</span>
                     <Buttons>

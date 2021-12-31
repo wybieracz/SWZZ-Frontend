@@ -11,8 +11,8 @@ const pasteTask = (list, prefix, index, element) => {
   return result;
 };
 
-const editTask = (list, index, title, content) => {
-  const editedElement = { ...list[index], title: title, content: content};
+const editTask = (list, index, title, description) => {
+  const editedElement = { ...list[index], title: title, description: description};
   const result = Array.from(list);
   result.splice(index, 1, editedElement);
   return result;

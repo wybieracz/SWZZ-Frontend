@@ -7,9 +7,9 @@ export default function Task ({ element, index, remove, edit }) {
 
     const [isUnderEdit, setIsUnderEdit] = useState(false);
     const [title, handleTitleChange, resetTitle] = useInputState(element.title);
-    const [content, handleContentChange, resetContent] = useInputState(element.content);
+    const [description, handleDescriptionChange, resetDescription] = useInputState(element.description);
     const handleSubmit = () => {
-        edit(element.prefix, index, title, content);
+        edit(element.prefix, index, title, description);
         setIsUnderEdit(false);
     }
 
@@ -19,8 +19,8 @@ export default function Task ({ element, index, remove, edit }) {
             index={index}
             title={title}
             handleTitleChange={handleTitleChange}
-            content={content}
-            handleContentChange={handleContentChange}
+            description={description}
+            handleDescriptionChange={handleDescriptionChange}
             handleSubmit={handleSubmit} />
         )
     }

@@ -4,12 +4,30 @@ import TaskListColumn from "./TaskListColumn";
 import { TaskListContainer, ListGrid } from "../styled/TaskListStyled";
 import { testData } from "./testData";
 import { cutTask, pasteTask, editTask } from "./TaskListUtility";
+import axios from "axios";
 
-const columns = ["todo", "inProgress", "done"];
+axios.defaults.withCredentials = true;
+const columns = ["todo", "doing", "closed"];
+
+async function getTasks() {
+
+  try {
+    const response = await axios.get("https://dev-swzz-be-app.azurewebsites.net/api/TaskItems/0");
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 export default function TaskList() {
 
   const [elements, setElements] = useState(testData);
+<<<<<<< HEAD
+  useEffect(() => {
+    getTasks();
+  }, []);
+=======
+>>>>>>> develop
 
   const handleDragEnd = (result) => {
     if (!result.destination) {
@@ -36,9 +54,9 @@ export default function TaskList() {
     }
   };
 
-  const handleEditTask = (prefix, index, title, content) => {
+  const handleEditTask = (prefix, index, title, description) => {
     const listCopy = { ...elements };
-    listCopy[prefix] = editTask(listCopy[prefix], index, title, content);
+    listCopy[prefix] = editTask(listCopy[prefix], index, title, description);
     setElements(listCopy);
   };
 
