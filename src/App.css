@@ -21,11 +21,15 @@
 .pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-footer {
   border-top: 1px solid rgba(10, 10, 10, 0.2);
   padding: 0px;
-  margin-bottom: 70px;
+  margin-bottom: 20px;
 }
 
 .pro-sidebar-content,
   .pro-sidebar > .pro-sidebar-inner,
   .pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item {
   background-color: rgb(228, 228, 228);
+}
+
+.modal-footer {
+  justify-content: center;
 }

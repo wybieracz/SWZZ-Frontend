@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const CardHeader = styled.div`
-    font-weight: bold;
-    font-size: large;
-    word-wrap: break-word;
+font-weight: bold;
+font-size: large;
+word-wrap: break-word;
 `;
 
 const Buttons = styled.div`

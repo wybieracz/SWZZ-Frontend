@@ -1,7 +1,7 @@
 import { ProSidebar, SidebarHeader, SidebarFooter, SidebarContent, Menu, MenuItem } from 'react-pro-sidebar';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import 'react-pro-sidebar/dist/css/styles.css';
-import { SidebarBody, SidebarButton, SidebarButtonText, SidebarHeaderText, SidebarHeaderItem, SidebarContentItem, SidebarContentText } from "../styled/SidebarStyled.js";
+import { SidebarBody, SidebarButtonWrapper, SidebarButton, SidebarButtonText, SidebarHeaderText, SidebarHeaderItem, SidebarContentItem, SidebarContentText } from "../styled/SidebarStyled.js";
 
 export default function Sidebar() {
 
@@ -17,9 +17,23 @@ export default function Sidebar() {
         })
 
         result = await result.status
-        console.log(result);
-        if (result >= 200 && result < 300)
+
+        if (result >= 200 && result < 300) {
+            localStorage.clear();
             navigate("/");
+        }
+    }
+
+    function Settings() {
+        navigate("/settings")
+    }
+
+    function Home() {
+        navigate("/home")
+    }
+
+    function Group(path) {
+        navigate(`/group/${path}`)
     }
 
     return (
@@ -28,10 +42,8 @@ export default function Sidebar() {
                 <SidebarHeader>
                     <Menu>
                         <MenuItem>
-                            <SidebarHeaderItem>
-                                <Link to="/home">
-                                    <SidebarHeaderText>Jan Kowalski</SidebarHeaderText>
-                                </Link>
+                            <SidebarHeaderItem onClick={Home}>
+                                <SidebarHeaderText>Jan Kowalski</SidebarHeaderText>
                             </SidebarHeaderItem>
                         </MenuItem>
                     </Menu>
@@ -39,28 +51,27 @@ export default function Sidebar() {
                 <SidebarContent>
                     <Menu>
                         <MenuItem>
-                            <SidebarContentItem>
-                                <Link to="/group/home">
-                                    <SidebarContentText>Home</SidebarContentText>
-                                </Link>
+                            <SidebarContentItem onClick={() => Group("home")}>
+                                <SidebarContentText>Home</SidebarContentText>
                             </SidebarContentItem>
                         </MenuItem>
                         <MenuItem>
-                            <SidebarContentItem>
-                                <Link to="/group/work">
-                                    <SidebarContentText>Work</SidebarContentText>
-                                </Link>
+                            <SidebarContentItem onClick={() => Group("work")}>
+                                <SidebarContentText>Work</SidebarContentText>
                             </SidebarContentItem>
                         </MenuItem>
                     </Menu>
                 </SidebarContent>
                 <SidebarFooter>
                     <Menu>
-                        <MenuItem>
+                        <SidebarButtonWrapper>
+                            <SidebarButton onClick={Settings}>
+                                <SidebarButtonText>Settings</SidebarButtonText>
+                            </SidebarButton>
                             <SidebarButton onClick={LogOut}>
                                 <SidebarButtonText>Logout</SidebarButtonText>
                             </SidebarButton>
-                        </MenuItem>
+                        </SidebarButtonWrapper>
                     </Menu>
                 </SidebarFooter>
             </ProSidebar>

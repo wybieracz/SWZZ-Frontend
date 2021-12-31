@@ -10,20 +10,28 @@ left: 0;
 overflow-x: hidden;
 `;
 
+const SidebarButtonWrapper = styled.div`
+display: inline;
+align-items: center;
+justify-content: center;
+flex: 1 1 0%;
+flex-direction: column;
+justify-content: space-evenly;
+`;
+
 const SidebarButton = styled.button`
 border-radius: 40px;
 background: rgb(209, 209, 209);
 color: #adadad;
 height: 40px;
-width: 11%;
-min-width: 183px;
-position: fixed;
-display: flex;
+width: 80%;
+min-width: 200px;
+display: inline;
 align-items: center;
 justify-content: center;
 text-overflow: ellipsis;
 overflow: hidden;
-margin: 15px 2% 15px 2%;
+margin: 20px max(25px, 10%) 0px max(25px, 10%);
 &:hover{
   background:rgb(161, 161, 161);
 }
@@ -66,4 +74,4 @@ text-overflow: ellipsis;
 color: rgb(46, 46, 46);
 `;
 
-export { SidebarBody, SidebarButton, SidebarButtonText, SidebarHeaderText, SidebarHeaderItem, SidebarContentItem, SidebarContentText };
+export { SidebarBody, SidebarButtonWrapper, SidebarButton, SidebarButtonText, SidebarHeaderText, SidebarHeaderItem, SidebarContentItem, SidebarContentText };

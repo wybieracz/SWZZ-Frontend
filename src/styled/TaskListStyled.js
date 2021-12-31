@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const TaskListContainer = styled.div`
 position: relative;
-margin-left: 15%;
+margin-left: max(250px, 15%);
 padding: 10px;
 `;
 

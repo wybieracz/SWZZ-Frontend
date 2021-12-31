@@ -13,7 +13,6 @@ const LoginHeader = styled.div`
 font-size: 30px;
 font-weight: bold;
 text-align: center;
-padding-bottom: 2%;
 `;
 
 const LoginCheckbox = styled.div`
@@ -26,6 +25,7 @@ align-items: center;
 justify-content: center;
 text-overflow: ellipsis;
 overflow: hidden;
+margin: 3%;
 `;
 
 const LoginButton = styled.button`
@@ -50,4 +50,8 @@ const LoginItem = styled.div`
 margin-bottom: 5%;
 `;
 
-export { LoginBody, LoginForm, LoginHeader, LoginCheckbox, LoginButtonWrapper, LoginButton, LoginButtonText, LoginItem };
+const LoginErrorText = styled.div`
+color: red;
+`
+
+export { LoginBody, LoginForm, LoginHeader, LoginCheckbox, LoginErrorText, LoginButtonWrapper, LoginButton, LoginButtonText, LoginItem };

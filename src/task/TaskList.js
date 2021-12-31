@@ -3,7 +3,6 @@ import { DragDropContext } from "react-beautiful-dnd";
 import TaskListColumn from "./TaskListColumn";
 import { TaskListContainer, ListGrid } from "../styled/TaskListStyled";
 import { testData } from "./testData";
-import Sidebar from "../containers/Sidebar";
 import { cutTask, pasteTask, editTask } from "./TaskListUtility";
 
 const columns = ["todo", "inProgress", "done"];

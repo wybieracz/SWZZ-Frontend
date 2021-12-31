@@ -3,10 +3,6 @@ import styled from "styled-components";
 const StartBody = styled.div`
 padding: 360px;
 text-align: center;
-&:h1{
-  font-family: "Open Sans", sans-serif;
-  font-weight: 600;
-}
 `;
 
 const StartSubheading = styled.span`
