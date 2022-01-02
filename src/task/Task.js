@@ -9,7 +9,7 @@ export default function Task ({ element, index, remove, edit }) {
     const [title, handleTitleChange, resetTitle] = useInputState(element.title);
     const [description, handleDescriptionChange, resetDescription] = useInputState(element.description);
     const handleSubmit = () => {
-        edit(element.prefix, index, title, description);
+        edit(element.status, index, title, description);
         setIsUnderEdit(false);
     }
 

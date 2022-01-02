@@ -41,6 +41,7 @@ export default function Login(props) {
 
       let result = await fetch("https://dev-swzz-be-app.azurewebsites.net/login", {
         method: 'POST',
+        credentials: 'include',
         body: JSON.stringify(item),
         headers: {
           "Content-Type": 'application/json',

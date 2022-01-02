@@ -2,6 +2,7 @@ import useInputState from "../hooks/useInputState";
 import React, { useState } from "react";
 import { CardFooter, Buttons } from "../styled/TaskStyled";
 import { TaskCreatorContainer } from "../styled/TaskCreatorStyled";
+import { createTaskRequest } from "./TaskListUtility";
 import { v4 as uuidv4 } from 'uuid';
 import { Form } from 'react-bootstrap';
 
@@ -11,12 +12,26 @@ export default function TaskCreator ({ add }) {
     const [description, handleDescriptionChange, resetDescription] = useInputState("");
     const handleSubmit = () => {
         const element = {
-            id: uuidv4(),
-            prefix: "todo",
-            title: title,
-            description: description
+            "taskId": 0,
+            "groupId": 0,
+            "title": title,
+            "description": description,
+            "commissionerId": "string",
+            "commissioneeId": "string",
+            "deadline": 0,
+            "startTime": 0,
+            "estimatedExecutionTime": 0,
+            "status": "ToDo",
+            "taskFailed": false,
+            "permissions": {
+                "canEditAttributes": true,
+                "canAssignMyself": true,
+                "canAssignOthers": true,
+                "canDelete": true
+            }
         }
-        add(element);
+        createTaskRequest(element, add);
+        //add(element);
         setIsEnabled(false);
         resetTitle();
         resetDescription();
@@ -38,7 +53,7 @@ export default function TaskCreator ({ add }) {
                     </Form.Group>
                 </Form>
                 <CardFooter>
-                <span>todo</span>
+                <span>ToDo</span>
                 <Buttons>
                     <button onClick={handleDiscard}>Discard</button>
                     <button onClick={handleSubmit}>Add</button>

@@ -5,7 +5,7 @@ import { Form } from "react-bootstrap";
 
 export default function TaskEditor ({ element, index, title, handleTitleChange, description, handleDescriptionChange, handleSubmit }) {
     return (
-        <Draggable draggableId={element.id} index={index}>
+        <Draggable draggableId={element.taskId.toString()} index={index}>
         {(provided, snapshot) => {
             return (
                 <DragItem
@@ -23,7 +23,7 @@ export default function TaskEditor ({ element, index, title, handleTitleChange, 
                         </Form.Group>
                     </Form>
                     <CardFooter>
-                    <span>{element.prefix}</span>
+                    <span>{element.status}</span>
                     <Buttons>
                         <button onClick={handleSubmit}>Save</button>
                     </Buttons>

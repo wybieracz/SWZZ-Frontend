@@ -2,30 +2,20 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import TaskListColumn from "./TaskListColumn";
 import { TaskListContainer, ListGrid } from "../styled/TaskListStyled";
-import { testData } from "./testData";
-import { cutTask, pasteTask, editTask } from "./TaskListUtility";
-import axios from "axios";
+import { defaultData } from "./DefaultData";
+import { cutTask, pasteTask, editTask, getTasks, removeTaskRequest } from "./TaskListUtility";
 
-axios.defaults.withCredentials = true;
-const columns = ["todo", "doing", "closed"];
-
-async function getTasks() {
-
-  try {
-    const response = await axios.get("https://dev-swzz-be-app.azurewebsites.net/api/TaskItems/0");
-    console.log(response);
-  } catch (error) {
-    console.error(error);
-  }
-}
+const columns = ["ToDo", "Doing", "Closed"];
 
 export default function TaskList() {
-
-  const [elements, setElements] = useState(testData);
+  
+  const [elements, setElements] = useState(defaultData);
 
   useEffect(() => {
-    getTasks();
+    getTasks(setElements);
   }, []);
+
+  console.log(elements);
 
   const handleDragEnd = (result) => {
     if (!result.destination) {
@@ -38,7 +28,6 @@ export default function TaskList() {
         sourceList,
         result.source.index
       );
-
       listCopy[result.source.droppableId] = newSourceList;
       const destinationList = listCopy[result.destination.droppableId];
 
@@ -52,26 +41,26 @@ export default function TaskList() {
     }
   };
 
-  const handleEditTask = (prefix, index, title, description) => {
+  const handleEditTask = (status, index, title, description) => {
     const listCopy = { ...elements };
-    listCopy[prefix] = editTask(listCopy[prefix], index, title, description);
+    listCopy[status] = editTask(listCopy[status], index, title, description);
     setElements(listCopy);
   };
 
-  const handleRemoveTask = (prefix, index) => {
+  const handleRemoveTask = (status, index) => {
     const listCopy = { ...elements };
-    const result = listCopy[prefix];
-    result.splice(index, 1);
-    listCopy[prefix] = result;
+    const result = listCopy[status];
+    const removed = result.splice(index, 1);
+    removeTaskRequest(removed[0].taskId);
+    listCopy[status] = result;
     setElements(listCopy);
   };
 
   const handleAddTask = (element) => {
     const listCopy = { ...elements };
-    listCopy["todo"].push(element);
+    listCopy["ToDo"].push(element);
     setElements(listCopy);
   }
-
   return (
     <TaskListContainer>
       <DragDropContext onDragEnd={handleDragEnd}>
@@ -80,7 +69,7 @@ export default function TaskList() {
             <TaskListColumn
               elements={elements[listKey]}
               key={listKey}
-              prefix={listKey}
+              status={listKey}
               remove={handleRemoveTask}
               edit={handleEditTask}
               add={handleAddTask}
