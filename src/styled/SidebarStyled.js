@@ -32,6 +32,7 @@ justify-content: center;
 text-overflow: ellipsis;
 overflow: hidden;
 margin: 20px max(25px, 10%) 0px max(25px, 10%);
+border: 0px;
 &:hover{
   background:rgb(161, 161, 161);
 }
@@ -40,7 +41,7 @@ margin: 20px max(25px, 10%) 0px max(25px, 10%);
 const SidebarButtonText = styled.span`
 font-size: 18px;
 font-weight: bold;
-color: rgb(46, 46, 46);
+color: #2B2B2B;
 `;
 
 const SidebarHeaderText = styled.div`
@@ -48,7 +49,7 @@ font-size: 20px;
 padding: 2rem;
 font-weight: bold;
 text-overflow: ellipsis;
-color: black;
+color: #2B2B2B;
 `;
 
 const SidebarHeaderItem = styled.div`
@@ -60,7 +61,7 @@ const SidebarHeaderItem = styled.div`
 const SidebarContentItem = styled.div`
 padding: 2rem 0rem;
 font-weight: bold;
-color: black;
+color: #2B2B2B;
 &:hover{
   background:rgb(209, 209, 209);
 }
@@ -71,7 +72,7 @@ font-size: 18px;
 padding: 1.3rem 2rem 1.3rem 2rem;
 font-weight: bold;
 text-overflow: ellipsis;
-color: rgb(46, 46, 46);
+color: #2B2B2B;
 `;
 
 export { SidebarBody, SidebarButtonWrapper, SidebarButton, SidebarButtonText, SidebarHeaderText, SidebarHeaderItem, SidebarContentItem, SidebarContentText };

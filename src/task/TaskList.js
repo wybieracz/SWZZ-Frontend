@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import TaskListColumn from "./TaskListColumn";
-import { TaskListContainer, ListGrid } from "../styled/TaskListStyled";
+import { TaskListContainer, ListGrid, Separator } from "../styled/TaskListStyled";
 import { defaultData } from "./DefaultData";
 import { cutTask, pasteTask, editTask, getTasks, removeTaskRequest } from "./TaskListUtility";
 
@@ -63,6 +63,7 @@ export default function TaskList() {
   }
   return (
     <TaskListContainer>
+    <Separator />
       <DragDropContext onDragEnd={handleDragEnd}>
         <ListGrid>
           {columns.map((listKey) => (

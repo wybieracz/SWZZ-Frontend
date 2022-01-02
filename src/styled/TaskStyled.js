@@ -4,6 +4,10 @@ const CardHeader = styled.div`
 font-weight: bold;
 font-size: large;
 word-wrap: break-word;
+display: table;
+table-layout: fixed;
+width: 100%;
+word-wrap: break-word;
 `;
 
 const Buttons = styled.div`
@@ -21,11 +25,12 @@ align-items: center;
 const DragItem = styled.div`
 padding: 10px;
 border-radius: 6px;
-background: white;
+background: #FFFFFF;
 margin: 0 0 8px 0;
 display: grid;
 grid-gap: 20px;
 flex-direction: column;
+width: 100%;
 `;
 
 export { CardHeader, CardFooter, Buttons, DragItem}

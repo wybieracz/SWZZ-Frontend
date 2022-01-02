@@ -3,7 +3,8 @@ import styled from "styled-components";
 const TaskListContainer = styled.div`
 position: relative;
 margin-left: max(250px, 15%);
-padding: 10px;
+padding: 0px 10px 10px 10px;
+background: #F7F7F7;
 `;
 
 const ListGrid = styled.div`
@@ -12,4 +13,11 @@ const ListGrid = styled.div`
   grid-gap: 8px;
 `;
 
-export { TaskListContainer, ListGrid }
+const Separator = styled.hr`
+  border-top: 3px solid #D1D1D1;
+  background-color: #F7F7F7;
+  opacity: 1;
+  margin: 0px 10px 10px;
+`;
+
+export { TaskListContainer, ListGrid, Separator }

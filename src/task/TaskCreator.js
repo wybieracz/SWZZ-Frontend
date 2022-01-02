@@ -5,6 +5,8 @@ import { TaskCreatorContainer } from "../styled/TaskCreatorStyled";
 import { createTaskRequest } from "./TaskListUtility";
 import { v4 as uuidv4 } from 'uuid';
 import { Form } from 'react-bootstrap';
+import { AddIcon, OkIcon, DeleteIcon } from "../vectors/Icons";
+import { ActionButton, AddButton } from "../styled/TaskListButtonsStyled";
 
 export default function TaskCreator ({ add }) {
     const [isEnabled, setIsEnabled] = useState(false);
@@ -55,14 +57,14 @@ export default function TaskCreator ({ add }) {
                 <CardFooter>
                 <span>ToDo</span>
                 <Buttons>
-                    <button onClick={handleDiscard}>Discard</button>
-                    <button onClick={handleSubmit}>Add</button>
+                    <ActionButton onClick={handleDiscard}><DeleteIcon /></ActionButton>
+                    <ActionButton onClick={handleSubmit}><OkIcon /></ActionButton>
                 </Buttons>
                 </CardFooter>
             </TaskCreatorContainer>
         )
     }
     else {
-        return (<button onClick={() => setIsEnabled(true)}>+</button>);
+        return (<AddButton onClick={() => setIsEnabled(true)}><AddIcon /></AddButton>);
     }
 };

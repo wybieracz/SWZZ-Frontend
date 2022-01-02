@@ -1,6 +1,8 @@
 import { Draggable } from "react-beautiful-dnd";
 import React from "react";
 import { CardHeader, CardFooter, Buttons, DragItem } from "../styled/TaskStyled";
+import { ActionButton } from "../styled/TaskListButtonsStyled";
+import { DeleteIcon, EditIcon } from "../vectors/Icons";
 
 export default function TaskCard({ element, index, remove, setIsUnderEdit }) {
     return (
@@ -18,8 +20,8 @@ export default function TaskCard({ element, index, remove, setIsUnderEdit }) {
                         <CardFooter>
                         <span>{element.status}</span>
                         <Buttons>
-                            <button onClick={() => remove(element.status, index)}>Delete</button>
-                            <button onClick={() => setIsUnderEdit(true)}>Edit</button>
+                            <ActionButton onClick={() => remove(element.status, index)}><DeleteIcon /></ActionButton>
+                            <ActionButton onClick={() => setIsUnderEdit(true)}><EditIcon /></ActionButton>
                         </Buttons>
                         </CardFooter>
                     </DragItem>

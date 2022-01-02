@@ -2,6 +2,8 @@ import { Draggable } from "react-beautiful-dnd";
 import React from "react";
 import { CardFooter, Buttons, DragItem } from "../styled/TaskStyled";
 import { Form } from "react-bootstrap";
+import { OkIcon } from "../vectors/Icons";
+import { ActionButton } from "../styled/TaskListButtonsStyled";
 
 export default function TaskEditor ({ element, index, title, handleTitleChange, description, handleDescriptionChange, handleSubmit }) {
     return (
@@ -25,7 +27,7 @@ export default function TaskEditor ({ element, index, title, handleTitleChange, 
                     <CardFooter>
                     <span>{element.status}</span>
                     <Buttons>
-                        <button onClick={handleSubmit}>Save</button>
+                        <ActionButton onClick={handleSubmit}><OkIcon /></ActionButton>
                     </Buttons>
                     </CardFooter>
                 </DragItem>
