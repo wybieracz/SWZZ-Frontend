@@ -27,7 +27,7 @@ export default function TaskEditor ({ element, index, title, handleTitleChange, 
                     <CardFooter>
                     <span>{element.status}</span>
                     <Buttons>
-                        <ActionButton onClick={handleSubmit}><OkIcon /></ActionButton>
+                        <ActionButton onClick={handleSubmit} background="#E4E4E4" hoverBackground="#D1D1D1"><OkIcon /></ActionButton>
                     </Buttons>
                     </CardFooter>
                 </DragItem>

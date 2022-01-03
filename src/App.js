@@ -12,13 +12,13 @@ import "./App.css";
 
 export default function App() {
   return (
-    <Routes>
-      <Route exact path="/" element={<StartPage />} />
-      <Route exact path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-      <Route exact path="/group/:id" element={<ProtectedRoute><Group /></ProtectedRoute>} />
-      <Route exact path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
-      <Route exact path="/settings/password" element={<ProtectedRoute><Password /></ProtectedRoute>} />
-      <Route element={<NotFound />} />
-    </Routes>
+      <Routes>
+        <Route exact path="/" element={<StartPage />} />
+        <Route exact path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+        <Route exact path="/group/:id" element={<ProtectedRoute><Group /></ProtectedRoute>} />
+        <Route exact path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+        <Route exact path="/settings/password" element={<ProtectedRoute><Password /></ProtectedRoute>} />
+        <Route element={<NotFound />} />
+      </Routes>
   );
 }

@@ -1,7 +1,8 @@
 import { ProSidebar, SidebarHeader, SidebarFooter, SidebarContent, Menu, MenuItem } from 'react-pro-sidebar';
 import { useNavigate } from 'react-router-dom';
 import 'react-pro-sidebar/dist/css/styles.css';
-import { SidebarBody, SidebarButtonWrapper, SidebarButton, SidebarButtonText, SidebarHeaderText, SidebarHeaderItem, SidebarContentItem, SidebarContentText } from "../styled/SidebarStyled.js";
+import { SidebarBody, SidebarButtonWrapper, PrimarySidebarButton, SecondarySidebarButton, SidebarButtonText, SidebarHeaderText, SidebarHeaderItem, SidebarContentItem, SidebarContentText } from "../styled/SidebarStyled.js";
+import Avatar from '../Avatar.js';
 
 export default function Sidebar() {
 
@@ -43,6 +44,7 @@ export default function Sidebar() {
                     <Menu>
                         <MenuItem>
                             <SidebarHeaderItem onClick={Home}>
+                                <Avatar />
                                 <SidebarHeaderText>Jan Kowalski</SidebarHeaderText>
                             </SidebarHeaderItem>
                         </MenuItem>
@@ -65,12 +67,8 @@ export default function Sidebar() {
                 <SidebarFooter>
                     <Menu>
                         <SidebarButtonWrapper>
-                            <SidebarButton onClick={Settings}>
-                                <SidebarButtonText>Settings</SidebarButtonText>
-                            </SidebarButton>
-                            <SidebarButton onClick={LogOut}>
-                                <SidebarButtonText>Logout</SidebarButtonText>
-                            </SidebarButton>
+                            <SecondarySidebarButton onClick={Settings}>Options</SecondarySidebarButton>
+                            <PrimarySidebarButton onClick={LogOut}>Logout</PrimarySidebarButton>
                         </SidebarButtonWrapper>
                     </Menu>
                 </SidebarFooter>

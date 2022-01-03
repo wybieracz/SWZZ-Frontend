@@ -14,12 +14,12 @@
 }
 
 .pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-header {
-  border-top: 1px solid rgba(10, 10, 10, 0.2);
-  border-bottom: 1px solid rgba(10, 10, 10, 0.2);
+  border-top: 0px;
+  border-bottom: 0px;
 }
 
 .pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-footer {
-  border-top: 1px solid rgba(10, 10, 10, 0.2);
+  border-top: 0px;
   padding: 0px;
   margin-bottom: 20px;
 }
@@ -27,9 +27,10 @@
 .pro-sidebar-content,
   .pro-sidebar > .pro-sidebar-inner,
   .pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item {
-  background-color: rgb(228, 228, 228);
+  background-color: #E4E4E4;
 }
 
 .modal-footer {
   justify-content: center;
+  background-color: #E4E4E4;
 }

@@ -5,6 +5,8 @@ position: relative;
 margin-left: max(250px, 15%);
 padding: 0px 10px 10px 10px;
 background: #F7F7F7;
+height: 100%;
+min-height: 89.5vh;
 `;
 
 const ListGrid = styled.div`

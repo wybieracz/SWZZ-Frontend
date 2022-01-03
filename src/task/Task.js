@@ -9,7 +9,7 @@ export default function Task ({ element, index, remove, edit }) {
     const [title, handleTitleChange, resetTitle] = useInputState(element.title);
     const [description, handleDescriptionChange, resetDescription] = useInputState(element.description);
     const handleSubmit = () => {
-        edit(element.status, index, title, description);
+        edit(element.status, index, title, description, element.taskFailed);
         setIsUnderEdit(false);
     }
 
@@ -29,6 +29,7 @@ export default function Task ({ element, index, remove, edit }) {
             <TaskCard element={element}
             index={index}
             remove={remove}
+            edit={edit}
             setIsUnderEdit={setIsUnderEdit} />
         );
     }

@@ -57,14 +57,14 @@ export default function TaskCreator ({ add }) {
                 <CardFooter>
                 <span>ToDo</span>
                 <Buttons>
-                    <ActionButton onClick={handleDiscard}><DeleteIcon /></ActionButton>
-                    <ActionButton onClick={handleSubmit}><OkIcon /></ActionButton>
+                    <ActionButton onClick={handleDiscard} background="#E4E4E4" hoverBackground="#D1D1D1"><DeleteIcon /></ActionButton>
+                    <ActionButton onClick={handleSubmit} background="#E4E4E4" hoverBackground="#D1D1D1"><OkIcon /></ActionButton>
                 </Buttons>
                 </CardFooter>
             </TaskCreatorContainer>
         )
     }
     else {
-        return (<AddButton onClick={() => setIsEnabled(true)}><AddIcon /></AddButton>);
+        return (<AddButton onClick={() => setIsEnabled(true)} background="#E4E4E4" hoverBackground="#D1D1D1"><AddIcon /></AddButton>);
     }
 };

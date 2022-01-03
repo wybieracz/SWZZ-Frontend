@@ -17,7 +17,7 @@ word-wrap: break-word;
 `;
 
 const GroupSubheading = styled.span`
-color: #6c757d!important;
+color: #545454!important;
 `;
 
 export { GroupBody, GroupTitle, GroupSubheading };

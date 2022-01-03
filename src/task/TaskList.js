@@ -41,9 +41,9 @@ export default function TaskList() {
     }
   };
 
-  const handleEditTask = (status, index, title, description) => {
+  const handleEditTask = (status, index, title, description, taskFailed) => {
     const listCopy = { ...elements };
-    listCopy[status] = editTask(listCopy[status], index, title, description);
+    listCopy[status] = editTask(listCopy[status], index, title, description, taskFailed);
     setElements(listCopy);
   };
 
