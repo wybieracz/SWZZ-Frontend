@@ -16,8 +16,4 @@ font-size: xx-large;
 word-wrap: break-word;
 `;
 
-const GroupSubheading = styled.span`
-color: #545454!important;
-`;
-
-export { GroupBody, GroupTitle, GroupSubheading };
+export { GroupBody, GroupTitle };

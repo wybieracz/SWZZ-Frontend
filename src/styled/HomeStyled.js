@@ -9,8 +9,4 @@ color: #2B2B2B!important;
 font-weight: 900;
 `;
 
-const HomeSubheading = styled.span`
-color: #545454!important;
-`;
-
-export { HomeBody, HomeSubheading };
+export { HomeBody };

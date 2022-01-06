@@ -14,7 +14,7 @@ export default function Login(props) {
 
   const [validated, setValidated] = useState(false);
   const [valid, setValid] = useState(false);
-  const [userExists, setUserExists] = useState(true);
+  const [validCredentials, setValidCredentials] = useState(true);
 
   const validEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
   const validPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
@@ -23,28 +23,28 @@ export default function Login(props) {
 
   useEffect(() => {
     validEmail.test(email) ? setEmailErr(false) : setEmailErr(true);
+    setValidCredentials(true);
+  }, [email]);
+
+  useEffect(() => {
     validPassword.test(password) ? setPasswordErr(false) : setPasswordErr(true);
-  }, [email, password]);
+  }, [password]);
 
   useEffect(() => {
     (emailErr || passwordErr) ? setValid(false) : setValid(true);
   }, [emailErr, passwordErr]);
 
-  useEffect(() => {
-    setUserExists(true);
-  }, [email])
-
-  async function logIn() {
+  async function handleLogin() {
     setValidated(true);
     if (valid) {
       let item = { email, password, rememberMe }
-
       let result = await fetch("https://dev-swzz-be-app.azurewebsites.net/login", {
         method: 'POST',
         credentials: 'include',
         body: JSON.stringify(item),
         headers: {
           "Content-Type": 'application/json',
+          
         }
       })
 
@@ -52,10 +52,10 @@ export default function Login(props) {
 
       if (result >= 200 && result < 300) {
         localStorage.setItem("isAuthenticated", "true");
-        navigate("/home");
+        navigate("/");
       }
       else {
-        setUserExists(false);
+        setValidCredentials(false);
       }
     }
   }
@@ -88,7 +88,7 @@ export default function Login(props) {
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 {validated && emailErr && <LoginErrorText>Please provide a valid email.</LoginErrorText>}
-                {validated && !userExists && <LoginErrorText>Such user does not exist.</LoginErrorText>}
+                {validated && !validCredentials && <LoginErrorText>Bad credentials.</LoginErrorText>}
               </Form.Group>
             </LoginItem>
 
@@ -120,7 +120,7 @@ export default function Login(props) {
 
         <Modal.Footer>
           <LoginButtonWrapper>
-            <LoginButton onClick={logIn}>
+            <LoginButton onClick={handleLogin}>
               <LoginButtonText>Login</LoginButtonText>
             </LoginButton>
           </LoginButtonWrapper>

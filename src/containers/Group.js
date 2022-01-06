@@ -1,7 +1,7 @@
 import React from "react";
 import TaskList from "../task/TaskList"
 import Sidebar from "./Sidebar";
-import { GroupBody, GroupTitle, GroupSubheading } from "../styled/GroupStyled";
+import { GroupBody, GroupTitle } from "../styled/GroupStyled";
 
 export default function Group() {
   return (

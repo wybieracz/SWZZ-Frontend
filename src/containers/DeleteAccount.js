@@ -7,7 +7,7 @@ export default function DeleteAccount(props) {
 
     const navigate = useNavigate();
 
-    function DeleteAccount() {
+    function handleDeleteAccount() {
         alert("Your account has been deleted.")
         localStorage.clear()
         navigate("/")
@@ -33,7 +33,7 @@ export default function DeleteAccount(props) {
 
             <Modal.Footer>
                 <DeleteAccountModalButtonWrapper>
-                    <DeleteAccountModalButton onClick={DeleteAccount}>
+                    <DeleteAccountModalButton onClick={handleDeleteAccount}>
                         <DeleteAccountModalButtonTextGreen>Yes</DeleteAccountModalButtonTextGreen>
                     </DeleteAccountModalButton>
                     <DeleteAccountModalButton onClick={props.onHide}>

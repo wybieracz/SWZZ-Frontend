@@ -1,7 +1,7 @@
 import React from "react";
 import TaskList from "../task/TaskList"
 import Sidebar from "./Sidebar";
-import { HomeBody, HomeSubheading } from "../styled/HomeStyled";
+import { HomeBody } from "../styled/HomeStyled";
 import { GroupTitle } from "../styled/GroupStyled";
 
 export default function Home() {

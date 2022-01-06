@@ -13,6 +13,7 @@ export default function ChangePassword(props) {
     const [newPasswordErr, setNewPasswordErr] = useState(true);
     const [samePasswordErr, setSamePasswordErr] = useState(true);
     const [confirmPasswordErr, setConfirmPasswordErr] = useState(true);
+    const [PasswordErr, setPasswordErr] = useState(false);
 
     const [validated, setValidated] = useState(false);
     const [valid, setValid] = useState(false);
@@ -23,20 +24,47 @@ export default function ChangePassword(props) {
 
     useEffect(() => {
         validPassword.test(oldPassword) ? setOldPasswordErr(false) : setOldPasswordErr(true);
+        oldPassword.localeCompare(newPassword) ? setSamePasswordErr(false) : setSamePasswordErr(true);
+        setPasswordErr(false);
+    }, [oldPassword]);
+
+    useEffect(() => {
         validPassword.test(newPassword) ? setNewPasswordErr(false) : setNewPasswordErr(true);
         oldPassword.localeCompare(newPassword) ? setSamePasswordErr(false) : setSamePasswordErr(true);
+        (!newPassword.localeCompare(confirmPassword)) ? setConfirmPasswordErr(false) : setConfirmPasswordErr(true);
+    }, [newPassword]);
+
+    useEffect(() => {
         (validPassword.test(confirmPassword) && !newPassword.localeCompare(confirmPassword)) ? setConfirmPasswordErr(false) : setConfirmPasswordErr(true);
-    }, [oldPassword, newPassword, confirmPassword]);
+    }, [confirmPassword]);
 
     useEffect(() => {
         (oldPasswordErr || newPasswordErr || samePasswordErr || confirmPasswordErr) ? setValid(false) : setValid(true);
     }, [oldPasswordErr, newPasswordErr, samePasswordErr, confirmPasswordErr]);
 
-    async function Password() {
+    async function handlePasswordChange() {
         setValidated(true);
         if (valid) {
-            alert("Your password has been changed.")
-            navigate("/home")
+            let item = { oldPassword, newPassword };
+
+            let result = await fetch("https://dev-swzz-be-app.azurewebsites.net/user/password", {
+                method: 'POST',
+                credentials: 'include',
+                body: JSON.stringify(item),
+                headers: {
+                    "Content-Type": 'application/json',
+                }
+            })
+
+            result = result.status
+
+            if (result >= 200 && result < 300) {
+                alert("Your password has been changed.")
+                navigate("/")
+            }
+            else {
+                setPasswordErr(true);
+            }
         }
     }
 
@@ -68,6 +96,7 @@ export default function ChangePassword(props) {
                                 onChange={(e) => setOldPassword(e.target.value)}
                             />
                             {validated && oldPasswordErr && <ChangePasswordErrorText>Please provide a valid password.</ChangePasswordErrorText>}
+                            {validated && PasswordErr && <ChangePasswordErrorText>This is not your password.</ChangePasswordErrorText>}
                         </Form.Group>
                     </ChangePasswordItem>
 
@@ -110,7 +139,7 @@ export default function ChangePassword(props) {
 
             <Modal.Footer>
                 <ChangePasswordButtonWrapper>
-                    <ChangePasswordButton onClick={Password}>
+                    <ChangePasswordButton onClick={handlePasswordChange}>
                         <ChangePasswordButtonText>Change password</ChangePasswordButtonText>
                     </ChangePasswordButton>
                 </ChangePasswordButtonWrapper>

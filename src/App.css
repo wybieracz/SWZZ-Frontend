@@ -34,3 +34,7 @@
   justify-content: center;
   background-color: #E4E4E4;
 }
+
+aside.emoji-picker-react {
+  width: 100%;
+}

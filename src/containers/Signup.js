@@ -28,11 +28,23 @@ export default function Signup(props) {
 
     useEffect(() => {
         name.length > 0 ? setNameErr(false) : setNameErr(true);
+    }, [name]);
+
+    useEffect(() => {
         surname.length > 0 ? setSurnameErr(false) : setSurnameErr(true);
+    }, [surname]);
+
+    useEffect(() => {
         validEmail.test(email) ? setEmailErr(false) : setEmailErr(true);
+    }, [email]);
+
+    useEffect(() => {
         validPassword.test(password) ? setPasswordErr(false) : setPasswordErr(true);
+    }, [password]);
+
+    useEffect(() => {
         (validPassword.test(confirmPassword) && !password.localeCompare(confirmPassword)) ? setConfirmPasswordErr(false) : setConfirmPasswordErr(true);
-    }, [name, surname, email, password, confirmPassword]);
+    }, [confirmPassword]);
 
     useEffect(() => {
         (nameErr || surnameErr || emailErr || passwordErr || confirmPasswordErr) ? setValid(false) : setValid(true);
@@ -42,13 +54,14 @@ export default function Signup(props) {
         setUserExists(false);
     }, [email])
 
-    async function signUp() {
+    async function handleSignup() {
         setValidated(true);
         if (valid) {
             let item = { name, surname, email, password }
 
             let result = await fetch("https://dev-swzz-be-app.azurewebsites.net/register", {
                 method: 'POST',
+                credentials: 'include',
                 body: JSON.stringify(item),
                 headers: {
                     "Content-Type": 'application/json'
@@ -59,7 +72,7 @@ export default function Signup(props) {
 
             if (result >= 200 && result < 300) {
                 localStorage.setItem("isAuthenticated", "true");
-                navigate("/home");
+                navigate("/");
             }
             else {
                 setUserExists(true)
@@ -170,7 +183,7 @@ export default function Signup(props) {
 
                 <Modal.Footer>
                     <SignupButtonWrapper>
-                        <SignupButton onClick={signUp}>
+                        <SignupButton onClick={handleSignup}>
                             <SignupButtonText>Signup</SignupButtonText>
                         </SignupButton>
                     </SignupButtonWrapper>

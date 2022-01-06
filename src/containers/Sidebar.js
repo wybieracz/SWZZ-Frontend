@@ -1,39 +1,27 @@
+import React, { useState } from "react";
 import { ProSidebar, SidebarHeader, SidebarFooter, SidebarContent, Menu, MenuItem } from 'react-pro-sidebar';
 import { useNavigate } from 'react-router-dom';
 import 'react-pro-sidebar/dist/css/styles.css';
-import { SidebarBody, SidebarButtonWrapper, PrimarySidebarButton, SecondarySidebarButton, SidebarButtonText, SidebarHeaderText, SidebarHeaderItem, SidebarContentItem, SidebarContentText } from "../styled/SidebarStyled.js";
+import { SidebarBody, SidebarButtonWrapper, SecondarySidebarButton, SidebarHeaderText, SidebarHeaderItem, SidebarContentItem, SidebarContentText } from "../styled/SidebarStyled.js";
 import Avatar from '../Avatar.js';
+import Logout from './Logout.js';
+import GroupCreator from './GroupCreator.js';
 
 export default function Sidebar() {
 
+    const [groupCreatorModalShow, setGroupCreatorModalShow] = useState(false);
+
     const navigate = useNavigate();
 
-    async function LogOut() {
-
-        let result = await fetch("https://dev-swzz-be-app.azurewebsites.net/logout", {
-            method: 'POST',
-            headers: {
-                "Content-Type": 'application/json'
-            }
-        })
-
-        result = await result.status
-
-        if (result >= 200 && result < 300) {
-            localStorage.clear();
-            navigate("/");
-        }
-    }
-
-    function Settings() {
+    function handleSettings() {
         navigate("/settings")
     }
 
-    function Home() {
-        navigate("/home")
+    function handleHome() {
+        navigate("/")
     }
 
-    function Group(path) {
+    function handleGroup(path) {
         navigate(`/group/${path}`)
     }
 
@@ -43,7 +31,7 @@ export default function Sidebar() {
                 <SidebarHeader>
                     <Menu>
                         <MenuItem>
-                            <SidebarHeaderItem onClick={Home}>
+                            <SidebarHeaderItem onClick={handleHome}>
                                 <Avatar />
                                 <SidebarHeaderText>Jan Kowalski</SidebarHeaderText>
                             </SidebarHeaderItem>
@@ -53,26 +41,33 @@ export default function Sidebar() {
                 <SidebarContent>
                     <Menu>
                         <MenuItem>
-                            <SidebarContentItem onClick={() => Group("home")}>
+                            <SidebarContentItem onClick={() => handleGroup("home")}>
                                 <SidebarContentText>Home</SidebarContentText>
                             </SidebarContentItem>
                         </MenuItem>
                         <MenuItem>
-                            <SidebarContentItem onClick={() => Group("work")}>
+                            <SidebarContentItem onClick={() => handleGroup("work")}>
                                 <SidebarContentText>Work</SidebarContentText>
                             </SidebarContentItem>
                         </MenuItem>
+                        <SidebarButtonWrapper>
+                            <SecondarySidebarButton onClick={() => setGroupCreatorModalShow(true)}>Create group</SecondarySidebarButton>
+                        </SidebarButtonWrapper>
                     </Menu>
                 </SidebarContent>
                 <SidebarFooter>
                     <Menu>
                         <SidebarButtonWrapper>
-                            <SecondarySidebarButton onClick={Settings}>Options</SecondarySidebarButton>
-                            <PrimarySidebarButton onClick={LogOut}>Logout</PrimarySidebarButton>
+                            <SecondarySidebarButton onClick={handleSettings}>Options</SecondarySidebarButton>
+                            <Logout />
                         </SidebarButtonWrapper>
                     </Menu>
                 </SidebarFooter>
             </ProSidebar>
+            <GroupCreator
+                show={groupCreatorModalShow}
+                onHide={() => setGroupCreatorModalShow(false)}
+            />
         </SidebarBody>
     );
 }
