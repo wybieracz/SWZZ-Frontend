@@ -1,28 +1,30 @@
 import styled from "styled-components";
 
 const StartBody = styled.div`
-padding: 360px;
-text-align: center;
-`;
-
-const StartSubheading = styled.span`
-color: #6c757d!important;
-`;
-
-const StartButtonWrapper = styled.div`
-display: flex;
 align-items: center;
 justify-content: center;
-flex: 1 1 0%;
-flex-direction: row;
-justify-content: space-evenly;
-margin: 5% 15%;
+display: flex;
+background: #FFFFFF;
+height: 100vh;
+
 `;
 
-const StartButton = styled.button`
+const StartContentWrapper = styled.div`
+display: flex;
+padding: 30px;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+border-radius: 10px;
+background: #E4E4E4;
+heigth: 40vh;
+position: relative;
+`;
+
+const PrimaryStartButton = styled.button`
 border-radius: 40px;
-background: rgb(209, 209, 209);
-color: #adadad;
+background: #2B2B2B;
+color: #E4E4E4;
 height: 40px;
 width: 250px;
 display: flex;
@@ -30,15 +32,53 @@ align-items: center;
 justify-content: center;
 text-overflow: ellipsis;
 overflow: hidden;
+margin: 20px max(25px, 10%) 0px max(25px, 10%);
+border: 2px solid #2B2B2B;
+font-size: 18px;
+font-weight: 700;
+color: #E4E4E4;
 &:hover{
-  background:rgb(161, 161, 161);
+  background: #545454;
+  border: 2px solid #545454;
 }
 `;
 
-const StartButtonText = styled.span`
+const SecondaryStartButton = styled.button`
+border-radius: 40px;
+background: #E4E4E4;
+color: #E4E4E4;
+height: 40px;
+width: 250px;
+display: flex;
+align-items: center;
+justify-content: center;
+text-overflow: ellipsis;
+overflow: hidden;
+margin: 20px max(25px, 10%) 0px max(25px, 10%);
+border: 2px solid #2B2B2B;
 font-size: 18px;
-font-weight: bold;
-color: rgb(46, 46, 46);
+font-weight: 700;
+color: #2B2B2B;
+&:hover{
+  background: #545454;
+  border: 2px solid #545454;
+  color: #E4E4E4;
+}
 `;
 
-export { StartBody, StartSubheading, StartButtonWrapper, StartButton, StartButtonText };
+const LogoWrapper = styled.div`
+width: 200px;
+height: 300px;
+background: #E4E4E4;
+padding: 30px 0px 30px;
+align-items: center;
+text-align: center;
+`;
+
+// const StartButtonText = styled.span`
+// font-size: 18px;
+// font-weight: bold;
+// color: rgb(46, 46, 46);
+// `;
+
+export { StartBody, StartContentWrapper, PrimaryStartButton, SecondaryStartButton, LogoWrapper };

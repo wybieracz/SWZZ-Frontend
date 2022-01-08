@@ -12,7 +12,7 @@ export default function TaskListColumn ({ status, elements, remove, edit, add })
         {(provided) => (
           <ColumnBody {...provided.droppableProps} ref={provided.innerRef} >
             {elements.map((element, index) => (
-              <Task key={element.taskId} element={element} index={index} remove={remove} edit={edit} />
+              <Task key={element.taskItemDTO.taskId} element={element} index={index} remove={remove} edit={edit} />
             ))}
             {provided.placeholder}
             {status === "ToDo" ? <TaskCreator add={add} /> : null}

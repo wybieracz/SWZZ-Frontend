@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
-const TaskListContainer = styled.div`
+const TaskListWrapper = styled.div`
 position: relative;
 margin-left: max(250px, 15%);
 padding: 0px 10px 10px 10px;
 background: #F7F7F7;
+display: flex;
+flex-flow: column;
 height: 100%;
-min-height: 89.5vh;
 `;
 
 const ListGrid = styled.div`
@@ -22,4 +23,4 @@ const Separator = styled.hr`
   margin: 0px 10px 10px;
 `;
 
-export { TaskListContainer, ListGrid, Separator }
+export { ListGrid, Separator, TaskListWrapper }

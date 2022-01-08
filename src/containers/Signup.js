@@ -183,9 +183,7 @@ export default function Signup(props) {
 
                 <Modal.Footer>
                     <SignupButtonWrapper>
-                        <SignupButton onClick={handleSignup}>
-                            <SignupButtonText>Signup</SignupButtonText>
-                        </SignupButton>
+                        <SignupButton onClick={handleSignup}>Signup</SignupButton>
                     </SignupButtonWrapper>
                 </Modal.Footer>
 

@@ -12,7 +12,7 @@ const DeleteIcon = () => {
 
 const EditIcon = () => {
     return (
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+        <svg version="1.1" id="edit" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
             width="100px" height="100px" viewBox="0 0 100 100">
         <path fill="#FFFFFF" d="M78.557,38.426l4.701-4.7c4.686-4.687,4.686-12.284,0-16.971c-4.686-4.687-12.285-4.686-16.971,0l-4.701,4.7L78.557,38.426z"/>
         <path fill="#FFFFFF" d="M56.637,26.405L34.99,48.053L13.254,69.789l-0.026,16.943l16.997,0.027l22.018-22.018l21.365-21.367l-7.64-7.64
@@ -23,7 +23,7 @@ const EditIcon = () => {
 
 const OkIcon = () => {
     return (
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+        <svg version="1.1" id="ok" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
             width="100px" height="100px" viewBox="0 0 100 100">
         <path fill="#FFFFFF" d="M37.762,92.328c-3.522,0-6.874-1.549-9.158-4.246L8.217,64.004c-4.283-5.058-3.654-12.63,1.404-16.912
             c5.058-4.282,12.63-3.654,16.913,1.404l10.661,12.591L73.166,13.13c3.978-5.302,11.502-6.375,16.8-2.399
@@ -35,7 +35,7 @@ const OkIcon = () => {
 
 const AddIcon = () => {
     return (
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+        <svg version="1.1" id="add" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
             width="100px" height="100px" viewBox="0 0 100 100">
         <path fill="#FFFFFF" d="M87.5,37.5h-25v-25c0-6.627-5.373-12-12-12c-6.627,0-12,5.373-12,12v25h-26c-6.627,0-12,5.373-12,12c0,6.627,5.373,12,12,12
             h26v26c0,6.627,5.373,12,12,12c6.627,0,12-5.373,12-12v-26h25c6.627,0,12-5.373,12-12C99.5,42.873,94.127,37.5,87.5,37.5z"/>
@@ -43,4 +43,15 @@ const AddIcon = () => {
     )
 }
 
-export { DeleteIcon, EditIcon, OkIcon, AddIcon }
+const ArrowIcon = () => {
+    return (
+        <svg version="1.1" id="arrow" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+            width="100px" height="100px" viewBox="0 0 100 100">
+            <path fill="#FFFFFF" d="M36.564,88.87c-3.071,0-6.143-1.172-8.486-3.515c-4.686-4.687-4.686-12.285,0.001-16.971l18.385-18.384L28.079,31.615
+                c-4.686-4.687-4.686-12.285,0-16.971c4.688-4.686,12.285-4.686,16.971,0l26.871,26.872c2.25,2.25,3.515,5.303,3.515,8.486
+                s-1.265,6.234-3.515,8.485L45.049,85.355C42.707,87.698,39.635,88.87,36.564,88.87z"/>
+        </svg>
+    )
+}
+
+export { DeleteIcon, EditIcon, OkIcon, AddIcon, ArrowIcon }

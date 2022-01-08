@@ -78,4 +78,5 @@ text-overflow: ellipsis;
 color: #2B2B2B;
 `;
 
+// przywrócić PrimarySidebarButton -> bez sensu dawać LogoutStyled do osobnego pliku, bo to wciąż przycisk Sidebar
 export { SidebarBody, SidebarButtonWrapper, SecondarySidebarButton, SidebarHeaderText, SidebarHeaderItem, SidebarContentItem, SidebarContentText };

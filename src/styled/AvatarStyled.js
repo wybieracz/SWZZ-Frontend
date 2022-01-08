@@ -3,7 +3,7 @@ import styled from "styled-components";
 const AvatarInitials = styled.div`
 border-radius: 50%;
 border: 0px;
-background: #53A548};
+background: ${props => (props.background)};
 height: 50px;
 width: 50px;
 display: flex;
@@ -13,7 +13,7 @@ overflow: hidden;
 margin: 5px;
 font-size: 18px;
 font-weight: 600;
-color: #FFFFFF;
+color: white;
 `;
 
 export { AvatarInitials };

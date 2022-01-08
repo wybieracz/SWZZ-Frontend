@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import TaskListColumn from "./TaskListColumn";
-import { TaskListContainer, ListGrid, Separator } from "../styled/TaskListStyled";
+import { ListGrid, Separator, TaskListWrapper, TaskListWrapperHeader, TasklistWrapperContent, TasklistWrapperFooter } from "../styled/TaskListStyled";
 import { defaultData } from "./DefaultData";
 import { cutTask, pasteTask, editTask, getTasks, removeTaskRequest } from "./TaskListUtility";
+import { LoadingIconWrapper } from "../styled/IconsStyled";
+import LoadingIcon from "../bitmaps/Load_Medium_Grey.png";
 
 const columns = ["ToDo", "Doing", "Closed"];
 
 export default function TaskList() {
   
   const [elements, setElements] = useState(defaultData);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    getTasks(setElements);
+    getTasks(setElements, setIsLoaded);
   }, []);
 
   console.log(elements);
@@ -51,7 +54,7 @@ export default function TaskList() {
     const listCopy = { ...elements };
     const result = listCopy[status];
     const removed = result.splice(index, 1);
-    removeTaskRequest(removed[0].taskId);
+    removeTaskRequest(removed[0].taskItemDTO.taskId);
     listCopy[status] = result;
     setElements(listCopy);
   };
@@ -62,22 +65,24 @@ export default function TaskList() {
     setElements(listCopy);
   }
   return (
-    <TaskListContainer>
+    <TaskListWrapper>
     <Separator />
-      <DragDropContext onDragEnd={handleDragEnd}>
-        <ListGrid>
-          {columns.map((listKey) => (
-            <TaskListColumn
-              elements={elements[listKey]}
-              key={listKey}
-              status={listKey}
-              remove={handleRemoveTask}
-              edit={handleEditTask}
-              add={handleAddTask}
-            />
-          ))}
-        </ListGrid>
-      </DragDropContext>
-    </TaskListContainer>
+      {isLoaded ? 
+          <DragDropContext onDragEnd={handleDragEnd}>
+          <ListGrid>
+            {columns.map((listKey) => (
+              <TaskListColumn
+                elements={elements[listKey]}
+                key={listKey}
+                status={listKey}
+                remove={handleRemoveTask}
+                edit={handleEditTask}
+                add={handleAddTask}
+              />
+            ))}
+          </ListGrid>
+        </DragDropContext>
+      : <LoadingIconWrapper size="40px"><img src={LoadingIcon} alt="LoadingIcon" width="40px" heigth="40px" /></LoadingIconWrapper>}
+    </TaskListWrapper>
   );
 }

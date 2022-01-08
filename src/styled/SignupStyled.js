@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const SignupBody = styled.div`
-padding: 60px 0;
+padding: 0px;
 `;
 
 const SignupForm = styled.form`
@@ -26,20 +26,18 @@ margin: 3%;
 
 const SignupButton = styled.button`
 border-radius: 40px;
-background: rgb(209, 209, 209);
-color: #adadad;
+background: #2B2B2B;
+border: 2px solid #2B2B2B;
+color: #E4E4E4;
+font-size: 18px;
+font-weight: 700;
 height: 40px;
-width: 482px;
+width: 324px;
 text-align: center;
 &:hover{
-  background:rgb(161, 161, 161);
+  background: #545454;
+  border: 2px solid #545454;
 }
-`;
-
-const SignupButtonText = styled.div`
-font-size: 18px;
-font-weight: bold;
-color: rgb(46, 46, 46);
 `;
 
 const SignupItem = styled.div`
@@ -50,4 +48,4 @@ const SignupErrorText = styled.div`
 color: red;
 `
 
-export { SignupBody, SignupForm, SignupHeader, SignupErrorText, SignupButtonWrapper, SignupButton, SignupButtonText, SignupItem };
+export { SignupBody, SignupForm, SignupHeader, SignupErrorText, SignupButtonWrapper, SignupButton, SignupItem };

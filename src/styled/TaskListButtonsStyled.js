@@ -3,7 +3,7 @@ import styled from "styled-components";
 const ActionButton = styled.button`
 border-radius: 50%;
 border: 0px;
-background: ${props => (props.background)};
+background: ${props => props.disabled ? (props.disabledBackground) : (props.background)};
 color: #FFFFFF;
 height: 20px;
 width: 20px;
@@ -12,8 +12,8 @@ align-items: center;
 justify-content: center;
 overflow: hidden;
 margin: 0px 5px 0px 5px;
-&:hover{
-  background: ${props => (props.hoverBackground)};
+&:hover {
+  background: ${props => props.disabled ? (props.disabledBackground) : (props.hoverBackground)};
 }
 `;
 
@@ -29,7 +29,7 @@ align-items: center;
 justify-content: center;
 overflow: hidden;
 padding: 8px;
-&:hover{
+&:hover {
   background: ${props => (props.hoverBackground)};
 }
 `;

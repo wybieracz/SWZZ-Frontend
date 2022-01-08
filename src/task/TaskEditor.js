@@ -4,6 +4,8 @@ import { CardFooter, Buttons, DragItem } from "../styled/TaskStyled";
 import { Form } from "react-bootstrap";
 import { OkIcon } from "../vectors/Icons";
 import { ActionButton } from "../styled/TaskListButtonsStyled";
+import "../colors/Colors.js";
+import { Grey, GreyMedium } from "../colors/Colors.js";
 
 export default function TaskEditor ({ element, index, title, handleTitleChange, description, handleDescriptionChange, handleSubmit }) {
     return (
@@ -25,9 +27,9 @@ export default function TaskEditor ({ element, index, title, handleTitleChange, 
                         </Form.Group>
                     </Form>
                     <CardFooter>
-                    <span>{element.status}</span>
+                    <span>{element.taskItemDTO.status}</span>
                     <Buttons>
-                        <ActionButton onClick={handleSubmit} background="#E4E4E4" hoverBackground="#D1D1D1"><OkIcon /></ActionButton>
+                        <ActionButton onClick={handleSubmit} background={Grey} hoverBackground={GreyMedium}><OkIcon /></ActionButton>
                     </Buttons>
                     </CardFooter>
                 </DragItem>

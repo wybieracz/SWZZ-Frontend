@@ -1,6 +1,7 @@
 import { defaultData } from "./DefaultData";
 import axios from "axios";
 axios.defaults.withCredentials = true;
+const API_URL = "https://dev-swzz-be-app.azurewebsites.net/";
 
 const cutTask = (list, index) => {
   const result = Array.from(list);
@@ -9,7 +10,11 @@ const cutTask = (list, index) => {
 };
   
 const pasteTask = (list, status, index, element) => {
-  const newElement = {...element, status: status};
+  const newElement = {
+    taskItemDTO:{...element.taskItemDTO, status: status},
+    taskPermissions:{...element.taskPermissions}
+  };
+  console.log(newElement);
   editTaskRequest(newElement);
   const result = Array.from(list);
   result.splice(index, 0, newElement);
@@ -17,7 +22,10 @@ const pasteTask = (list, status, index, element) => {
 };
 
 const editTask = (list, index, title, description, taskFailed) => {
-  const editedElement = { ...list[index], title: title, description: description, taskFailed: taskFailed};
+  const editedElement = {
+    taskItemDTO: {...list[index].taskItemDTO, title: title, description: description, taskFailed: taskFailed},
+    taskPermissions:{...list[index].taskPermissions}
+  };
   editTaskRequest(editedElement);
   const result = Array.from(list);
   result.splice(index, 1, editedElement);
@@ -26,14 +34,14 @@ const editTask = (list, index, title, description, taskFailed) => {
 
 const checkStatus = (status) => {
   return function(element) {
-    if(element.status === status) return true;
+    if(element.taskItemDTO.status === status) return true;
     else return false;
   }
 }
 
-async function getTasks(setElements) {
+async function getTasks(setElements, setIsLoaded) {
   try {
-    await axios.get("https://dev-swzz-be-app.azurewebsites.net/api/TaskItems/0").then(
+    await axios.get(API_URL + "group/tasks?groupId=0").then(
       response => {
         const result = {
           ToDo: (response.data).filter(checkStatus("ToDo")),
@@ -41,17 +49,19 @@ async function getTasks(setElements) {
           Closed: (response.data).filter(checkStatus("Closed"))
         };
         setElements(result);
+        setIsLoaded(true);
      }
     );
   } catch (error) {
     console.error(error);
     setElements(defaultData);
+    setIsLoaded(true);
   }
 }
 
 async function removeTaskRequest(taskId) {
   try {
-    await axios.delete("https://dev-swzz-be-app.azurewebsites.net/api/TaskItems/" + `${taskId}`)
+    await axios.delete(API_URL + "task?id=" + `${taskId}`)
   } catch (error) {
     console.error(error);
   }
@@ -59,7 +69,7 @@ async function removeTaskRequest(taskId) {
 
 async function editTaskRequest(task) {
   try {
-    await axios.put("https://dev-swzz-be-app.azurewebsites.net/api/TaskItems/" + `${task.taskId}`, task)
+    await axios.put(API_URL + "task", task)
   } catch (error) {
     console.error(error);
   }
@@ -67,7 +77,7 @@ async function editTaskRequest(task) {
 
 async function createTaskRequest(task, add) {
   try {
-    await axios.post("https://dev-swzz-be-app.azurewebsites.net/api/TaskItems/", task).then(
+    await axios.post(API_URL + "task", task).then(
       response => {
         add(response.data);
      }

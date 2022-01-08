@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Form } from 'react-bootstrap';
 import { AddIcon, OkIcon, DeleteIcon } from "../vectors/Icons";
 import { ActionButton, AddButton } from "../styled/TaskListButtonsStyled";
+import { Grey, GreyMedium } from "../colors/Colors.js";
 
 export default function TaskCreator ({ add }) {
     const [isEnabled, setIsEnabled] = useState(false);
@@ -24,13 +25,7 @@ export default function TaskCreator ({ add }) {
             "startTime": 0,
             "estimatedExecutionTime": 0,
             "status": "ToDo",
-            "taskFailed": false,
-            "permissions": {
-                "canEditAttributes": true,
-                "canAssignMyself": true,
-                "canAssignOthers": true,
-                "canDelete": true
-            }
+            "taskFailed": false
         }
         createTaskRequest(element, add);
         //add(element);
@@ -57,14 +52,14 @@ export default function TaskCreator ({ add }) {
                 <CardFooter>
                 <span>ToDo</span>
                 <Buttons>
-                    <ActionButton onClick={handleDiscard} background="#E4E4E4" hoverBackground="#D1D1D1"><DeleteIcon /></ActionButton>
-                    <ActionButton onClick={handleSubmit} background="#E4E4E4" hoverBackground="#D1D1D1"><OkIcon /></ActionButton>
+                    <ActionButton onClick={handleDiscard} background={Grey} hoverBackground={GreyMedium}><DeleteIcon /></ActionButton>
+                    <ActionButton onClick={handleSubmit} background={Grey} hoverBackground={GreyMedium}><OkIcon /></ActionButton>
                 </Buttons>
                 </CardFooter>
             </TaskCreatorContainer>
         )
     }
     else {
-        return (<AddButton onClick={() => setIsEnabled(true)} background="#E4E4E4" hoverBackground="#D1D1D1"><AddIcon /></AddButton>);
+        return (<AddButton onClick={() => setIsEnabled(true)} background={Grey} hoverBackground={GreyMedium}><AddIcon /></AddButton>);
     }
 };

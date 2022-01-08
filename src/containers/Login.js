@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Form, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { LoginBody, LoginForm, LoginHeader, LoginCheckbox, LoginErrorText, LoginButtonWrapper, LoginButton, LoginButtonText, LoginItem } from "../styled/LoginStyled.js";
+import { LoginBody, LoginForm, LoginHeader, LoginCheckbox, LoginErrorText, LoginButtonWrapper, LoginButton, LoginItem } from "../styled/LoginStyled.js";
 
 export default function Login(props) {
 
@@ -120,9 +120,7 @@ export default function Login(props) {
 
         <Modal.Footer>
           <LoginButtonWrapper>
-            <LoginButton onClick={handleLogin}>
-              <LoginButtonText>Login</LoginButtonText>
-            </LoginButton>
+            <LoginButton onClick={handleLogin}>Login</LoginButton>
           </LoginButtonWrapper>
         </Modal.Footer>
 
