@@ -35,6 +35,11 @@
   background-color: #E4E4E4;
 }
 
-aside.emoji-picker-react {
-  width: 100%;
+.emoji-mart {
+  margin-top: 1rem;
+}
+
+.icon {
+  width: 45px;
+  height: 45px;
 }

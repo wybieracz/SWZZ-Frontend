@@ -1,5 +1,23 @@
-import { White, GreyLight, Grey, GreyMedium, GreyDark, GreyNight, Turquoise, TurquoiseDark, RaspberryLight, Raspberry, GreenLight, Green,
-    CyjanLight, Cyjan, Orange, OrangeDark, PinkLight, Pink, YellowLight, Yellow, Purple, PurpleDark, BottleGreen, BottleGreenDark } from "./Colors.js";
+import {
+    Turquoise,
+    TurquoiseDark,
+    RaspberryLight,
+    Raspberry,
+    GreenLight,
+    Green,
+    CyjanLight,
+    Cyjan,
+    Orange,
+    OrangeDark,
+    PinkLight,
+    Pink,
+    YellowLight,
+    Yellow,
+    Purple,
+    PurpleDark,
+    BottleGreen,
+    BottleGreenDark
+} from "./Colors.js";
 
 const colorGenerator = (name, surname) => {
 
