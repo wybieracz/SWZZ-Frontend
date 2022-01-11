@@ -9,14 +9,14 @@ import LoadingIcon from "../../../bitmaps/Load_Medium_Grey.png";
 
 const columns = ["ToDo", "Doing", "Closed"];
 
-export default function TaskList() {
+export default function TaskList({ groupId }) {
   
   const [elements, setElements] = useState(defaultData);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    getTasks(setElements, setIsLoaded);
-  }, []);
+    getTasks(setElements, setIsLoaded, groupId);
+  }, [groupId]);
 
   console.log(elements);
 
@@ -74,6 +74,7 @@ export default function TaskList() {
               <TaskListColumn
                 elements={elements[listKey]}
                 key={listKey}
+                groupId={groupId}
                 status={listKey}
                 remove={handleRemoveTask}
                 edit={handleEditTask}

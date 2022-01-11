@@ -4,7 +4,7 @@ import TaskCreator from "../TaskCreator/TaskCreator";
 import React from "react";
 import { ColumnHeader, ColumnBody, TaskListColumnContainer } from "./TaskListColumnStyled";
 
-export default function TaskListColumn ({ status, elements, remove, edit, add }) {
+export default function TaskListColumn ({ status, elements, groupId, remove, edit, add }) {
   return (
     <TaskListColumnContainer>
       <ColumnHeader>{status}</ColumnHeader>
@@ -15,7 +15,7 @@ export default function TaskListColumn ({ status, elements, remove, edit, add })
               <Task key={element.taskItemDTO.taskId} element={element} index={index} remove={remove} edit={edit} />
             ))}
             {provided.placeholder}
-            {status === "ToDo" ? <TaskCreator add={add} /> : null}
+            {status === "ToDo" ? <TaskCreator groupId={groupId} add={add} /> : null}
           </ColumnBody>
         )}
       </Droppable>

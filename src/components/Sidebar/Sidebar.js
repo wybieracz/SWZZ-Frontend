@@ -5,7 +5,6 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import NewGroupManager from '../group/NewGroupManager/NewGroupManager';
 import Logout from '../authorization/Logout/Logout';
 import Avatar from '../image/Avatar/Avatar';
-import axios from 'axios';
 import {
     SidebarBody,
     SidebarButtonWrapper,
@@ -16,7 +15,7 @@ import {
     SidebarContentText
 } from "./SidebarStyled";
 
-export default function Sidebar() {
+export default function Sidebar({ username, groups, isGroupsLoaded }) {
 
     const [showEmojis, setShowEmojis] = useState(false);
     const [groupEmoji, setGroupEmoji] = useState(null);
@@ -26,26 +25,7 @@ export default function Sidebar() {
     const [createGroupModalShow, setCreateGroupModalShow] = useState(false);
     const [joinGroupModalShow, setJoinGroupModalShow] = useState(false);
 
-    const [[name, surname], setUsername] = useState(["-----", "-----"]);
-    const [isLoaded, setIsLoaded] = useState(false);
     const navigate = useNavigate();
-
-    useEffect(() => {
-        getUserNameRequest();
-    }, []);
-
-    async function getUserNameRequest() {
-        try {
-            await axios.get("https://dev-swzz-be-app.azurewebsites.net/user").then(
-                response => {
-                    setUsername([response.data.name, response.data.surname]);
-                    setIsLoaded(true);
-                }
-            );
-        } catch (error) {
-            console.error(error);
-        }
-    }
 
     function handleSettings() {
         navigate("/settings")
@@ -55,8 +35,8 @@ export default function Sidebar() {
         navigate("/")
     }
 
-    function handleGroup(path) {
-        navigate(`/group/${path}`)
+    function handleGroup(group) {
+        navigate(`/group/${group.groupDTO.groupId}`)
     }
     return (
         <SidebarBody>
@@ -65,30 +45,29 @@ export default function Sidebar() {
                     <Menu>
                         <MenuItem>
                             <SidebarHeaderItem onClick={handleHome}>
-                                <Avatar name={name} surname={surname} isLoaded={isLoaded} />
-                                <SidebarHeaderText>{name} {surname}</SidebarHeaderText>
+                                <Avatar name={username.name} surname={username.surname} isLoaded={username.isLoaded} />
+                                <SidebarHeaderText>{username.name} {username.surname}</SidebarHeaderText>
                             </SidebarHeaderItem>
                         </MenuItem>
                     </Menu>
                 </SidebarHeader>
                 <SidebarContent>
-                    <Menu>
-                        <MenuItem>
-                            <SidebarContentItem onClick={() => handleGroup("home")}>
-                                <SidebarContentText>Home</SidebarContentText>
-                            </SidebarContentItem>
-                        </MenuItem>
-                        <MenuItem>
-                            <SidebarContentItem onClick={() => handleGroup("work")}>
-                                <SidebarContentText>Work</SidebarContentText>
-                            </SidebarContentItem>
-                        </MenuItem>
-                        <MenuItem>
-                            <SidebarContentItem onClick={() => { setGroupModalShow(true); setNewGroupModalShow(true); }}>
-                                <SidebarContentText>➕ New group</SidebarContentText>
-                            </SidebarContentItem>
-                        </MenuItem>
-                    </Menu>
+                    { isGroupsLoaded ? 
+                        <Menu>
+                            {groups.map((group, index) => (
+                                <MenuItem key={index}>
+                                    <SidebarContentItem onClick={() => handleGroup(group)}>
+                                        <SidebarContentText>{group.groupDTO.icon + " " + group.groupDTO.name}</SidebarContentText>
+                                    </SidebarContentItem>
+                                </MenuItem>
+                            ))}
+                            <MenuItem>
+                                <SidebarContentItem onClick={() => { setGroupModalShow(true); setNewGroupModalShow(true); }}>
+                                    <SidebarContentText>➕ New group</SidebarContentText>
+                                </SidebarContentItem>
+                            </MenuItem>
+                        </Menu>
+                    : null }
                 </SidebarContent>
                 <SidebarFooter>
                     <Menu>
