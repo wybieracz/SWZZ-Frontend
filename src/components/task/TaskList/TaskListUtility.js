@@ -39,9 +39,9 @@ const checkStatus = (status) => {
   }
 }
 
-async function getTasks(setElements, setIsLoaded) {
+async function getTasks(setElements, setIsLoaded, groupId) {
   try {
-    await axios.get(API_URL + "group/tasks?groupId=0").then(
+    await axios.get(API_URL + "group/tasks?groupId=" + groupId).then(
       response => {
         const result = {
           ToDo: (response.data).filter(checkStatus("ToDo")),

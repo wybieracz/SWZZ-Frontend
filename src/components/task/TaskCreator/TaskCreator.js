@@ -8,14 +8,15 @@ import { CardFooter, Buttons } from "../Task/TaskStyled";
 import { TaskCreatorContainer } from "./TaskCreatorStyled";
 import { ActionButton, AddButton } from "../TaskList/TaskListButtonsStyled";
 
-export default function TaskCreator({ add }) {
+export default function TaskCreator({ groupId, add }) {
     const [isEnabled, setIsEnabled] = useState(false);
     const [title, handleTitleChange, resetTitle] = useInputState("");
     const [description, handleDescriptionChange, resetDescription] = useInputState("");
     const handleSubmit = () => {
+        console.log(groupId)
         const element = {
             "taskId": 0,
-            "groupId": 0,
+            "groupId": groupId,
             "title": title,
             "description": description,
             "commissionerId": "string",

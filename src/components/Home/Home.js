@@ -4,33 +4,13 @@ import Sidebar from "../Sidebar/Sidebar";
 import axios from "axios";
 import { HomeBody, HomeTitle } from "./HomeStyled";
 
-export default function Home() {
-
-  const [[name, surname], setUsername] = useState(["-----", "-----"]);
-
-  useEffect(() => {
-    getUserNameRequest();
-  }, []);
-
-  async function getUserNameRequest() {
-    try {
-      await axios.get("https://dev-swzz-be-app.azurewebsites.net/user").then(
-        response => {
-          setUsername([response.data.name, response.data.surname]);
-        }
-      );
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
+export default function Home({ username }) {
   return (
     <>
-      <Sidebar />
       <HomeBody>
-        <HomeTitle>Hi, {name} {surname}! How are you?</HomeTitle>
+        <HomeTitle>Hi, {username.name} {username.surname}! How are you?</HomeTitle>
       </HomeBody>
-      <TaskList />
+      <TaskList groupId={"5"}/>
     </>
   );
 }
