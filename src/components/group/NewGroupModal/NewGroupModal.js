@@ -33,10 +33,10 @@ export default function NewGroupModal(props) {
             <Modal.Footer>
                 <NewGroupButtonWrapper>
                     <NewGroupButton onClick={props.handleCreateGroup}>
-                        <NewGroupButtonText>Create a new group</NewGroupButtonText>
+                        Create a new group
                     </NewGroupButton>
                     <NewGroupButton onClick={props.handleJoinGroup}>
-                        <NewGroupButtonText>Join an existing group</NewGroupButtonText>
+                        Join an existing group
                     </NewGroupButton>
                 </NewGroupButtonWrapper>
             </Modal.Footer>

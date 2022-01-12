@@ -65,12 +65,8 @@ export default function PeekGroupCodeModal(props) {
                 <CopyToClipboard text={groupCode}
                     onCopy={() => props.setCopied(true)}>
                     <PeekGroupCodeButtonWrapper>
-                        <PeekGroupCodeButton>
-                            {props.copied ?
-                                <PeekGroupCodeButtonText style={{ color: 'green' }}>Copied</PeekGroupCodeButtonText>
-                                :
-                                <PeekGroupCodeButtonText>Copy to clipboard</PeekGroupCodeButtonText>
-                            }
+                        <PeekGroupCodeButton copied={props.copied}>
+                            {props.copied ? "Copied" : "Copy to clipboard" }
                         </PeekGroupCodeButton>
                     </PeekGroupCodeButtonWrapper>
                 </CopyToClipboard>

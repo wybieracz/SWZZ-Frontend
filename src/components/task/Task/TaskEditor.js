@@ -8,7 +8,7 @@ import { Grey, GreyMedium } from "../../../colors/Colors.js";
 
 export default function TaskEditor ({ element, index, title, handleTitleChange, description, handleDescriptionChange, handleSubmit }) {
     return (
-        <Draggable draggableId={element.taskId.toString()} index={index}>
+        <Draggable draggableId={element.taskItemDTO.taskId.toString()} index={index}>
         {(provided, snapshot) => {
             return (
                 <DragItem

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { White, Grey, GreyDark, GreyNight, GreenLight, Green } from "../../../colors/Colors";
 
 const PeekGroupCodeHeader = styled.div`
 font-size: 30px;
@@ -26,13 +27,22 @@ margin: 3%;
 
 const PeekGroupCodeButton = styled.button`
 border-radius: 40px;
-background: rgb(209, 209, 209);
-color: #adadad;
+background: ${props => props.copied ? GreenLight : Grey};
 height: 40px;
-width: 484px;
-text-align: center;
+width: 480px;
+display: flex;
+align-items: center;
+justify-content: center;
+text-overflow: ellipsis;
+overflow: hidden;
+border: 2px solid ${props => props.copied ? GreenLight : GreyNight};
+font-size: 18px;
+font-weight: 700;
+color: ${props => props.copied ? White : GreyNight};
 &:hover{
-  background:rgb(161, 161, 161);
+  background: ${props => props.copied ? Green : GreyDark};
+  border: ${props => props.copied ? Green : GreyDark};
+  color: #E4E4E4;
 }
 `;
 

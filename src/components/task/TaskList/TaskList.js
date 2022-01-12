@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import TaskListColumn from "../TaskListColumn/TaskListColumn";
-import { defaultData } from "../DefaultData/DefaultData";
+import { emptyTasklist } from "../DefaultData/DefaultData";
 import { cutTask, pasteTask, editTask, getTasks, removeTaskRequest } from "./TaskListUtility";
 import { ListGrid, Separator, TaskListWrapper } from "./TaskListStyled";
 import { LoadingIconWrapper } from "../../images/Icons/IconsStyled";
@@ -9,9 +9,9 @@ import LoadingIcon from "../../../bitmaps/Load_Medium_Grey.png";
 
 const columns = ["ToDo", "Doing", "Closed"];
 
-export default function TaskList({ groupId }) {
+export default function TaskList({ groupId, getGroupUserById }) {
   
-  const [elements, setElements] = useState(defaultData);
+  const [elements, setElements] = useState(emptyTasklist);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -79,6 +79,7 @@ export default function TaskList({ groupId }) {
                 remove={handleRemoveTask}
                 edit={handleEditTask}
                 add={handleAddTask}
+                getGroupUserById={getGroupUserById}
               />
             ))}
           </ListGrid>

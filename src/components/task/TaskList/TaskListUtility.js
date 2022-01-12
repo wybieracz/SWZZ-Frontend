@@ -1,4 +1,4 @@
-import { defaultData } from "../DefaultData/DefaultData";
+import { emptyTasklist } from "../DefaultData/DefaultData";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 const API_URL = "https://dev-swzz-be-app.azurewebsites.net/";
@@ -15,7 +15,7 @@ const pasteTask = (list, status, index, element) => {
     taskPermissions:{...element.taskPermissions}
   };
   console.log(newElement);
-  editTaskRequest(newElement);
+  editTaskStatusRequest(newElement.taskItemDTO.taskId, newElement.taskItemDTO.status);
   const result = Array.from(list);
   result.splice(index, 0, newElement);
   return result;
@@ -26,7 +26,7 @@ const editTask = (list, index, title, description, taskFailed) => {
     taskItemDTO: {...list[index].taskItemDTO, title: title, description: description, taskFailed: taskFailed},
     taskPermissions:{...list[index].taskPermissions}
   };
-  editTaskRequest(editedElement);
+  editTaskRequest(editedElement.taskItemDTO);
   const result = Array.from(list);
   result.splice(index, 1, editedElement);
   return result;
@@ -54,7 +54,7 @@ async function getTasks(setElements, setIsLoaded, groupId) {
     );
   } catch (error) {
     console.error(error);
-    setElements(defaultData);
+    setElements(emptyTasklist);
     setIsLoaded(true);
   }
 }
@@ -67,9 +67,17 @@ async function removeTaskRequest(taskId) {
   }
 }
 
-async function editTaskRequest(task) {
+async function editTaskRequest(taskItemDTO) {
   try {
-    await axios.put(API_URL + "task", task)
+    await axios.put(API_URL + "task/attributes", taskItemDTO)
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function editTaskStatusRequest(taskId, status) {
+  try {
+    await axios.put(API_URL + "task/status?taskId=" + `${taskId}` + "&taskItemStatus=" + `${status}`)
   } catch (error) {
     console.error(error);
   }

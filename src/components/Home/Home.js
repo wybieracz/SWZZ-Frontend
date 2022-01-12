@@ -4,13 +4,12 @@ import Sidebar from "../Sidebar/Sidebar";
 import axios from "axios";
 import { HomeBody, HomeTitle } from "./HomeStyled";
 
-export default function Home({ username }) {
+export default function Home({ user }) {
   return (
     <>
       <HomeBody>
-        <HomeTitle>Hi, {username.name} {username.surname}! How are you?</HomeTitle>
+        <HomeTitle>Hi, {user.name} {user.surname}! How are you?</HomeTitle>
       </HomeBody>
-      <TaskList groupId={"5"}/>
     </>
   );
 }
