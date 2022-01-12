@@ -6,7 +6,7 @@ import colorGenerator from "../../../colors/ColorGenerator";
 import "../../../colors/ColorGenerator.js"
 import { GreyDark } from "../../../colors/Colors";
 
-export default function MiniAvatar ({ name, surname }) {
-    const [primaryColor] = colorGenerator(name, surname);
-    return ( <MiniAvatarInitials background={primaryColor}>{name[0] + surname[0]}</MiniAvatarInitials> );
+export default function MiniAvatar ({ user }) {
+    const [primaryColor] = colorGenerator(user);
+    return ( <MiniAvatarInitials background={primaryColor}>{user.name[0] + user.surname[0]}</MiniAvatarInitials> );
 };

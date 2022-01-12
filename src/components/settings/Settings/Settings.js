@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../../Sidebar/Sidebar";
 import DeleteAccountModal from "../DeleteAccountModal/DeleteAccountModal";
 import ChangePasswordModal from "../ChangePasswordModal/ChangePasswordModal";
 import axios from "axios";
@@ -38,7 +37,6 @@ export default function Settings() {
 
     return (
         <>
-            <Sidebar />
             <SettingsBody>
                 <SettingsHeader>Settings</SettingsHeader>
                 <SettingsText>Name: {name}</SettingsText>

@@ -3,10 +3,14 @@ import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { DeleteIcon, EditIcon, OkIcon } from "../../../vectors/Icons";
 import { Green, GreenLight, Grey, GreyLight, GreyMedium, Raspberry, RaspberryLight } from "../../../colors/Colors.js";
-import { CardHeader, CardFooter, Buttons, DragItem } from "./TaskStyled";
+import { CardHeader, CardFooter, Buttons, DragItem, CommissioneeButton } from "./TaskStyled";
 import { ActionButton } from "../TaskList/TaskListButtonsStyled";
+import colorGenerator from "../../../colors/ColorGenerator.js"
 
-export default function TaskCard({ element, index, remove, edit, setIsUnderEdit }) {
+export default function TaskCard({ element, index, remove, edit, setIsUnderEdit, getGroupUserById }) {
+    const commissionee = getGroupUserById(element.taskItemDTO.commissionerId);
+    const commissioner = getGroupUserById(element.taskItemDTO.commissionerId);
+    console.log(commissionee);
     const handleTaskFailedToggle = () => {
         edit(element.taskItemDTO.status, index, element.taskItemDTO.title, element.taskItemDTO.description, !element.taskItemDTO.taskFailed);
     }
@@ -23,7 +27,9 @@ export default function TaskCard({ element, index, remove, edit, setIsUnderEdit 
                         <CardHeader>{element.taskItemDTO.title}</CardHeader>
                         <span>{element.taskItemDTO.description}</span>
                         <CardFooter>
-                        <span>{element.taskItemDTO.status}</span>
+                        <CommissioneeButton background={colorGenerator(commissionee.userDTO)}>
+                            {commissioner.userDTO.name + " " + commissioner.userDTO.surname}
+                        </CommissioneeButton>
                         <Buttons>
                             <ActionButton onClick={() => remove(element.taskItemDTO.status, index)}
                                 disabled={!element.taskPermissions.canDelete}

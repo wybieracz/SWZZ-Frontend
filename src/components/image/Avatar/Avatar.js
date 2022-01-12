@@ -6,12 +6,12 @@ import colorGenerator from "../../../colors/ColorGenerator";
 import "../../../colors/ColorGenerator.js"
 import { GreyDark } from "../../../colors/Colors";
 
-export default function Avatar ({name, surname, isLoaded}) {
-    const [primaryColor] = colorGenerator(name, surname);
+export default function Avatar ({user, isLoaded}) {
+    const [primaryColor, secondaryColor] = colorGenerator(user);
     return (
         <>
             {isLoaded ?
-                <AvatarInitials background={primaryColor}>{name[0] + surname[0]}</AvatarInitials> :
+                <AvatarInitials background={primaryColor}>{user.name[0] + user.surname[0]}</AvatarInitials> :
                 <AvatarInitials background={GreyDark}>
                     <LoadingIconWrapper size="20px">
                     <img src={LoadingIcon} alt="LoadingIcon" width="20px" heigth="20px" />

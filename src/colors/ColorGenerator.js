@@ -16,12 +16,16 @@ import {
     Purple,
     PurpleDark,
     BottleGreen,
-    BottleGreenDark
+    BottleGreenDark,
+    GreyDark,
+    GreyNight
 } from "./Colors.js";
 
-const colorGenerator = (name, surname) => {
+const colorGenerator = (user) => {
 
-    const result = name.charCodeAt(0) + surname.charCodeAt(0);
+    if(!user || user.userId === 0) return[GreyDark, GreyNight];
+
+    const result = user.name.charCodeAt(0) + user.surname.charCodeAt(0);
 
     if (result <= 135) return [Turquoise, TurquoiseDark];
     else if (result > 135 && result <= 141) return [RaspberryLight, Raspberry];

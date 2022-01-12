@@ -41,6 +41,7 @@ font-size: 9px;
 font-weight: 700;
 color: #2B2B2B;
 float: right;
+margin: 0px 0px 0px 20px;
 display: flex;
 &:hover{
   background: #545454;
@@ -49,8 +50,28 @@ display: flex;
 }
 `;
 
+const GroupMembersButton = styled.button`
+border-radius: 50%;
+border: 0px;
+background: #2B2B2B;
+color: #FFFFFF;
+height: 20px;
+width: 20px;
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+float: right;
+font-size: 9px;
+font-weight: 700;
+margin: 0px 5px 0px 5px;
+&:hover {
+  background: #545454;
+}
+`;
+
 const GroupMembersWrapper = styled.div`
 margin: 0px 20px 0px 0px;
 `;
 
-export { GroupBody, GroupTitle, GroupEditButton, RightWrapper, GroupMembersWrapper };
+export { GroupBody, GroupTitle, GroupEditButton, RightWrapper, GroupMembersButton, GroupMembersWrapper };

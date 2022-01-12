@@ -3,32 +3,25 @@ import TaskList from "../../task/TaskList/TaskList";
 import { GroupBody, GroupTitle, GroupEditButton, RightWrapper } from "./GroupStyled";
 import GroupMembers from "./GroupMembers";
 import { useLocation } from 'react-router-dom'
-import axios from "axios";
-const API_URL = "https://dev-swzz-be-app.azurewebsites.net/";
+import { getGroupUsersRequest, getGroupIdFromLocation } from "./GroupUtilities";
+import { unassignedGroupUser } from "../../task/DefaultData/DefaultData";
 
 export default function Group({ groups, isGroupsLoaded }) {
-  
-  const groupId = useLocation().pathname.slice(-1);
+  const path = useLocation().pathname;
+  const groupId = getGroupIdFromLocation(path);
   const groupData = groups.filter(group => {
     return group.groupDTO.groupId == groupId
   })[0];
   const [groupUsers, setGroupUsers] = useState([]);
-  
-  async function getGroupUsersRequest() {
-    try {
-      await axios.get(API_URL + "group/users?groupId=" + groupId).then(
-        response => {
-          setGroupUsers(response.data);
-          console.error(response.data);
-       }
-      );
-    } catch (error) {
-      console.error(error);
-    }
+
+  function getGroupUserById(userId) {
+    const result = groupUsers.filter(user => { return user.userDTO.userId == userId })[0];
+    if (result) return result;
+    else return unassignedGroupUser;
   }
 
   useEffect(() => {
-    getGroupUsersRequest();
+    getGroupUsersRequest(groupId, setGroupUsers);
   }, [groupId]);
 
   return (
@@ -42,7 +35,7 @@ export default function Group({ groups, isGroupsLoaded }) {
         <GroupMembers groupUsers={groupUsers} />
       </RightWrapper>
       </GroupBody>
-      <TaskList groupId={groupData.groupDTO.groupId} />
+      <TaskList groupId={groupData.groupDTO.groupId} getGroupUserById={getGroupUserById} />
       </>
     : null}
     </>

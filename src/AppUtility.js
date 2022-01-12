@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-async function getUserNameRequest(setUsername, setIsUsernameLoaded) {
+async function getUserNameRequest(setUsername, setIsUserLoaded) {
     try {
         await axios.get("https://dev-swzz-be-app.azurewebsites.net/user").then(
             response => {
-                setUsername([response.data.name, response.data.surname]);
-                setIsUsernameLoaded(true);
+                setUsername(response.data);
+                setIsUserLoaded(true);
             }
         );
     } catch (error) {

@@ -15,7 +15,7 @@ import {
     SidebarContentText
 } from "./SidebarStyled";
 
-export default function Sidebar({ username, groups, isGroupsLoaded }) {
+export default function Sidebar({ user, isUserLoaded, groups, isGroupsLoaded }) {
 
     const [showEmojis, setShowEmojis] = useState(false);
     const [groupEmoji, setGroupEmoji] = useState(null);
@@ -45,8 +45,8 @@ export default function Sidebar({ username, groups, isGroupsLoaded }) {
                     <Menu>
                         <MenuItem>
                             <SidebarHeaderItem onClick={handleHome}>
-                                <Avatar name={username.name} surname={username.surname} isLoaded={username.isLoaded} />
-                                <SidebarHeaderText>{username.name} {username.surname}</SidebarHeaderText>
+                                <Avatar user={user} isLoaded={isUserLoaded} />
+                                <SidebarHeaderText>{user.name} {user.surname}</SidebarHeaderText>
                             </SidebarHeaderItem>
                         </MenuItem>
                     </Menu>
