@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Sidebar from "../../Sidebar/Sidebar";
 import DeleteAccountModal from "../DeleteAccountModal/DeleteAccountModal";
 import ChangePasswordModal from "../ChangePasswordModal/ChangePasswordModal";
 import {
@@ -23,6 +22,7 @@ export default function Options({ username }) {
             <OptionsBody>
                 <OptionsHeader>Options</OptionsHeader>
                 <OptionsText>Name: {username.name}</OptionsText>
+                <OptionsText>Surname: {username.surname}</OptionsText>
                 <OptionsButtonWrapper>
                     <OptionsButton onClick={() => setChangePasswordModalShow(true)}>
                         <OptionsButtonText>Change password</OptionsButtonText>
