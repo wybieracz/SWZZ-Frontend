@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Grey, GreyDark, GreyNight } from "../../../colors/Colors";
 
 const NewGroupHeader = styled.div`
 font-size: 30px;
@@ -25,30 +26,28 @@ margin: 3%;
 
 const NewGroupButton = styled.button`
 border-radius: 40px;
-background: rgb(209, 209, 209);
-color: #adadad;
-height: 40px;
+background: ${Grey};
+height: 50px;
 width: 250px;
 display: flex;
 align-items: center;
 justify-content: center;
 text-overflow: ellipsis;
 overflow: hidden;
-&:hover{
-  background:rgb(161, 161, 161);
-}
-`;
-
-const NewGroupButtonText = styled.div`
+border: 2px solid ${GreyNight};
 font-size: 18px;
-font-weight: bold;
-color: rgb(46, 46, 46);
+font-weight: 700;
+color: ${GreyNight};
+&:hover{
+  background: ${GreyDark};
+  border: 2px solid ${GreyDark};
+  color: #E4E4E4;
+}
 `;
 
 export {
   NewGroupHeader,
   NewGroupBody,
   NewGroupButtonWrapper,
-  NewGroupButton,
-  NewGroupButtonText
+  NewGroupButton
 };

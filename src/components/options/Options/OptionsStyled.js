@@ -1,15 +1,18 @@
 import styled from "styled-components";
+import { GreyLight, Raspberry } from "../../../colors/Colors";
 
 const OptionsBody = styled.div`
 position: relative;
 margin-left: max(250px, 15%);
-padding: 120px;
+padding: 4%;
 text-align: center;
+background: ${GreyLight};
 `;
 
 const OptionsHeader = styled.div`
 font-size: 50px;
 margin-bottom: 5%;
+font-weight: 600;
 `;
 
 const OptionsText = styled.div`
@@ -29,8 +32,7 @@ margin: 5%;
 
 const OptionsButton = styled.button`
 border-radius: 40px;
-background: rgb(209, 209, 209);
-color: #adadad;
+background: ${GreyLight};
 height: 50px;
 width: 312.5px;
 display: flex;
@@ -39,21 +41,37 @@ justify-content: center;
 text-overflow: ellipsis;
 overflow: hidden;
 margin: 40px max(25px, 10%) 0px max(25px, 10%);
+border: 2px solid #2B2B2B;
+font-size: 20px;
+font-weight: 700;
+color: #2B2B2B;
 &:hover{
-  background:rgb(161, 161, 161);
+  background: #545454;
+  border: 2px solid #545454;
+  color: #E4E4E4;
 }
 `;
 
-const OptionsButtonText = styled.span`
+const OptionsDeleteButton = styled.button`
+border-radius: 40px;
+background: ${GreyLight};
+height: 50px;
+width: 312.5px;
+display: flex;
+align-items: center;
+justify-content: center;
+text-overflow: ellipsis;
+overflow: hidden;
+margin: 40px max(25px, 10%) 0px max(25px, 10%);
+border: 2px solid ${Raspberry};
 font-size: 20px;
-font-weight: bold;
-color: rgb(46, 46, 46);
-`;
-
-const OptionsDeleteButtonText = styled.span`
-font-size: 20px;
-font-weight: bold;
-color: red;
+font-weight: 700;
+color: ${Raspberry};
+&:hover{
+  background: ${Raspberry};
+  border: 2px solid #FFFFFF;
+  color: #E4E4E4;
+}
 `;
 
 export {
@@ -62,6 +80,5 @@ export {
   OptionsText,
   OptionsButtonWrapper,
   OptionsButton,
-  OptionsButtonText,
-  OptionsDeleteButtonText
+  OptionsDeleteButton
 };

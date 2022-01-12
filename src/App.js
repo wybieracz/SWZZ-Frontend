@@ -44,7 +44,7 @@ export default function App() {
         <Route exact path="/options" element={
           <ProtectedRoute>
             <Sidebar user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} />
-            <Options />
+            <Options user={user} isUserLoaded={isUserLoaded} />
           </ProtectedRoute>} />
         <Route path="*" element={<NotFound />} />
       </Routes>

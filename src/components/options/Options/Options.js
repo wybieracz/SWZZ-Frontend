@@ -7,11 +7,10 @@ import {
     OptionsText,
     OptionsButtonWrapper,
     OptionsButton,
-    OptionsButtonText,
-    OptionsDeleteButtonText
+    OptionsDeleteButton
 } from "./OptionsStyled";
 
-export default function Options({ username }) {
+export default function Options({ user, isUserLoaded }) {
 
     const [validated, setValidated] = useState(false);
     const [changePasswordModalShow, setChangePasswordModalShow] = useState(false);
@@ -21,15 +20,19 @@ export default function Options({ username }) {
         <>
             <OptionsBody>
                 <OptionsHeader>Options</OptionsHeader>
-                <OptionsText>Name: {username.name}</OptionsText>
-                <OptionsText>Surname: {username.surname}</OptionsText>
+                    {isUserLoaded ? 
+                        <>
+                            <OptionsText>Name: {user.name}</OptionsText>
+                            <OptionsText>Surname: {user.surname}</OptionsText>
+                        </>
+                    : null}
                 <OptionsButtonWrapper>
                     <OptionsButton onClick={() => setChangePasswordModalShow(true)}>
-                        <OptionsButtonText>Change password</OptionsButtonText>
+                        Change password
                     </OptionsButton>
-                    <OptionsButton onClick={() => setDeleteAccountModalShow(true)}>
-                        <OptionsDeleteButtonText>Delete account</OptionsDeleteButtonText>
-                    </OptionsButton>
+                    <OptionsDeleteButton onClick={() => setDeleteAccountModalShow(true)}>
+                        Delete account
+                    </OptionsDeleteButton>
                 </OptionsButtonWrapper>
             </OptionsBody>
             <ChangePasswordModal
