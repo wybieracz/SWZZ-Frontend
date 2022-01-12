@@ -14,8 +14,9 @@ export default function Avatar ({user, isLoaded}) {
                 <AvatarInitials background={primaryColor}>{user.name[0] + user.surname[0]}</AvatarInitials> :
                 <AvatarInitials background={GreyDark}>
                     <LoadingIconWrapper size="20px">
-                    <img src={LoadingIcon} alt="LoadingIcon" width="20px" heigth="20px" />
-                </LoadingIconWrapper></AvatarInitials>
+                        <img src={LoadingIcon} alt="LoadingIcon" width="20px" heigth="20px" />
+                    </LoadingIconWrapper>
+                </AvatarInitials>
             }
         </>
     );

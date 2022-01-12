@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Form, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import {
     JoinGroupForm,
     JoinGroupHeader,
@@ -10,6 +11,7 @@ import {
     JoinGroupItem,
     JoinGroupErrorText
 } from "./JoinGroupModalStyled.js";
+const API_URL = "https://dev-swzz-be-app.azurewebsites.net/";
 
 export default function JoinGroupModal(props) {
 
@@ -32,8 +34,17 @@ export default function JoinGroupModal(props) {
     async function handleJoinGroup() {
         props.setValidated(true);
         if (valid) {
-            alert("You joined a new group.")
-            navigate("/group/home");
+            try {
+                await axios.post(API_URL + "group/user?groupCode=" + groupCode).then(
+                    response => {
+                        navigate(`/group/${response.data}`)
+                        alert("You have successfully joined the group.")
+                    }
+                );
+            } catch (error) {
+                console.error(error);
+                setGroupCodeErr(true);
+            }
         }
     }
 

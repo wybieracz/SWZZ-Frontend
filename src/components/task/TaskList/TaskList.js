@@ -4,7 +4,7 @@ import TaskListColumn from "../TaskListColumn/TaskListColumn";
 import { emptyTasklist } from "../DefaultData/DefaultData";
 import { cutTask, pasteTask, editTask, getTasks, removeTaskRequest } from "./TaskListUtility";
 import { ListGrid, Separator, TaskListWrapper } from "./TaskListStyled";
-import { LoadingIconWrapper } from "../../image/Icons/IconsStyled";
+import { LoadingIconWrapper } from "../../images/Icons/IconsStyled";
 import LoadingIcon from "../../../bitmaps/Load_Medium_Grey.png";
 
 const columns = ["ToDo", "Doing", "Closed"];

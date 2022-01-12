@@ -32,4 +32,4 @@ function getSingleGroup(groups, groupId) {
     })[0];
 }
 
-export {getUserNameRequest, getUserGroupsRequest, getSingleGroup }
+export { getUserNameRequest, getUserGroupsRequest, getSingleGroup }

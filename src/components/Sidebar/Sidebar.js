@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ProSidebar, SidebarHeader, SidebarFooter, SidebarContent, Menu, MenuItem } from 'react-pro-sidebar';
 import { useNavigate } from 'react-router-dom';
 import 'react-pro-sidebar/dist/css/styles.css';
 import NewGroupManager from '../group/NewGroupManager/NewGroupManager';
 import Logout from '../authorization/Logout/Logout';
-import Avatar from '../image/Avatar/Avatar';
+import Avatar from '../images/Avatar/Avatar';
 import {
     SidebarBody,
     SidebarButtonWrapper,
@@ -27,8 +27,8 @@ export default function Sidebar({ user, isUserLoaded, groups, isGroupsLoaded }) 
 
     const navigate = useNavigate();
 
-    function handleSettings() {
-        navigate("/settings")
+    function handleOptions() {
+        navigate("/options")
     }
 
     function handleHome() {
@@ -52,27 +52,25 @@ export default function Sidebar({ user, isUserLoaded, groups, isGroupsLoaded }) 
                     </Menu>
                 </SidebarHeader>
                 <SidebarContent>
-                    { isGroupsLoaded ? 
-                        <Menu>
-                            {groups.map((group, index) => (
-                                <MenuItem key={index}>
-                                    <SidebarContentItem onClick={() => handleGroup(group)}>
-                                        <SidebarContentText>{group.groupDTO.icon + " " + group.groupDTO.name}</SidebarContentText>
-                                    </SidebarContentItem>
-                                </MenuItem>
-                            ))}
-                            <MenuItem>
-                                <SidebarContentItem onClick={() => { setGroupModalShow(true); setNewGroupModalShow(true); }}>
-                                    <SidebarContentText>➕ New group</SidebarContentText>
+                    <Menu>
+                        {isGroupsLoaded ? groups.map((group, index) => (
+                            <MenuItem key={index}>
+                                <SidebarContentItem onClick={() => handleGroup(group)}>
+                                    <SidebarContentText>{group.groupDTO.icon + " " + group.groupDTO.name}</SidebarContentText>
                                 </SidebarContentItem>
                             </MenuItem>
-                        </Menu>
-                    : null }
+                        )) : null}
+                        <MenuItem>
+                            <SidebarContentItem onClick={() => { setGroupModalShow(true); setNewGroupModalShow(true); }}>
+                                <SidebarContentText>➕ New group</SidebarContentText>
+                            </SidebarContentItem>
+                        </MenuItem>
+                    </Menu>
                 </SidebarContent>
                 <SidebarFooter>
                     <Menu>
                         <SidebarButtonWrapper>
-                            <SecondarySidebarButton onClick={handleSettings}>Options</SecondarySidebarButton>
+                            <SecondarySidebarButton onClick={handleOptions}>Options</SecondarySidebarButton>
                             <Logout />
                         </SidebarButtonWrapper>
                     </Menu>
@@ -80,9 +78,6 @@ export default function Sidebar({ user, isUserLoaded, groups, isGroupsLoaded }) 
             </ProSidebar>
             <NewGroupManager
                 show={groupModalShow}
-                newGroupShow={newGroupModalShow}
-                createGroupShow={createGroupModalShow}
-                joinGroupShow={joinGroupModalShow}
                 onHide={() => {
                     setValidated(false);
                     setGroupEmoji(null);
@@ -92,6 +87,9 @@ export default function Sidebar({ user, isUserLoaded, groups, isGroupsLoaded }) 
                     setJoinGroupModalShow(false);
                     setGroupModalShow(false);
                 }}
+                newGroupShow={newGroupModalShow}
+                createGroupShow={createGroupModalShow}
+                joinGroupShow={joinGroupModalShow}
                 handleCreateGroup={() => { setCreateGroupModalShow(true); setNewGroupModalShow(false); }}
                 handleJoinGroup={() => { setJoinGroupModalShow(true); setNewGroupModalShow(false); }}
                 validated={validated}
