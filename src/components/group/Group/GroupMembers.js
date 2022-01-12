@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import MiniAvatar from "../../image/Avatar/MiniAvatar";
+import MiniAvatar from "../../images/Avatar/MiniAvatar";
 import { GroupMembersWrapper } from "./GroupStyled";
 
 export default function GroupMembers({ groupUsers }) {

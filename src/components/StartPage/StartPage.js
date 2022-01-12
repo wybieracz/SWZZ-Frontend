@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import LoginModal from "../authorization/LoginModal/LoginModal"
 import SignupModal from "../authorization/SignupModal/SignupModal"
 import { Circle, Triangle, Diamond } from "../../vectors/Shapes";
-import { ShapeWrapper } from "../image/Shape/ShapeStyled.js";
+import { ShapeWrapper } from "../images/Shape/ShapeStyled.js";
 import { Logo } from "../../vectors/Logo.js";
 import {
   StartBody,

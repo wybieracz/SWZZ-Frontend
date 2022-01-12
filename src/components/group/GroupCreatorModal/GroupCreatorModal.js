@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Form, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
 import { EmojiIcon } from "../../../vectors/Emoji.js";
@@ -18,6 +19,7 @@ import {
     GroupCreatorEmojiButtonEmoji,
     GroupCreatorErrorText
 } from "./GroupCreatorModalStyled.js";
+const API_URL = "https://dev-swzz-be-app.azurewebsites.net/";
 
 export default function GroupCreatorModal(props) {
 
@@ -46,8 +48,17 @@ export default function GroupCreatorModal(props) {
     async function handleGroupCreate() {
         props.setValidated(true);
         if (valid) {
-            alert("You have created a new group.")
-            navigate("/group/home");
+            try {
+                await axios.post(API_URL + "group", { name: groupTitle, icon: props.groupEmoji }).then(
+                    response => {
+                        navigate(`/group/${response.data}`)
+                        alert("You have successfully created a new group.")
+                    }
+                );
+            } catch (error) {
+                console.error(error);
+                alert("Something went wrong :(")
+            }
         }
     }
 

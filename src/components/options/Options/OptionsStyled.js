@@ -1,23 +1,23 @@
 import styled from "styled-components";
 
-const SettingsBody = styled.div`
+const OptionsBody = styled.div`
 position: relative;
 margin-left: max(250px, 15%);
 padding: 120px;
 text-align: center;
 `;
 
-const SettingsHeader = styled.div`
+const OptionsHeader = styled.div`
 font-size: 50px;
 margin-bottom: 5%;
 `;
 
-const SettingsText = styled.div`
+const OptionsText = styled.div`
 font-size: 30px;
 margin-bottom: 3%;
 `;
 
-const SettingsButtonWrapper = styled.div`
+const OptionsButtonWrapper = styled.div`
 display: flex;
 align-items: center;
 justify-content: center;
@@ -27,7 +27,7 @@ justify-content: space-evenly;
 margin: 5%;
 `;
 
-const SettingsButton = styled.button`
+const OptionsButton = styled.button`
 border-radius: 40px;
 background: rgb(209, 209, 209);
 color: #adadad;
@@ -44,24 +44,24 @@ margin: 40px max(25px, 10%) 0px max(25px, 10%);
 }
 `;
 
-const SettingsButtonText = styled.span`
+const OptionsButtonText = styled.span`
 font-size: 20px;
 font-weight: bold;
 color: rgb(46, 46, 46);
 `;
 
-const SettingsDeleteButtonText = styled.span`
+const OptionsDeleteButtonText = styled.span`
 font-size: 20px;
 font-weight: bold;
 color: red;
 `;
 
 export {
-  SettingsBody,
-  SettingsHeader,
-  SettingsText,
-  SettingsButtonWrapper,
-  SettingsButton,
-  SettingsButtonText,
-  SettingsDeleteButtonText
+  OptionsBody,
+  OptionsHeader,
+  OptionsText,
+  OptionsButtonWrapper,
+  OptionsButton,
+  OptionsButtonText,
+  OptionsDeleteButtonText
 };
