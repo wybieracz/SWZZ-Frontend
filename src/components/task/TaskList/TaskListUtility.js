@@ -14,7 +14,6 @@ const pasteTask = (list, status, index, element) => {
     taskItemDTO:{...element.taskItemDTO, status: status},
     taskPermissions:{...element.taskPermissions}
   };
-  console.log(newElement);
   editTaskStatusRequest(newElement.taskItemDTO.taskId, newElement.taskItemDTO.status);
   const result = Array.from(list);
   result.splice(index, 0, newElement);
@@ -27,6 +26,17 @@ const editTask = (list, index, title, description, taskFailed) => {
     taskPermissions:{...list[index].taskPermissions}
   };
   editTaskRequest(editedElement.taskItemDTO);
+  const result = Array.from(list);
+  result.splice(index, 1, editedElement);
+  return result;
+};
+
+const assignTask = (list, index, commissioneeId) => {
+  const editedElement = {
+    taskItemDTO: {...list[index].taskItemDTO, commissioneeId: commissioneeId},
+    taskPermissions:{...list[index].taskPermissions}
+  };
+  assignTaskRequest(editedElement.taskItemDTO.taskId, commissioneeId);
   const result = Array.from(list);
   result.splice(index, 1, editedElement);
   return result;
@@ -61,7 +71,7 @@ async function getTasks(setElements, setIsLoaded, groupId) {
 
 async function removeTaskRequest(taskId) {
   try {
-    await axios.delete(API_URL + "task?id=" + `${taskId}`)
+    await axios.delete(`${API_URL}task?id=${taskId}`)
   } catch (error) {
     console.error(error);
   }
@@ -69,7 +79,7 @@ async function removeTaskRequest(taskId) {
 
 async function editTaskRequest(taskItemDTO) {
   try {
-    await axios.put(API_URL + "task/attributes", taskItemDTO)
+    await axios.put(`${API_URL}task/attributes`, taskItemDTO)
   } catch (error) {
     console.error(error);
   }
@@ -77,7 +87,15 @@ async function editTaskRequest(taskItemDTO) {
 
 async function editTaskStatusRequest(taskId, status) {
   try {
-    await axios.put(API_URL + "task/status?taskId=" + `${taskId}` + "&taskItemStatus=" + `${status}`)
+    await axios.put(`${API_URL}task/status?taskId=${taskId}&taskItemStatus=${status}`)
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function assignTaskRequest(taskId, commissioneeId) {
+  try {
+    await axios.put(`${API_URL}task/assign?taskId=${taskId}&userId=${commissioneeId}`)
   } catch (error) {
     console.error(error);
   }
@@ -85,7 +103,7 @@ async function editTaskStatusRequest(taskId, status) {
 
 async function createTaskRequest(task, add) {
   try {
-    await axios.post(API_URL + "task", task).then(
+    await axios.post(`${API_URL}task`, task).then(
       response => {
         add(response.data);
      }
@@ -95,4 +113,4 @@ async function createTaskRequest(task, add) {
   }
 }
 
-export { cutTask, pasteTask, editTask, getTasks, removeTaskRequest, createTaskRequest };
+export { cutTask, pasteTask, editTask, assignTask, getTasks, removeTaskRequest, createTaskRequest };

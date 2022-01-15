@@ -23,4 +23,10 @@ const Separator = styled.hr`
   margin: 0px 10px 10px;
 `;
 
-export { ListGrid, Separator, TaskListWrapper }
+const Footer = styled.div`
+  background-color: #F7F7F7;
+  height: 25px;
+  bottom: 0;
+`;
+
+export { ListGrid, Separator, TaskListWrapper, Footer }

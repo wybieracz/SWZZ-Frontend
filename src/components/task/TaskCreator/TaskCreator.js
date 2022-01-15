@@ -7,13 +7,14 @@ import { Grey, GreyMedium } from "../../../colors/Colors.js";
 import { CardFooter, Buttons } from "../Task/TaskStyled";
 import { TaskCreatorContainer } from "./TaskCreatorStyled";
 import { ActionButton, AddButton } from "../TaskList/TaskListButtonsStyled";
+import { TaskCommissioneeButton } from "../Task/TaskCommissioneeStyled";
+import { GreyDark, GreyNight } from "../../../colors/Colors.js";
 
 export default function TaskCreator({ groupId, add }) {
     const [isEnabled, setIsEnabled] = useState(false);
     const [title, handleTitleChange, resetTitle] = useInputState("");
     const [description, handleDescriptionChange, resetDescription] = useInputState("");
     const handleSubmit = () => {
-        console.log(groupId)
         const element = {
             "taskId": 0,
             "groupId": groupId,
@@ -51,12 +52,14 @@ export default function TaskCreator({ groupId, add }) {
                     <Form.Group className="mb-3" controlId="Title">
                         <Form.Control type="email" placeholder="Title" onChange={handleTitleChange} />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="Description">
+                    <Form.Group className="mb-0" controlId="Description">
                         <Form.Control as="textarea" rows={3} placeholder="Description" onChange={handleDescriptionChange} />
                     </Form.Group>
                 </Form>
                 <CardFooter>
-                    <span>ToDo</span>
+                    <TaskCommissioneeButton disabled background={[GreyDark, GreyNight]}>
+                        Unassigned
+                    </TaskCommissioneeButton>
                     <Buttons>
                         <ActionButton onClick={handleDiscard} background={Grey} hoverBackground={GreyMedium}><DeleteIcon /></ActionButton>
                         <ActionButton onClick={handleSubmit} background={Grey} hoverBackground={GreyMedium}><OkIcon /></ActionButton>

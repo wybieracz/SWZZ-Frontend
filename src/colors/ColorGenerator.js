@@ -23,19 +23,18 @@ import {
 
 const colorGenerator = (user) => {
 
-    if(!user || user.userId === 0) return[GreyDark, GreyNight];
+    if(!user || user.userId === "0") return[GreyDark, GreyNight];
+    const result = user.name.charCodeAt(0) + user.surname.charCodeAt(0) + parseInt(user.userId[0] * 10);
 
-    const result = user.name.charCodeAt(0) + user.surname.charCodeAt(0);
-
-    if (result <= 135) return [Turquoise, TurquoiseDark];
-    else if (result > 135 && result <= 141) return [RaspberryLight, Raspberry];
-    else if (result > 141 && result <= 147) return [GreenLight, Green];
-    else if (result > 147 && result <= 153) return [CyjanLight, Cyjan];
-    else if (result > 153 && result <= 159) return [Orange, OrangeDark];
-    else if (result > 159 && result <= 165) return [PinkLight, Pink];
-    else if (result > 165 && result <= 171) return [YellowLight, Yellow];
-    else if (result > 171 && result <= 175) return [Purple, PurpleDark];
-    else if (result > 176) return [BottleGreen, BottleGreenDark];
+    if (result <= 140) return [Turquoise, TurquoiseDark];
+    else if (result > 155 && result <= 170) return [RaspberryLight, Raspberry];
+    else if (result > 170 && result <= 185) return [GreenLight, Green];
+    else if (result > 185 && result <= 200) return [CyjanLight, Cyjan];
+    else if (result > 200 && result <= 215) return [Orange, OrangeDark];
+    else if (result > 215 && result <= 230) return [PinkLight, Pink];
+    else if (result > 230 && result <= 245) return [YellowLight, Yellow];
+    else if (result > 245 && result <= 260) return [Purple, PurpleDark];
+    else if (result > 260) return [BottleGreen, BottleGreenDark];
 };
 
 export default colorGenerator;

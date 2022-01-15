@@ -7,7 +7,7 @@ import "../../../colors/ColorGenerator.js"
 import { GreyDark } from "../../../colors/Colors";
 
 export default function Avatar ({user, isLoaded}) {
-    const [primaryColor, secondaryColor] = colorGenerator(user);
+    const [primaryColor] = colorGenerator(user);
     return (
         <>
             {isLoaded ?

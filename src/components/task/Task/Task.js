@@ -3,11 +3,11 @@ import useInputState from "../../../hooks/useInputState";
 import TaskEditor from "./TaskEditor";
 import TaskCard from "./TaskCard";
 
-export default function Task ({ element, index, remove, edit, getGroupUserById }) {
+export default function Task ({ element, index, remove, edit, assign, getGroupUserById, groupUsers }) {
 
     const [isUnderEdit, setIsUnderEdit] = useState(false);
-    const [title, handleTitleChange, resetTitle] = useInputState(element.taskItemDTO.title);
-    const [description, handleDescriptionChange, resetDescription] = useInputState(element.taskItemDTO.description);
+    const [title, handleTitleChange] = useInputState(element.taskItemDTO.title);
+    const [description, handleDescriptionChange] = useInputState(element.taskItemDTO.description);
     const handleSubmit = () => {
         edit(element.taskItemDTO.status, index, title, description, element.taskItemDTO.taskFailed);
         setIsUnderEdit(false);
@@ -20,7 +20,11 @@ export default function Task ({ element, index, remove, edit, getGroupUserById }
             handleTitleChange={handleTitleChange}
             description={description}
             handleDescriptionChange={handleDescriptionChange}
-            handleSubmit={handleSubmit} />
+            handleSubmit={handleSubmit}
+            getGroupUserById={getGroupUserById}
+            groupUsers={groupUsers}
+            assign={assign}
+            />
         )
     }
     else {
@@ -29,8 +33,10 @@ export default function Task ({ element, index, remove, edit, getGroupUserById }
             index={index}
             remove={remove}
             edit={edit}
+            assign={assign}
             setIsUnderEdit={setIsUnderEdit}
             getGroupUserById={getGroupUserById}
+            groupUsers={groupUsers}
             />
         );
     }

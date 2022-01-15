@@ -3,7 +3,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Modal } from 'react-bootstrap';
 import axios from 'axios';
 import { LoadingIconWrapper } from "../../images/Icons/IconsStyled";
-import LoadingIcon from "../../../bitmaps/Load_White.png";
+import LoadingIcon from "../../../bitmaps/Load_Medium_Grey.png";
 import {
     PeekGroupCodeHeader,
     PeekGroupCodeBody,

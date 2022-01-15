@@ -5,8 +5,10 @@ import { Form } from "react-bootstrap";
 import { OkIcon } from "../../../vectors/Icons";
 import { ActionButton } from "../TaskList/TaskListButtonsStyled";
 import { Grey, GreyMedium } from "../../../colors/Colors.js";
+import TaskCommissionee from "./TaskCommissionee";
 
-export default function TaskEditor ({ element, index, title, handleTitleChange, description, handleDescriptionChange, handleSubmit }) {
+export default function TaskEditor ({ element, index, title, handleTitleChange, description, handleDescriptionChange, handleSubmit, getGroupUserById, groupUsers, assign }) {
+
     return (
         <Draggable draggableId={element.taskItemDTO.taskId.toString()} index={index}>
         {(provided, snapshot) => {
@@ -21,12 +23,17 @@ export default function TaskEditor ({ element, index, title, handleTitleChange, 
                         <Form.Group className="mb-3" controlId="Title">
                             <Form.Control type="email" value={title} placeholder="Title" onChange={handleTitleChange} />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="Description">
+                        <Form.Group className="mb-0" controlId="Description">
                             <Form.Control as="textarea" value={description} rows={3} placeholder="Description" onChange={handleDescriptionChange} />
                         </Form.Group>
                     </Form>
                     <CardFooter>
-                    <span>{element.taskItemDTO.status}</span>
+                    <TaskCommissionee element={element}
+                            index={index}
+                            assign={assign}
+                            getGroupUserById={getGroupUserById}
+                            groupUsers={groupUsers}
+                    />
                     <Buttons>
                         <ActionButton onClick={handleSubmit} background={Grey} hoverBackground={GreyMedium}><OkIcon /></ActionButton>
                     </Buttons>
