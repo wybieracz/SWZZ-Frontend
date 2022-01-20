@@ -16,6 +16,7 @@ heigth: ${props => (props.size)};
 align: center;
 animation: ${rotate} 1.5s linear infinite;
 margin: 10px;
+
 `;
 
 export { LoadingIconWrapper };

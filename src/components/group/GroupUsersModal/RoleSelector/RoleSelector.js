@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { RoleSelectorButton, RoleSelectorWrapper } from "./RoleSelectorStyled";
 import RoleSelectorDrop from "./RoleSelectorDrop.js";
 
-export default function RoleSelector({ user, handleChangeGroupUserRole }) {
+export default function RoleSelector({ disabled, user, handleChangeGroupUserRole }) {
 
     const [isDropActive, setIsDropActive] = useState(false);
     const [role, setRole] = useState(user.role);
@@ -10,10 +10,10 @@ export default function RoleSelector({ user, handleChangeGroupUserRole }) {
     useEffect(() => {
         setRole(user.role)
     }, [user.role])
-
+    
     return(
         <RoleSelectorWrapper>
-            <RoleSelectorButton onClick={() => setIsDropActive(!isDropActive)}>
+            <RoleSelectorButton disabled={disabled} onClick={() => setIsDropActive(!isDropActive)}>
                 {role==="Administrator" ? "Administrator" : null}
                 {role==="PrivilegedUser" ? "Privileged User" : null}
                 {role==="DefaultUser" ? "Default User" : null}

@@ -25,11 +25,15 @@ export default function GroupUsersModal(props) {
             <Modal.Body>
                 {props.groupUsers ?
                     <>
-                        {props.groupUsers.map((user, index) => (
+                        {props.groupUsers.map((member, index) => (
                             <GroupUsersModalElement key={index}
                             index={index}
-                            user={user}
-                            handleChangeGroupUserRole={props.handleChangeGroupUserRole} />
+                            member={member}
+                            handleChangeGroupUserRole={props.handleChangeGroupUserRole}
+                            user={props.user}
+                            isUserLoaded={props.isUserLoaded}
+                            deleteGroupUser={props.deleteGroupUser}
+                            />
                         ))}
                     </>
                 :

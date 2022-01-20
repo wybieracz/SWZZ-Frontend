@@ -39,7 +39,7 @@ export default function App() {
         <Route exact path="/group/:id" element={
           <ProtectedRoute>
             <Sidebar user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} />
-            <Group groups={groups} isGroupsLoaded={isGroupsLoaded}/>
+            <Group user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded}/>
           </ProtectedRoute>} />
         <Route exact path="/options" element={
           <ProtectedRoute>

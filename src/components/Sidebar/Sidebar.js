@@ -24,8 +24,14 @@ export default function Sidebar({ user, isUserLoaded, groups, isGroupsLoaded }) 
     const [newGroupModalShow, setNewGroupModalShow] = useState(false);
     const [createGroupModalShow, setCreateGroupModalShow] = useState(false);
     const [joinGroupModalShow, setJoinGroupModalShow] = useState(false);
-
+    const test = handleUserName();
     const navigate = useNavigate();
+
+    function handleUserName() {
+        const result = `${user.name} ${user.surname}`
+        if(result.length < 17) return result
+        else return `${result.slice(0,16)}..`
+    }
 
     function handleOptions() {
         navigate("/options")
@@ -46,7 +52,7 @@ export default function Sidebar({ user, isUserLoaded, groups, isGroupsLoaded }) 
                         <MenuItem>
                             <SidebarHeaderItem onClick={handleHome}>
                                 <Avatar user={user} isLoaded={isUserLoaded} />
-                                <SidebarHeaderText>{user.name} {user.surname}</SidebarHeaderText>
+                                <SidebarHeaderText>{test}</SidebarHeaderText>
                             </SidebarHeaderItem>
                         </MenuItem>
                     </Menu>

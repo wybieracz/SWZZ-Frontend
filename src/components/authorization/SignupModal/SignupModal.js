@@ -8,8 +8,11 @@ import {
     SignupErrorText,
     SignupButtonWrapper,
     SignupButton,
+    SignupButtonIconWrapper,
     SignupItem
 } from "./SignupModalStyled.js";
+import { LoadingIconWrapper } from "../../images/Icons/IconsStyled.js";
+import LoadingIcon from "../../../bitmaps/Load_White.png";
 
 export default function SignupModal(props) {
 
@@ -27,6 +30,7 @@ export default function SignupModal(props) {
 
     const [valid, setValid] = useState(false);
     const [userExists, setUserExists] = useState(false);
+    const [isRequestSent, setRequestSent] = useState(false);
 
     const validEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
     const validPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
@@ -63,7 +67,8 @@ export default function SignupModal(props) {
     }, [email])
 
     async function handleSignup() {
-        props.setValidated(true);
+        setRequestSent(true)
+        props.setValidated(true)
         if (valid) {
             let item = { name, surname, email, password }
 
@@ -81,9 +86,11 @@ export default function SignupModal(props) {
             if (result >= 200 && result < 300) {
                 localStorage.setItem("isAuthenticated", "true");
                 navigate("/");
+                setRequestSent(false)
             }
             else {
                 setUserExists(true)
+                setRequestSent(false)
             }
         }
     }
@@ -195,7 +202,15 @@ export default function SignupModal(props) {
 
                 <Modal.Footer>
                     <SignupButtonWrapper>
-                        <SignupButton onClick={handleSignup}>Signup</SignupButton>
+                        <SignupButton onClick={handleSignup}> { isRequestSent
+                            ? <SignupButtonIconWrapper>
+                                <LoadingIconWrapper size="20px">
+                                    <img src={LoadingIcon} alt="LoadingIcon" width="20px" heigth="20px" />
+                                </LoadingIconWrapper>
+                            </SignupButtonIconWrapper>
+                            : "Signup"
+                        }
+                        </SignupButton>
                     </SignupButtonWrapper>
                 </Modal.Footer>
 

@@ -17,7 +17,7 @@ color: #FFFFFF;
 display: flex;
 border: 0px;
 padding: 0px 8px 0px 8px;
-margin: 3px 3px 0px 0px;
+margin: 0px 3px 0px 0px;
 &:hover{
   background: ${GreyDark};
 }

@@ -45,10 +45,16 @@ margin: 10px 40px 0px 0px;
 color: ${GreyDark};
 `;
 
+const Buttons = styled.div`
+display: flex;
+align-items: center;
+`;
+
 export {
   GroupUsersHeader,
   GroupUser,
   GroupUserName,
   GroupUsersDot,
-  GroupUserId
+  GroupUserId,
+  Buttons
 };

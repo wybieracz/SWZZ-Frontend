@@ -40,6 +40,10 @@ text-align: center;
 }
 `;
 
+const SignupButtonIconWrapper = styled.div`
+padding: 0% 43% 0% 43%;
+`;
+
 const SignupItem = styled.div`
 margin-bottom: 5%;
 `;
@@ -55,5 +59,6 @@ export {
   SignupErrorText,
   SignupButtonWrapper,
   SignupButton,
+  SignupButtonIconWrapper,
   SignupItem
 };

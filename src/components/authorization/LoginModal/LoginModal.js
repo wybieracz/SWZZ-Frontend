@@ -9,9 +9,12 @@ import {
   LoginError,
   LoginButtonWrapper,
   LoginButton,
+  LoginButtonIconWrapper,
   LoginItem,
   LoginErrorCentered
 } from "./LoginModalStyled.js";
+import { LoadingIconWrapper } from "../../images/Icons/IconsStyled.js";
+import LoadingIcon from "../../../bitmaps/Load_White.png";
 
 export default function LoginModal(props) {
 
@@ -24,6 +27,7 @@ export default function LoginModal(props) {
   const [credentialsErr, setCredentialsErr] = useState(true);
 
   const [valid, setValid] = useState(false);
+  const [isRequestSent, setRequestSent] = useState(false);
 
   const validEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
   const validPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
@@ -45,7 +49,7 @@ export default function LoginModal(props) {
   }, [emailErr, passwordErr]);
 
   async function handleLogin() {
-
+    setRequestSent(true)
     props.setValidated(true);
     if (valid) {
       let item = { email, password, rememberMe }
@@ -64,9 +68,11 @@ export default function LoginModal(props) {
       if (result >= 200 && result < 300) {
         localStorage.setItem("isAuthenticated", "true");
         navigate("/");
+        setRequestSent(false)
       }
       else {
         setCredentialsErr(true);
+        setRequestSent(false)
       }
     }
   }
@@ -141,7 +147,15 @@ export default function LoginModal(props) {
 
         <Modal.Footer>
           <LoginButtonWrapper>
-            <LoginButton onClick={handleLogin}>Login</LoginButton>
+            <LoginButton onClick={handleLogin}> { isRequestSent
+              ? <LoginButtonIconWrapper>
+                  <LoadingIconWrapper size="20px">
+                    <img src={LoadingIcon} alt="LoadingIcon" width="20px" heigth="20px" />
+                  </LoadingIconWrapper>
+                </LoginButtonIconWrapper>
+              : "Login"
+            }
+            </LoginButton>
           </LoginButtonWrapper>
         </Modal.Footer>
 

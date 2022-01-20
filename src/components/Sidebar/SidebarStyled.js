@@ -65,13 +65,15 @@ color: #E4E4E4;
 `;
 
 const SidebarHeaderText = styled.div`
-font-size: 20px;
+font-size: 18px;
 padding: 2rem 1rem 2rem 1rem;
 font-weight: bold;
 text-overflow: ellipsis;
 color: #2B2B2B;
 display: flex;
 float: left;
+overflow: hidden;
+width: 180px;
 `;
 
 const SidebarHeaderItem = styled.div`

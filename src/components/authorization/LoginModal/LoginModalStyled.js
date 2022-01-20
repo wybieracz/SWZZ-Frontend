@@ -44,6 +44,10 @@ text-align: center;
 }
 `;
 
+const LoginButtonIconWrapper = styled.div`
+padding: 0% 43% 0% 43%;
+`;
+
 const LoginItem = styled.div`
 margin-bottom: 5%;
 `;
@@ -66,5 +70,6 @@ export {
   LoginErrorCentered,
   LoginButtonWrapper,
   LoginButton,
+  LoginButtonIconWrapper,
   LoginItem
 };
