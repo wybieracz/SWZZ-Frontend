@@ -7,7 +7,6 @@ import {
     JoinGroupHeader,
     JoinGroupButtonWrapper,
     JoinGroupButton,
-    JoinGroupButtonText,
     JoinGroupItem,
     JoinGroupErrorText
 } from "./JoinGroupModalStyled.js";
@@ -16,11 +15,8 @@ const API_URL = "https://dev-swzz-be-app.azurewebsites.net/";
 export default function JoinGroupModal(props) {
 
     const [groupCode, setGroupCode] = useState("");
-
     const [groupCodeErr, setGroupCodeErr] = useState(true);
-
     const [valid, setValid] = useState(false);
-
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -92,7 +88,7 @@ export default function JoinGroupModal(props) {
                 <Modal.Footer>
                     <JoinGroupButtonWrapper>
                         <JoinGroupButton onClick={handleJoinGroup}>
-                            <JoinGroupButtonText>Join group</JoinGroupButtonText>
+                            Join group
                         </JoinGroupButton>
                     </JoinGroupButtonWrapper>
                 </Modal.Footer>

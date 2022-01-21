@@ -4,18 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
-import { EmojiIcon } from "../../../vectors/Emoji.js";
 import {
     GroupCreatorForm,
     GroupCreatorHeader,
     GroupCreatorButtonWrapper,
     GroupCreatorButton,
-    GroupCreatorButtonText,
     GroupCreatorItem,
     GroupCreatorEmojiItem,
     GroupCreatorLabel,
     GroupCreatorEmojiWrapper,
-    GroupCreatorEmojiButtonIcon,
     GroupCreatorEmojiButtonEmoji,
     GroupCreatorErrorText
 } from "./GroupCreatorModalStyled.js";
@@ -128,11 +125,7 @@ export default function GroupCreatorModal(props) {
                     <GroupCreatorEmojiItem>
                         <GroupCreatorLabel>Group emoji</GroupCreatorLabel>
                         <GroupCreatorEmojiWrapper>
-                            {groupEmojiErr ?
-                                <GroupCreatorEmojiButtonIcon onClick={() => props.setShowEmojis(!props.showEmojis)}>
-                                    <EmojiIcon />
-                                </GroupCreatorEmojiButtonIcon>
-                                :
+                            {groupEmojiErr ? null :
                                 <GroupCreatorEmojiButtonEmoji onClick={() => props.setShowEmojis(!props.showEmojis)}>
                                     {props.groupEmoji}
                                 </GroupCreatorEmojiButtonEmoji>
@@ -147,7 +140,7 @@ export default function GroupCreatorModal(props) {
                 <Modal.Footer>
                     <GroupCreatorButtonWrapper>
                         <GroupCreatorButton onClick={handleGroupCreate}>
-                            <GroupCreatorButtonText>Create group</GroupCreatorButtonText>
+                            Create group
                         </GroupCreatorButton>
                     </GroupCreatorButtonWrapper>
                 </Modal.Footer>

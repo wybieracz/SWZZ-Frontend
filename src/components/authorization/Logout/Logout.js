@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { PrimarySidebarButton } from "../../Sidebar/SidebarStyled";
 
-export default function Logout() {
+export default function Logout({ clearUserAndGroups, setIsLogged }) {
 
     const navigate = useNavigate();
 
@@ -15,12 +15,12 @@ export default function Logout() {
                 "Content-Type": 'application/json'
             }
         })
-
-        result = await result.status
-
+        result = result.status
         if (result >= 200 && result < 300) {
             localStorage.clear();
             navigate("/start");
+            clearUserAndGroups();
+            setIsLogged(false);
         }
     }
 

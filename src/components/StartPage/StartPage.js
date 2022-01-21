@@ -12,7 +12,7 @@ import {
   LogoWrapper
 } from "./StartPageStyled";
 
-export default function Home() {
+export default function StartPage({ setIsLogged }) {
 
   const [validated, setValidated] = useState(false);
   const [loginModalShow, setLoginModalShow] = useState(false);
@@ -39,12 +39,14 @@ export default function Home() {
         onHide={() => { setValidated(false); setSignupModalShow(false); }}
         validated={validated}
         setValidated={(props) => setValidated(props)}
+        setIsLogged={setIsLogged}
       />
       <LoginModal
         show={loginModalShow}
         onHide={() => { setValidated(false); setLoginModalShow(false); }}
         validated={validated}
         setValidated={(props) => setValidated(props)}
+        setIsLogged={setIsLogged}
       />
     </>
   );

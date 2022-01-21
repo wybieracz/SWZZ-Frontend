@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { unassignedUser } from "./components/task/DefaultData/DefaultData";
 
 async function getUserNameRequest(setUsername, setIsUserLoaded) {
     try {
@@ -26,4 +27,11 @@ async function getUserGroupsRequest(setGroups, setIsGroupsLoaded) {
     }
 }
 
-export { getUserNameRequest, getUserGroupsRequest }
+function clearUserAndGroups(setUser, setIsUserLoaded, setGroups, setIsGroupsLoaded) {
+    setUser(unassignedUser)
+    setIsUserLoaded(false)
+    setGroups([])
+    setIsGroupsLoaded(false)
+}
+
+export { getUserNameRequest, getUserGroupsRequest, clearUserAndGroups }

@@ -22,20 +22,23 @@ margin: 3%;
 
 const GroupCreatorButton = styled.button`
 border-radius: 40px;
-background: rgb(209, 209, 209);
-color: #adadad;
+background: #2B2B2B;
 height: 40px;
 width: 484px;
-text-align: center;
-&:hover{
-  background:rgb(161, 161, 161);
-}
-`;
-
-const GroupCreatorButtonText = styled.div`
+display: inline;
+align-items: center;
+justify-content: center;
+text-overflow: ellipsis;
+overflow: hidden;
+margin: 20px max(25px, 10%) 0px max(25px, 10%);
+border: 2px solid #2B2B2B;
 font-size: 18px;
-font-weight: bold;
-color: rgb(46, 46, 46);
+font-weight: 700;
+color: #E4E4E4;
+&:hover{
+  background: #545454;
+  border: 2px solid #545454;
+}
 `;
 
 const GroupCreatorItem = styled.div`
@@ -88,7 +91,6 @@ export {
   GroupCreatorHeader,
   GroupCreatorButtonWrapper,
   GroupCreatorButton,
-  GroupCreatorButtonText,
   GroupCreatorItem,
   GroupCreatorEmojiItem,
   GroupCreatorLabel,

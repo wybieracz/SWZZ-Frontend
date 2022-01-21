@@ -8,8 +8,7 @@ import {
     PeekGroupCodeHeader,
     PeekGroupCodeBody,
     PeekGroupCodeButtonWrapper,
-    PeekGroupCodeButton,
-    PeekGroupCodeButtonText
+    PeekGroupCodeButton
 } from "./PeekGroupCodeModalStyled.js";
 const API_URL = "https://dev-swzz-be-app.azurewebsites.net/";
 
@@ -20,7 +19,7 @@ export default function PeekGroupCodeModal(props) {
 
     useEffect(() => {
         getGroupCodeRequest(setGroupCode, setIsGroupCodeLoaded);
-    }, []);
+    }, [props.groupId]);
 
     async function getGroupCodeRequest(setGroupCode, setIsGroupCodeLoaded) {
         try {

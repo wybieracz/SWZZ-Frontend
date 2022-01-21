@@ -15,10 +15,10 @@ import {
     SidebarContentText
 } from "./SidebarStyled";
 
-export default function Sidebar({ user, isUserLoaded, groups, isGroupsLoaded }) {
+export default function Sidebar({ user, isUserLoaded, groups, isGroupsLoaded, clearUserAndGroups, setIsLogged }) {
 
     const [showEmojis, setShowEmojis] = useState(false);
-    const [groupEmoji, setGroupEmoji] = useState(null);
+    const [groupEmoji, setGroupEmoji] = useState("✅");
     const [validated, setValidated] = useState(false);
     const [groupModalShow, setGroupModalShow] = useState(false);
     const [newGroupModalShow, setNewGroupModalShow] = useState(false);
@@ -77,7 +77,7 @@ export default function Sidebar({ user, isUserLoaded, groups, isGroupsLoaded }) 
                     <Menu>
                         <SidebarButtonWrapper>
                             <SecondarySidebarButton onClick={handleOptions}>Options</SecondarySidebarButton>
-                            <Logout />
+                            <Logout clearUserAndGroups={clearUserAndGroups} setIsLogged={setIsLogged} />
                         </SidebarButtonWrapper>
                     </Menu>
                 </SidebarFooter>
@@ -86,7 +86,7 @@ export default function Sidebar({ user, isUserLoaded, groups, isGroupsLoaded }) 
                 show={groupModalShow}
                 onHide={() => {
                     setValidated(false);
-                    setGroupEmoji(null);
+                    setGroupEmoji("✅");
                     setShowEmojis(false);
                     setNewGroupModalShow(false);
                     setCreateGroupModalShow(false);

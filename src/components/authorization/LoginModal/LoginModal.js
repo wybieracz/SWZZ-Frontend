@@ -69,6 +69,7 @@ export default function LoginModal(props) {
         localStorage.setItem("isAuthenticated", "true");
         navigate("/");
         setRequestSent(false)
+        props.setIsLogged(true)
       }
       else {
         setCredentialsErr(true);

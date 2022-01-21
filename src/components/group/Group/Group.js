@@ -70,6 +70,7 @@ export default function Group({ user, isUserLoaded, groups, isGroupsLoaded }) {
         groupId={groupId}
         copied={copied}
         setCopied={(props) => setCopied(props)}
+        groupId={groupId}
       />
       <GroupUsersModal
         show={groupUsersModalShow}

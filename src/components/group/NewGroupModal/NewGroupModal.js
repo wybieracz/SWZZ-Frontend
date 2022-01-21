@@ -4,8 +4,7 @@ import {
     NewGroupHeader,
     NewGroupBody,
     NewGroupButtonWrapper,
-    NewGroupButton,
-    NewGroupButtonText
+    NewGroupButton
 } from "./NewGroupModalStyled.js";
 
 export default function NewGroupModal(props) {
