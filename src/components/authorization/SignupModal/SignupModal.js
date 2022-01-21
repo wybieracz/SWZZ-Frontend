@@ -87,6 +87,7 @@ export default function SignupModal(props) {
                 localStorage.setItem("isAuthenticated", "true");
                 navigate("/");
                 setRequestSent(false)
+                props.setIsLogged(true)
             }
             else {
                 setUserExists(true)
