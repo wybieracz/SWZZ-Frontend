@@ -1,6 +1,6 @@
 import React from "react";
 import { MiniAvatarInitials } from "./MiniAvatarStyled";
-import colorGenerator from "../../../colors/ColorGenerator";
+import { colorGenerator } from "../../../colors/ColorGenerator";
 import "../../../colors/ColorGenerator.js"
 
 export default function MiniAvatar ({ user }) {

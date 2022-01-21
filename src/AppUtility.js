@@ -26,10 +26,4 @@ async function getUserGroupsRequest(setGroups, setIsGroupsLoaded) {
     }
 }
 
-function getSingleGroup(groups, groupId) {
-    return groups.filter(group => {
-        return group.groupDTO.groupId === groupId
-    })[0];
-}
-
-export { getUserNameRequest, getUserGroupsRequest, getSingleGroup }
+export { getUserNameRequest, getUserGroupsRequest }

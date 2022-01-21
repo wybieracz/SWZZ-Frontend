@@ -1,15 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import TaskList from "../task/TaskList/TaskList"
-import Sidebar from "../Sidebar/Sidebar";
-import axios from "axios";
 import { HomeBody, HomeTitle } from "./HomeStyled";
 
-export default function Home({ user }) {
+
+export default function Home({ user, isUserLoaded, groups, isGroupsLoaded }) {
+
   return (
     <>
-      <HomeBody>
+      { isUserLoaded ?
+        <>
+        <HomeBody>
         <HomeTitle>Hi, {user.name} {user.surname}! How are you?</HomeTitle>
-      </HomeBody>
+        </HomeBody>
+        <TaskList
+          isPersonal={true}
+          groupId={0}
+          groups={groups}
+          isGroupsLoaded={isGroupsLoaded}
+          />
+        </>
+      : null
+      }
     </>
   );
 }

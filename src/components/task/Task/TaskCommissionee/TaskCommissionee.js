@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { TaskCommissioneeButton, TaskCommissioneeWrapper } from "./TaskCommissioneeStyled";
-import colorGenerator from "../../../colors/ColorGenerator.js"
+import { TaskCommissioneeButton, TaskCommissioneeWrapper } from "./TaskCommissioneeStyled.js";
+import { colorGenerator } from "../../../../colors/ColorGenerator.js"
 import TaskCommissioneeDrop from "./TaskCommissioneeDrop";
 
 export default function TaskCommissionee({ element, index, assign, getGroupUserById, groupUsers }) {

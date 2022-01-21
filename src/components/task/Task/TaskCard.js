@@ -4,10 +4,11 @@ import { Draggable } from "react-beautiful-dnd";
 import { DeleteIcon, EditIcon, OkIcon } from "../../../vectors/Icons";
 import { Green, GreenLight, Grey, GreyLight, GreyMedium, Raspberry, RaspberryLight } from "../../../colors/Colors.js";
 import { CardHeader, CardFooter, Buttons, DragItem } from "./TaskStyled";
-import TaskCommissionee from "./TaskCommissionee";
+import TaskCommissionee from "./TaskCommissionee/TaskCommissionee";
+import TaskGroup from "./TaskGroup/TaskGroup";
 import { ActionButton } from "../TaskList/TaskListButtonsStyled";
 
-export default function TaskCard({ element, index, remove, edit, assign, setIsUnderEdit, getGroupUserById, groupUsers }) {
+export default function TaskCard({ element, index, remove, edit, assign, setIsUnderEdit, getGroupUserById, groupUsers, isPersonal, groups, isGroupsLoaded }) {
     const handleTaskFailedToggle = () => {
         edit(element.taskItemDTO.status, index, element.taskItemDTO.title, element.taskItemDTO.description, !element.taskItemDTO.taskFailed);
     }
@@ -24,12 +25,15 @@ export default function TaskCard({ element, index, remove, edit, assign, setIsUn
                         <CardHeader>{element.taskItemDTO.title}</CardHeader>
                         <span>{element.taskItemDTO.description}</span>
                         <CardFooter>
-                        <TaskCommissionee element={element}
+                        { isPersonal ? <TaskGroup element={element} groups={groups} isGroupsLoaded={isGroupsLoaded} /> :
+                            <TaskCommissionee element={element}
                             index={index}
                             assign={assign}
                             getGroupUserById={getGroupUserById}
                             groupUsers={groupUsers}
+                            isGroupsLoaded={isGroupsLoaded}
                         />
+                        }                                             
                         <Buttons>
                             <ActionButton onClick={() => remove(element.taskItemDTO.status, index)}
                                 disabled={!element.taskPermissions.canDelete}

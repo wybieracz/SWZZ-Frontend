@@ -20,12 +20,6 @@ async function putGroupUserRoleRequest(userId, groupId, role) {
         "groupId": groupId,
         "userRole": role
     }
-    console.log(userId)
-    console.log(groupId)
-    console.log(role)
-    console.log(typeof userId)
-    console.log(typeof groupId)
-    console.log(typeof role)
     try {
         await axios.put(`${API_URL}group/user`, element)
     } catch (error) {
@@ -42,7 +36,6 @@ function changeGroupUserRole(userId, groupId, role, groupUsers, setGroupUsers) {
     )
     putGroupUserRoleRequest(userId, groupId, role);
     setGroupUsers(result);
-    console.log(result);
 }
 
 function getGroupIdFromLocation(path) {

@@ -1,7 +1,7 @@
 import React from "react";
 import { TaskCommissioneeDropWrapper, TaskCommissioneeDropElement, TaskCommissioneeDot } from "./TaskCommissioneeStyled";
-import colorGenerator from "../../../colors/ColorGenerator.js"
-import { unassignedGroupUser } from "../DefaultData/DefaultData";
+import { colorGenerator } from "../../../../colors/ColorGenerator";
+import { unassignedGroupUser } from "../../DefaultData/DefaultData";
 
 export default function TaskCommissioneeDrop({ element, index, assign, groupUsers, isDropActive, setIsDropActive }) {
 

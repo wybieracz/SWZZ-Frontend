@@ -16,6 +16,7 @@ export default function Group({ user, isUserLoaded, groups, isGroupsLoaded }) {
   const [groupUsersModalShow, setGroupUsersModalShow] = useState(false);
   const [groupUsers, setGroupUsers] = useState([]);
   const [groupUser, setGroupUser] = useState(() => getGroupUserById(user.userId));
+
   const groupData = groups.filter(group => {
     return group.groupDTO.groupId == groupId
   })[0];
@@ -57,7 +58,12 @@ export default function Group({ user, isUserLoaded, groups, isGroupsLoaded }) {
           />
         </RightWrapper>
       </GroupBody>
-      <TaskList groupId={groupData.groupDTO.groupId} getGroupUserById={getGroupUserById} groupUsers={groupUsers}/>
+      <TaskList
+        isPersonal={false}
+        groupId={groupData.groupDTO.groupId}
+        getGroupUserById={getGroupUserById}
+        groupUsers={groupUsers}
+      />
       <PeekGroupCodeModal
         show={peekGroupCodeModalShow}
         onHide={() => { setCopied(false); setPeekGroupCodeModalShow(false); }}

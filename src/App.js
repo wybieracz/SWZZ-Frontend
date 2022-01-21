@@ -8,7 +8,7 @@ import NotFound from "./components/NotFound/NotFound";
 import Group from "./components/group/Group/Group";
 import Options from "./components/options/Options/Options";
 import Sidebar from "./components/Sidebar/Sidebar.js"
-import { getUserNameRequest, getUserGroupsRequest, getSingleGroup } from "./AppUtility";
+import { getUserNameRequest, getUserGroupsRequest } from "./AppUtility";
 import { unassignedUser } from "./components/task/DefaultData/DefaultData";
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css";
@@ -34,12 +34,12 @@ export default function App() {
         <Route exact path="/" element={
           <ProtectedRoute>
             <Sidebar user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} />
-            <Home user={user} />
+            <Home user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} />
           </ProtectedRoute>} />
         <Route exact path="/group/:id" element={
           <ProtectedRoute>
             <Sidebar user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} />
-            <Group user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded}/>
+            <Group user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} />
           </ProtectedRoute>} />
         <Route exact path="/options" element={
           <ProtectedRoute>

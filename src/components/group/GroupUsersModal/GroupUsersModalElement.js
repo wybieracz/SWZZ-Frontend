@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import { GroupUser, GroupUserName, GroupUsersDot, GroupUserId, Buttons } from "./GroupUsersModalStyled";
-import colorGenerator from "../../../colors/ColorGenerator";
+import { colorGenerator } from "../../../colors/ColorGenerator";
 import RoleSelector from "./RoleSelector/RoleSelector";
 import { ActionButton } from "../../task/TaskList/TaskListButtonsStyled";
 import { DeleteIcon } from "../../../vectors/Icons";

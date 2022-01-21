@@ -7,7 +7,7 @@ import { Grey, GreyMedium } from "../../../colors/Colors.js";
 import { CardFooter, Buttons } from "../Task/TaskStyled";
 import { TaskCreatorContainer } from "./TaskCreatorStyled";
 import { ActionButton, AddButton } from "../TaskList/TaskListButtonsStyled";
-import { TaskCommissioneeButton } from "../Task/TaskCommissioneeStyled";
+import { TaskCommissioneeButton } from "../Task/TaskCommissionee/TaskCommissioneeStyled";
 import { GreyDark, GreyNight } from "../../../colors/Colors.js";
 
 export default function TaskCreator({ groupId, add }) {

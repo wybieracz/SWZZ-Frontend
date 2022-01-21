@@ -3,7 +3,7 @@ import useInputState from "../../../hooks/useInputState";
 import TaskEditor from "./TaskEditor";
 import TaskCard from "./TaskCard";
 
-export default function Task ({ element, index, remove, edit, assign, getGroupUserById, groupUsers }) {
+export default function Task ({ element, index, remove, edit, assign, getGroupUserById, groupUsers, isPersonal, groups, isGroupsLoaded }) {
 
     const [isUnderEdit, setIsUnderEdit] = useState(false);
     const [title, handleTitleChange] = useInputState(element.taskItemDTO.title);
@@ -37,6 +37,9 @@ export default function Task ({ element, index, remove, edit, assign, getGroupUs
             setIsUnderEdit={setIsUnderEdit}
             getGroupUserById={getGroupUserById}
             groupUsers={groupUsers}
+            isPersonal={isPersonal}
+            groups={groups}
+            isGroupsLoaded={isGroupsLoaded}
             />
         );
     }

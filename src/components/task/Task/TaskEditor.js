@@ -5,7 +5,7 @@ import { Form } from "react-bootstrap";
 import { OkIcon } from "../../../vectors/Icons";
 import { ActionButton } from "../TaskList/TaskListButtonsStyled";
 import { Grey, GreyMedium } from "../../../colors/Colors.js";
-import TaskCommissionee from "./TaskCommissionee";
+import TaskCommissionee from "./TaskCommissionee/TaskCommissionee";
 
 export default function TaskEditor ({ element, index, title, handleTitleChange, description, handleDescriptionChange, handleSubmit, getGroupUserById, groupUsers, assign }) {
 

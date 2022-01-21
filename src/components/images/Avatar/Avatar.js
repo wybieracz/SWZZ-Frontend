@@ -2,7 +2,7 @@ import React from "react";
 import { AvatarInitials } from "./AvatarStyled";
 import { LoadingIconWrapper } from "../Icons/IconsStyled";
 import LoadingIcon from "../../../bitmaps/Load_White.png";
-import colorGenerator from "../../../colors/ColorGenerator";
+import { colorGenerator } from "../../../colors/ColorGenerator";
 import "../../../colors/ColorGenerator.js"
 import { GreyDark } from "../../../colors/Colors";
 

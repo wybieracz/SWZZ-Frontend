@@ -9,16 +9,14 @@ import LoadingIcon from "../../../bitmaps/Load_Medium_Grey.png";
 
 const columns = ["ToDo", "Doing", "Closed"];
 
-export default function TaskList({ groupId, getGroupUserById, groupUsers }) {
+export default function TaskList({ isPersonal, groupId, getGroupUserById, groupUsers, groups, isGroupsLoaded }) {
   
   const [elements, setElements] = useState(emptyTasklist);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    getTasks(setElements, setIsLoaded, groupId);
-  }, [groupId]);
-
-  console.log(elements);
+    getTasks(isPersonal, setElements, setIsLoaded, groupId);
+  }, [isPersonal, groupId]);
 
   const handleDragEnd = (result) => {
     if (!result.destination) {
@@ -53,7 +51,6 @@ export default function TaskList({ groupId, getGroupUserById, groupUsers }) {
   const handleAssignTask = (status, index, commissioneeId) => {
     const listCopy = { ...elements };
     listCopy[status] = assignTask(listCopy[status], index, commissioneeId);
-    console.log(listCopy)
     setElements(listCopy);
   };
 
@@ -83,6 +80,7 @@ export default function TaskList({ groupId, getGroupUserById, groupUsers }) {
               <TaskListColumn
                 elements={elements[listKey]}
                 key={listKey}
+                isPersonal={isPersonal}
                 groupId={groupId}
                 status={listKey}
                 remove={handleRemoveTask}
@@ -91,6 +89,8 @@ export default function TaskList({ groupId, getGroupUserById, groupUsers }) {
                 assign={handleAssignTask}
                 getGroupUserById={getGroupUserById}
                 groupUsers={groupUsers}
+                groups={groups}
+                isGroupsLoaded={isGroupsLoaded}
               />
             ))}
           </ListGrid>
