@@ -8,6 +8,7 @@ import NotFound from "./components/NotFound/NotFound";
 import Group from "./components/group/Group/Group";
 import Options from "./components/options/Options/Options";
 import Sidebar from "./components/Sidebar/Sidebar.js"
+import GroupSettings from "./components/group/GroupSettings/GroupSettings/GroupSettings"
 import { getUserNameRequest, getUserGroupsRequest } from "./AppUtility";
 import { unassignedUser } from "./components/task/DefaultData/DefaultData";
 import { clearUserAndGroups } from "./AppUtility";
@@ -15,7 +16,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css";
 
 export default function App() {
-  
+
   const [isLogged, setIsLogged] = useState(false);
   const [user, setUser] = useState(unassignedUser);
   const [isUserLoaded, setIsUserLoaded] = useState(false);
@@ -47,6 +48,11 @@ export default function App() {
           <ProtectedRoute>
             <Sidebar user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} clearUserAndGroups={handleClearUserAndGroups} setIsLogged={setIsLogged} />
             <Home user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} />
+          </ProtectedRoute>} />
+        <Route exact path="/group/:id/settings" element={
+          <ProtectedRoute>
+            <Sidebar user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} clearUserAndGroups={handleClearUserAndGroups} setIsLogged={setIsLogged} />
+            <GroupSettings groups={groups} isGroupsLoaded={isGroupsLoaded} />
           </ProtectedRoute>} />
         <Route exact path="/group/:id" element={
           <ProtectedRoute>

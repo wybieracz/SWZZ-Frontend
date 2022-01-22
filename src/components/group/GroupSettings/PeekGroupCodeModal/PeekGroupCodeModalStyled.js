@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { White, Grey, GreyDark, GreyNight, GreenLight, Green } from "../../../colors/Colors";
+import { White, Grey, GreyDark, GreyNight, GreenLight, Green } from "../../../../colors/Colors";
 
 const PeekGroupCodeHeader = styled.div`
 font-size: 30px;
@@ -22,6 +22,9 @@ align-items: center;
 justify-content: center;
 text-overflow: ellipsis;
 overflow: hidden;
+flex: 1 1 0%;
+flex-direction: row;
+justify-content: space-evenly;
 margin: 3%;
 `;
 
@@ -29,7 +32,7 @@ const PeekGroupCodeButton = styled.button`
 border-radius: 40px;
 background: ${props => props.copied ? GreenLight : Grey};
 height: 40px;
-width: 480px;
+width: 250px;
 display: flex;
 align-items: center;
 justify-content: center;

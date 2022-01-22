@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import TaskList from "../../task/TaskList/TaskList";
 import GroupMembers from "./GroupMembers";
 import { getGroupUsersRequest, changeGroupUserRole, getGroupIdFromLocation, deleteGroupUser } from "./GroupUtilities";
 import { unassignedGroupUser } from "../../task/DefaultData/DefaultData";
-import PeekGroupCodeModal from "../PeekGroupCodeModal/PeekGroupCodeModal";
 import GroupUsersModal from "../GroupUsersModal/GroupUsersModal";
 import { GroupBody, GroupTitle, GroupEditButton, RightWrapper } from "./GroupStyled";
 
 export default function Group({ user, isUserLoaded, groups, isGroupsLoaded }) {
   const path = useLocation().pathname;
   const groupId = getGroupIdFromLocation(path);
-  const [copied, setCopied] = useState(false);
-  const [peekGroupCodeModalShow, setPeekGroupCodeModalShow] = useState(false);
   const [groupUsersModalShow, setGroupUsersModalShow] = useState(false);
   const [groupUsers, setGroupUsers] = useState([]);
   const [groupUser, setGroupUser] = useState(() => getGroupUserById(user.userId));
+  const navigate = useNavigate();
 
   const groupData = groups.filter(group => {
     return group.groupDTO.groupId == groupId
@@ -50,7 +48,7 @@ export default function Group({ user, isUserLoaded, groups, isGroupsLoaded }) {
       <GroupBody>
         <GroupTitle>{groupData.groupDTO.icon + " " + groupData.groupDTO.name}</GroupTitle>
         <RightWrapper>
-          <GroupEditButton onClick={() => setPeekGroupCodeModalShow(true)}>Edit</GroupEditButton>
+          <GroupEditButton onClick={() => navigate(`settings`)}>Settings</GroupEditButton>
           <GroupMembers user={user}
             isUserLoaded={isUserLoaded}
             groupUsers={groupUsers}
@@ -63,14 +61,6 @@ export default function Group({ user, isUserLoaded, groups, isGroupsLoaded }) {
         groupId={groupData.groupDTO.groupId}
         getGroupUserById={getGroupUserById}
         groupUsers={groupUsers}
-      />
-      <PeekGroupCodeModal
-        show={peekGroupCodeModalShow}
-        onHide={() => { setCopied(false); setPeekGroupCodeModalShow(false); }}
-        groupId={groupId}
-        copied={copied}
-        setCopied={(props) => setCopied(props)}
-        groupId={groupId}
       />
       <GroupUsersModal
         show={groupUsersModalShow}

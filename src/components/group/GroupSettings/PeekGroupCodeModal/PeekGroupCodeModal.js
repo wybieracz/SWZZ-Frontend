@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Modal } from 'react-bootstrap';
 import axios from 'axios';
-import { LoadingIconWrapper } from "../../images/Icons/IconsStyled";
-import LoadingIcon from "../../../bitmaps/Load_Medium_Grey.png";
+import { LoadingIconWrapper } from "../../../images/Icons/IconsStyled";
+import LoadingIcon from "../../../../bitmaps/Load_Medium_Grey.png";
 import {
     PeekGroupCodeHeader,
     PeekGroupCodeBody,
@@ -18,16 +18,29 @@ export default function PeekGroupCodeModal(props) {
     const [isGroupCodeLoaded, setIsGroupCodeLoaded] = useState(false);
 
     useEffect(() => {
-        getGroupCodeRequest(setGroupCode, setIsGroupCodeLoaded);
+        getGroupCodeRequest();
     }, [props.groupId]);
 
-    async function getGroupCodeRequest(setGroupCode, setIsGroupCodeLoaded) {
+    async function getGroupCodeRequest() {
         try {
             await axios.get(API_URL + "group/code?groupId=" + props.groupId).then(
                 response => {
                     setGroupCode([response.data]);
                     setIsGroupCodeLoaded(true);
                 }
+            );
+        } catch (error) {
+            console.error(error);
+            alert("Something went wrong :(")
+        }
+    }
+
+    async function resetGroupCodeRequest() {
+        setIsGroupCodeLoaded(false)
+        try {
+            await axios.put(API_URL + "group/code?groupId=" + props.groupId).then(
+                getGroupCodeRequest(),
+                props.setCopied(false)
             );
         } catch (error) {
             console.error(error);
@@ -51,24 +64,29 @@ export default function PeekGroupCodeModal(props) {
             </Modal.Header>
 
             <Modal.Body>
-                {isGroupCodeLoaded ?
-                    <PeekGroupCodeBody>{groupCode}</PeekGroupCodeBody>
-                    :
-                    <LoadingIconWrapper size="20px">
-                        <img src={LoadingIcon} alt="LoadingIcon" width="20px" heigth="20px" />
-                    </LoadingIconWrapper>
-                }
+                <PeekGroupCodeBody>
+                    {isGroupCodeLoaded ?
+                        <span>{groupCode}</span>
+                        :
+                        <LoadingIconWrapper size="40px">
+                            <img src={LoadingIcon} alt="LoadingIcon" width="40px" heigth="40px" />
+                        </LoadingIconWrapper>
+                    }
+                </PeekGroupCodeBody>
             </Modal.Body>
 
             <Modal.Footer>
-                <CopyToClipboard text={groupCode}
-                    onCopy={() => props.setCopied(true)}>
-                    <PeekGroupCodeButtonWrapper>
+                <PeekGroupCodeButtonWrapper>
+                    <CopyToClipboard text={groupCode}
+                        onCopy={() => props.setCopied(true)}>
                         <PeekGroupCodeButton copied={props.copied}>
-                            {props.copied ? "Copied" : "Copy to clipboard" }
+                            {props.copied ? "Copied" : "Copy to clipboard"}
                         </PeekGroupCodeButton>
-                    </PeekGroupCodeButtonWrapper>
-                </CopyToClipboard>
+                    </CopyToClipboard>
+                    <PeekGroupCodeButton onClick={resetGroupCodeRequest}>
+                        Reset Code
+                    </PeekGroupCodeButton>
+                </PeekGroupCodeButtonWrapper>
             </Modal.Footer>
 
         </Modal>

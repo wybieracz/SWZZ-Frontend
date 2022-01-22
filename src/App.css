@@ -1,6 +1,7 @@
 .pro-sidebar {
   min-width: 250px;
   width: 15%;
+  height: 100%;
   position: fixed;
 }
 
@@ -16,6 +17,10 @@
 .pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-header {
   border-top: 0px;
   border-bottom: 0px;
+}
+
+.pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-content {
+  overflow-y: auto;
 }
 
 .pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-footer {
@@ -42,4 +47,22 @@
 .icon {
   width: 45px;
   height: 45px;
+}
+
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background: #E4E4E4;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D1D1D1;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
 }

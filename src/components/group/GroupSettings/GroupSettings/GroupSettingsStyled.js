@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { GreyLight, Raspberry } from "../../../colors/Colors";
+import { GreyLight, Raspberry } from "../../../../colors/Colors";
 
-const OptionsBody = styled.div`
+const GroupSettingsBody = styled.div`
 position: relative;
 margin-left: max(250px, 15%);
 padding: 4%;
@@ -9,19 +9,20 @@ text-align: center;
 background: ${GreyLight};
 `;
 
-const OptionsHeader = styled.div`
+const GroupSettingsHeader = styled.div`
 font-size: 50px;
 margin-bottom: 5%;
 margin-top: 5%;
 font-weight: 600;
 `;
 
-const OptionsText = styled.div`
-font-size: 30px;
+const GroupSettingsText = styled.div`
+font-size: 40px;
 margin-bottom: 3%;
+font-weight: 1200;
 `;
 
-const OptionsButtonWrapper = styled.div`
+const GroupSettingsButtonWrapper = styled.div`
 display: flex;
 align-items: center;
 justify-content: center;
@@ -31,7 +32,7 @@ justify-content: space-evenly;
 margin: 5%;
 `;
 
-const OptionsButton = styled.button`
+const GroupSettingsButton = styled.button`
 border-radius: 40px;
 background: ${GreyLight};
 height: 50px;
@@ -53,7 +54,7 @@ color: #2B2B2B;
 }
 `;
 
-const OptionsDeleteButton = styled.button`
+const GroupSettingsDeleteButton = styled.button`
 border-radius: 40px;
 background: ${GreyLight};
 height: 50px;
@@ -76,10 +77,10 @@ color: ${Raspberry};
 `;
 
 export {
-  OptionsBody,
-  OptionsHeader,
-  OptionsText,
-  OptionsButtonWrapper,
-  OptionsButton,
-  OptionsDeleteButton
+  GroupSettingsBody,
+  GroupSettingsHeader,
+  GroupSettingsText,
+  GroupSettingsButtonWrapper,
+  GroupSettingsButton,
+  GroupSettingsDeleteButton
 };
