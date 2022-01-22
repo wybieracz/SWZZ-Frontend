@@ -15,7 +15,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css";
 
 export default function App() {
-
+  
   const [isLogged, setIsLogged] = useState(false);
   const [user, setUser] = useState(unassignedUser);
   const [isUserLoaded, setIsUserLoaded] = useState(false);
@@ -28,6 +28,10 @@ export default function App() {
       getUserGroupsRequest(setGroups, setIsGroupsLoaded);
     }
   }, [isLogged]);
+
+  useEffect(() => {
+    if(user) setIsLogged(true);
+  }, [user]);
 
   function handleClearUserAndGroups() {
     clearUserAndGroups(setUser, setIsUserLoaded, setGroups, setIsGroupsLoaded)
