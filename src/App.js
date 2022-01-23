@@ -16,7 +16,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css";
 
 export default function App() {
-
+  
   const [isLogged, setIsLogged] = useState(false);
   const [user, setUser] = useState(unassignedUser);
   const [isUserLoaded, setIsUserLoaded] = useState(false);
@@ -38,6 +38,10 @@ export default function App() {
     clearUserAndGroups(setUser, setIsUserLoaded, setGroups, setIsGroupsLoaded)
   }
 
+  function handleGetUserGroups(no) {
+    getUserGroupsRequest(setGroups, setIsGroupsLoaded);
+  }
+  console.log(groups)
   return (
       <Routes>
         <Route exact path="/start" element={
@@ -46,22 +50,22 @@ export default function App() {
           </ProtectedStartRoute>} />
         <Route exact path="/" element={
           <ProtectedRoute>
-            <Sidebar user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} clearUserAndGroups={handleClearUserAndGroups} setIsLogged={setIsLogged} />
+            <Sidebar user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} clearUserAndGroups={handleClearUserAndGroups} setIsLogged={setIsLogged} getUserGroups={handleGetUserGroups} />
             <Home user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} />
           </ProtectedRoute>} />
         <Route exact path="/group/:id/settings" element={
           <ProtectedRoute>
-            <Sidebar user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} clearUserAndGroups={handleClearUserAndGroups} setIsLogged={setIsLogged} />
+            <Sidebar user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} clearUserAndGroups={handleClearUserAndGroups} setIsLogged={setIsLogged} getUserGroups={handleGetUserGroups} />
             <GroupSettings groups={groups} isGroupsLoaded={isGroupsLoaded} />
           </ProtectedRoute>} />
         <Route exact path="/group/:id" element={
           <ProtectedRoute>
-            <Sidebar user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} clearUserAndGroups={handleClearUserAndGroups} setIsLogged={setIsLogged} />
+            <Sidebar user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} clearUserAndGroups={handleClearUserAndGroups} setIsLogged={setIsLogged} getUserGroups={handleGetUserGroups} />
             <Group user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} />
           </ProtectedRoute>} />
         <Route exact path="/options" element={
           <ProtectedRoute>
-            <Sidebar user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} clearUserAndGroups={handleClearUserAndGroups} setIsLogged={setIsLogged} />
+            <Sidebar user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} clearUserAndGroups={handleClearUserAndGroups} setIsLogged={setIsLogged} getUserGroups={handleGetUserGroups} />
             <Options user={user} isUserLoaded={isUserLoaded} />
           </ProtectedRoute>} />
         <Route path="*" element={<NotFound />} />

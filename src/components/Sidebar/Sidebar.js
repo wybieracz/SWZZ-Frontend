@@ -15,16 +15,12 @@ import {
     SidebarContentText
 } from "./SidebarStyled";
 
-export default function Sidebar({ user, isUserLoaded, groups, isGroupsLoaded, clearUserAndGroups, setIsLogged }) {
+export default function Sidebar({ user, isUserLoaded, groups, isGroupsLoaded, clearUserAndGroups, setIsLogged, getUserGroups }) {
 
-    const [showEmojis, setShowEmojis] = useState(false);
-    const [groupEmoji, setGroupEmoji] = useState("✅");
-    const [validated, setValidated] = useState(false);
     const [groupModalShow, setGroupModalShow] = useState(false);
     const [newGroupModalShow, setNewGroupModalShow] = useState(false);
-    const [createGroupModalShow, setCreateGroupModalShow] = useState(false);
-    const [joinGroupModalShow, setJoinGroupModalShow] = useState(false);
-    const test = handleUserName();
+
+    const userName = handleUserName();
     const navigate = useNavigate();
 
     function handleUserName() {
@@ -44,6 +40,7 @@ export default function Sidebar({ user, isUserLoaded, groups, isGroupsLoaded, cl
     function handleGroup(group) {
         navigate(`/group/${group.groupDTO.groupId}`)
     }
+
     return (
         <SidebarBody>
             <ProSidebar>
@@ -52,7 +49,7 @@ export default function Sidebar({ user, isUserLoaded, groups, isGroupsLoaded, cl
                         <MenuItem>
                             <SidebarHeaderItem onClick={handleHome}>
                                 <Avatar user={user} isLoaded={isUserLoaded} />
-                                <SidebarHeaderText>{test}</SidebarHeaderText>
+                                <SidebarHeaderText>{userName}</SidebarHeaderText>
                             </SidebarHeaderItem>
                         </MenuItem>
                     </Menu>
@@ -67,7 +64,7 @@ export default function Sidebar({ user, isUserLoaded, groups, isGroupsLoaded, cl
                             </MenuItem>
                         )) : null}
                         <MenuItem>
-                            <SidebarContentItem onClick={() => { setGroupModalShow(true); setNewGroupModalShow(true); }}>
+                            <SidebarContentItem onClick={() => { setNewGroupModalShow(true); }}>
                                 <SidebarContentText>➕ New group</SidebarContentText>
                             </SidebarContentItem>
                         </MenuItem>
@@ -84,26 +81,10 @@ export default function Sidebar({ user, isUserLoaded, groups, isGroupsLoaded, cl
             </ProSidebar>
             <NewGroupManager
                 show={groupModalShow}
-                onHide={() => {
-                    setValidated(false);
-                    setGroupEmoji("✅");
-                    setShowEmojis(false);
-                    setNewGroupModalShow(false);
-                    setCreateGroupModalShow(false);
-                    setJoinGroupModalShow(false);
-                    setGroupModalShow(false);
-                }}
+                setGroupModalShow={setGroupModalShow}
                 newGroupShow={newGroupModalShow}
-                createGroupShow={createGroupModalShow}
-                joinGroupShow={joinGroupModalShow}
-                handleCreateGroup={() => { setCreateGroupModalShow(true); setNewGroupModalShow(false); }}
-                handleJoinGroup={() => { setJoinGroupModalShow(true); setNewGroupModalShow(false); }}
-                validated={validated}
-                setValidated={(props) => setValidated(props)}
-                groupEmoji={groupEmoji}
-                setGroupEmoji={(props) => setGroupEmoji(props)}
-                showEmojis={showEmojis}
-                setShowEmojis={(props) => setShowEmojis(props)}
+                setNewGroupModalShow={setNewGroupModalShow}
+                getUserGroups={getUserGroups}
             />
         </SidebarBody>
     );

@@ -59,7 +59,6 @@ export default function LoginModal(props) {
         body: JSON.stringify(item),
         headers: {
           "Content-Type": 'application/json',
-
         }
       })
 
@@ -140,9 +139,7 @@ export default function LoginModal(props) {
                   label="Remember me" />
               </Form.Group>
             </LoginCheckbox>
-
             {props.validated && credentialsErr && <LoginErrorCentered>Bad credentials.</LoginErrorCentered>}
-
           </LoginForm>
         </Modal.Body>
 
