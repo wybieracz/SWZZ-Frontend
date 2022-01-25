@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import GroupSettings from "../GroupSettings/GroupSettings";
 import DeleteGroupModal from "../DeleteGroupModal/DeleteGroupModal";
 import PeekGroupCodeModal from "../PeekGroupCodeModal/PeekGroupCodeModal";
@@ -6,38 +6,58 @@ import EditGroupAttributesModal from "../EditGroupAttributesModal/EditGroupAttri
 
 export default function NewGroupManager(props) {
 
+    const [showEmojis, setShowEmojis] = useState(false);
+    const [groupEmoji, setGroupEmoji] = useState("✅");
+    const [validated, setValidated] = useState(false);
+    const [copied, setCopied] = useState(false);
+    const [peekGroupCodeModalShow, setPeekGroupCodeModalShow] = useState(false);
+    const [editGroupAttributesModalShow, setEditGroupAttributesModalShow] = useState(false);
+    const [deleteGroupModalShow, setDeleteGroupModalShow] = useState(false);
+
+    function handleOnHide() {
+        setValidated(false);
+        setShowEmojis(false);
+        setGroupEmoji("✅");
+        setCopied(false);
+        props.setGroupSettingsModalShow(false);
+        setPeekGroupCodeModalShow(false);
+        setEditGroupAttributesModalShow(false);
+        setDeleteGroupModalShow(false);
+        props.setGroupSettingsModalManagerShow(false);
+    }
+
     return (
         <>
             <GroupSettings
                 show={props.groupSettingsModalShow}
-                onHide={props.onHide}
-                handlePeekGroupCode={props.handlePeekGroupCode}
-                handleEditGroupAttributes={props.handleEditGroupAttributes}
-                handleDeleteGroup={props.handleDeleteGroup}
+                onHide={handleOnHide}
+                handlePeekGroupCode={() => { setPeekGroupCodeModalShow(true); props.setGroupSettingsModalShow(false); }}
+                handleEditGroupAttributes={() => { setEditGroupAttributesModalShow(true); props.setGroupSettingsModalShow(false); }}
+                handleDeleteGroup={() => { setDeleteGroupModalShow(true); props.setGroupSettingsModalShow(false); }}
                 groupName={props.groupName}
             />
             <PeekGroupCodeModal
-                show={props.peekGroupCodeModalShow}
-                onHide={props.onHide}
+                show={peekGroupCodeModalShow}
+                onHide={handleOnHide}
                 groupId={props.groupId}
-                copied={props.copied}
-                setCopied={props.setCopied}
+                copied={copied}
+                setCopied={setCopied}
             />
             <EditGroupAttributesModal
-                show={props.editGroupAttributesModalShow}
-                onHide={props.onHide}
+                show={editGroupAttributesModalShow}
+                onHide={handleOnHide}
                 groupId={props.groupId}
-                validated={props.validated}
-                setValidated={props.setValidated}
-                groupEmoji={props.groupEmoji}
-                setGroupEmoji={props.setGroupEmoji}
+                validated={validated}
+                setValidated={setValidated}
+                groupEmoji={groupEmoji}
+                setGroupEmoji={setGroupEmoji}
                 groupName={props.groupName}
-                showEmojis={props.showEmojis}
-                setShowEmojis={props.setShowEmojis}
+                showEmojis={showEmojis}
+                setShowEmojis={setShowEmojis}
             />
             <DeleteGroupModal
-                show={props.deleteGroupModalShow}
-                onHide={props.onHide}
+                show={deleteGroupModalShow}
+                onHide={handleOnHide}
                 groupId={props.groupId}
             />
         </>
