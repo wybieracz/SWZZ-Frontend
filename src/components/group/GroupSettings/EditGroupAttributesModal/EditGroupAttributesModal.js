@@ -17,27 +17,37 @@ import {
     EditGroupAttributesEmojiButtonEmoji,
     EditGroupAttributesErrorText
 } from "./EditGroupAttributesModalStyled.js";
-axios.defaults.withCredentials = true;
 const API_URL = "https://dev-swzz-be-app.azurewebsites.net/";
 
 export default function EditGroupAttributesModal(props) {
 
-    const [groupName, setGroupName] = useState("");
+    const [groupTitle, setGroupTitle] = useState("");
     const [groupDescription, setGroupDescription] = useState("");
 
-    const [groupNameErr, setGroupNameErr] = useState(true);
+    const [groupTitleErr, setGroupTitleErr] = useState(true);
+    const [groupEmojiErr, setGroupEmojiErr] = useState(true);
+
+    const [valid, setValid] = useState(false);
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        groupName.length > 0 ? setGroupNameErr(false) : setGroupNameErr(true);
-    }, [groupName]);
+        groupTitle.length > 0 ? setGroupTitleErr(false) : setGroupTitleErr(true);
+    }, [groupTitle]);
+
+    useEffect(() => {
+        props.groupEmoji != null ? setGroupEmojiErr(false) : setGroupEmojiErr(true);
+    }, [props.groupEmoji]);
+
+    useEffect(() => {
+        (groupTitleErr || groupEmojiErr) ? setValid(false) : setValid(true);
+    }, [groupTitleErr, groupEmojiErr]);
 
     async function EditGroupAttributesChangeRequest() {
         props.setValidated(true);
-        if (!groupNameErr) {
+        if (valid) {
             try {
-                await axios.put(API_URL + "group/attributes", { groupId: props.groupId, name: groupName, icon: props.groupEmoji }).then(
+                await axios.put(API_URL + "group/attributes", { groupId: props.groupId, name: groupTitle, icon: props.groupEmoji }).then(
                     response => {
                         alert("You have successfully edited group attributes.")
                         navigate(`/group/${props.groupId}`)
@@ -86,16 +96,16 @@ export default function EditGroupAttributesModal(props) {
                     <EditGroupAttributesForm>
 
                         <EditGroupAttributesItem>
-                            <Form.Group controlId="GroupName" size="lg">
-                                <Form.Label>Group Name</Form.Label>
+                            <Form.Group controlId="GroupTitle" size="lg">
+                                <Form.Label>Group title</Form.Label>
                                 <Form.Control
                                     required
-                                    placeholder="Name"
+                                    placeholder="Title"
                                     type="text"
-                                    value={groupName}
-                                    onChange={(e) => setGroupName(e.target.value)}
+                                    value={groupTitle}
+                                    onChange={(e) => setGroupTitle(e.target.value)}
                                 />
-                                {props.validated && groupNameErr && <EditGroupAttributesErrorText>Please enter a name for the group.</EditGroupAttributesErrorText>}
+                                {props.validated && groupTitleErr && <EditGroupAttributesErrorText>Please enter a title for the group.</EditGroupAttributesErrorText>}
                             </Form.Group>
                         </EditGroupAttributesItem>
 
@@ -120,6 +130,7 @@ export default function EditGroupAttributesModal(props) {
                                 {props.groupEmoji}
                             </EditGroupAttributesEmojiButtonEmoji>
                         </EditGroupAttributesEmojiWrapper>
+                        {props.validated && groupEmojiErr && <EditGroupAttributesErrorText>Please select group emoji.</EditGroupAttributesErrorText>}
                         {props.showEmojis && <Picker style={{ width: '100%' }} set='google' emojiSize={28.75} onSelect={addEmoji} />}
                     </EditGroupAttributesEmojiItem>
 
@@ -128,7 +139,7 @@ export default function EditGroupAttributesModal(props) {
                 <Modal.Footer>
                     <EditGroupAttributesButtonWrapper>
                         <EditGroupAttributesButton onClick={EditGroupAttributesChangeRequest}>
-                            <EditGroupAttributesButtonText>Edit group attributes</EditGroupAttributesButtonText>
+                            <EditGroupAttributesButtonText>Create group</EditGroupAttributesButtonText>
                         </EditGroupAttributesButton>
                     </EditGroupAttributesButtonWrapper>
                 </Modal.Footer>

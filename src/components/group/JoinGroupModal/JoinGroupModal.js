@@ -2,27 +2,30 @@ import React, { useEffect, useState } from "react";
 import { Form, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { LoadingIconWrapper } from "../../images/Icons/IconsStyled.js";
+import LoadingIcon from "../../../bitmaps/Load_White.png";
 import {
     JoinGroupForm,
     JoinGroupHeader,
     JoinGroupButtonWrapper,
     JoinGroupButton,
     JoinGroupItem,
-    JoinGroupErrorText
+    JoinGroupErrorText,
+    JoinGroupButtonIconWrapper
 } from "./JoinGroupModalStyled.js";
-axios.defaults.withCredentials = true;
 const API_URL = "https://dev-swzz-be-app.azurewebsites.net/";
 
 export default function JoinGroupModal(props) {
 
-    const [groupCode, setGroupCode] = useState("");
     const [groupCodeErr, setGroupCodeErr] = useState(true);
     const [valid, setValid] = useState(false);
+    const [isRequestSent, setIsRequestSent] = useState(false);
+
     const navigate = useNavigate();
 
     useEffect(() => {
-        groupCode.length > 0 ? setGroupCodeErr(false) : setGroupCodeErr(true);
-    }, [groupCode]);
+        props.groupCode.length > 35 ? setGroupCodeErr(false) : setGroupCodeErr(true);
+    }, [props.groupCode]);
 
     useEffect(() => {
         (groupCodeErr) ? setValid(false) : setValid(true);
@@ -31,16 +34,20 @@ export default function JoinGroupModal(props) {
     async function handleJoinGroup() {
         props.setValidated(true);
         if (valid) {
+            setIsRequestSent(true)
             try {
-                await axios.post(API_URL + "group/user?groupCode=" + groupCode).then(
+                await axios.post(API_URL + "group/user?groupCode=" + props.groupCode).then(
                     response => {
+                        props.getUserGroups(response.data)
                         navigate(`/group/${response.data}`)
-                        alert("You have successfully joined the group.")
+                        props.onHide()
+                        setIsRequestSent(false)
                     }
                 );
             } catch (error) {
                 console.error(error);
                 setGroupCodeErr(true);
+                setIsRequestSent(false)
             }
         }
     }
@@ -77,8 +84,8 @@ export default function JoinGroupModal(props) {
                                 <Form.Control
                                     placeholder="Code"
                                     type="text"
-                                    value={groupCode}
-                                    onChange={(e) => setGroupCode(e.target.value)}
+                                    value={props.groupCode}
+                                    onChange={(e) => props.setGroupCode(e.target.value)}
                                 />
                                 {props.validated && groupCodeErr && <JoinGroupErrorText>Please provide a valid code.</JoinGroupErrorText>}
                             </Form.Group>
@@ -88,8 +95,14 @@ export default function JoinGroupModal(props) {
 
                 <Modal.Footer>
                     <JoinGroupButtonWrapper>
-                        <JoinGroupButton onClick={handleJoinGroup}>
-                            Join group
+                        <JoinGroupButton onClick={handleJoinGroup}> { isRequestSent
+                            ? <JoinGroupButtonIconWrapper>
+                                <LoadingIconWrapper size="20px">
+                                    <img src={LoadingIcon} alt="LoadingIcon" width="20px" heigth="20px" />
+                                </LoadingIconWrapper>
+                            </JoinGroupButtonIconWrapper>
+                            : "Join group"
+                            }
                         </JoinGroupButton>
                     </JoinGroupButtonWrapper>
                 </Modal.Footer>

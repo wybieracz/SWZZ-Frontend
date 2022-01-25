@@ -59,7 +59,6 @@ export default function LoginModal(props) {
         body: JSON.stringify(item),
         headers: {
           "Content-Type": 'application/json',
-
         }
       })
 
@@ -140,20 +139,18 @@ export default function LoginModal(props) {
                   label="Remember me" />
               </Form.Group>
             </LoginCheckbox>
-
             {props.validated && credentialsErr && <LoginErrorCentered>Bad credentials.</LoginErrorCentered>}
-
           </LoginForm>
         </Modal.Body>
 
         <Modal.Footer>
           <LoginButtonWrapper>
-            <LoginButton onClick={handleLogin}> {isRequestSent
+            <LoginButton onClick={handleLogin}> { isRequestSent
               ? <LoginButtonIconWrapper>
-                <LoadingIconWrapper size="20px">
-                  <img src={LoadingIcon} alt="LoadingIcon" width="20px" heigth="20px" />
-                </LoadingIconWrapper>
-              </LoginButtonIconWrapper>
+                  <LoadingIconWrapper size="20px">
+                    <img src={LoadingIcon} alt="LoadingIcon" width="20px" heigth="20px" />
+                  </LoadingIconWrapper>
+                </LoginButtonIconWrapper>
               : "Login"
             }
             </LoginButton>

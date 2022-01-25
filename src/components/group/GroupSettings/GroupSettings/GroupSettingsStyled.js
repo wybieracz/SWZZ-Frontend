@@ -1,10 +1,19 @@
 import styled from "styled-components";
 import { GreyLight, Raspberry } from "../../../../colors/Colors";
 
-const GroupSettingsHeader = styled.div`
-font-size: 30px;
-font-weight: bold;
+const GroupSettingsBody = styled.div`
+position: relative;
+margin-left: max(250px, 15%);
+padding: 4%;
 text-align: center;
+background: ${GreyLight};
+`;
+
+const GroupSettingsHeader = styled.div`
+font-size: 50px;
+margin-bottom: 5%;
+margin-top: 5%;
+font-weight: 600;
 `;
 
 const GroupSettingsText = styled.div`
@@ -33,7 +42,7 @@ align-items: center;
 justify-content: center;
 text-overflow: ellipsis;
 overflow: hidden;
-margin: 0px max(25px, 10%) 40px max(25px, 10%);
+margin: 40px max(25px, 10%) 0px max(25px, 10%);
 border: 2px solid #2B2B2B;
 font-size: 20px;
 font-weight: 700;
@@ -55,7 +64,7 @@ align-items: center;
 justify-content: center;
 text-overflow: ellipsis;
 overflow: hidden;
-margin: 0px max(25px, 10%) 0px max(25px, 10%);
+margin: 40px max(25px, 10%) 0px max(25px, 10%);
 border: 2px solid ${Raspberry};
 font-size: 20px;
 font-weight: 700;
@@ -68,6 +77,7 @@ color: ${Raspberry};
 `;
 
 export {
+  GroupSettingsBody,
   GroupSettingsHeader,
   GroupSettingsText,
   GroupSettingsButtonWrapper,

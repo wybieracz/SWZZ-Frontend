@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
+import { LoadingIconWrapper } from "../../images/Icons/IconsStyled.js";
+import LoadingIcon from "../../../bitmaps/Load_White.png";
 import {
     GroupCreatorForm,
     GroupCreatorHeader,
@@ -14,26 +16,23 @@ import {
     GroupCreatorLabel,
     GroupCreatorEmojiWrapper,
     GroupCreatorEmojiButtonEmoji,
+    GroupCreatorButtonIconWrapper,
     GroupCreatorErrorText
 } from "./GroupCreatorModalStyled.js";
-axios.defaults.withCredentials = true;
 const API_URL = "https://dev-swzz-be-app.azurewebsites.net/";
 
 export default function GroupCreatorModal(props) {
 
-    const [groupTitle, setGroupTitle] = useState("");
-    const [groupDescription, setGroupDescription] = useState("");
-
     const [groupTitleErr, setGroupTitleErr] = useState(true);
     const [groupEmojiErr, setGroupEmojiErr] = useState(true);
-
     const [valid, setValid] = useState(false);
+    const [isRequestSent, setIsRequestSent] = useState(false);
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        groupTitle.length > 0 ? setGroupTitleErr(false) : setGroupTitleErr(true);
-    }, [groupTitle]);
+        props.groupTitle.length > 0 ? setGroupTitleErr(false) : setGroupTitleErr(true);
+    }, [props.groupTitle]);
 
     useEffect(() => {
         props.groupEmoji != null ? setGroupEmojiErr(false) : setGroupEmojiErr(true);
@@ -44,18 +43,22 @@ export default function GroupCreatorModal(props) {
     }, [groupTitleErr, groupEmojiErr]);
 
     async function handleGroupCreate() {
-        props.setValidated(true);
+        props.setValidated(true)
         if (valid) {
+            setIsRequestSent(true)
             try {
-                await axios.post(API_URL + "group", { name: groupTitle, icon: props.groupEmoji }).then(
+                await axios.post(API_URL + "group", { name: props.groupTitle, icon: props.groupEmoji }).then(
                     response => {
+                        props.getUserGroups(response.data)
                         navigate(`/group/${response.data}`)
-                        alert("You have successfully created a new group.")
+                        props.onHide()
+                        setValid(false)
+                        setIsRequestSent(false)
                     }
                 );
             } catch (error) {
-                console.error(error);
-                alert("Something went wrong :(")
+                console.error(error)
+                setIsRequestSent(false)
             }
         }
     }
@@ -102,8 +105,8 @@ export default function GroupCreatorModal(props) {
                                     required
                                     placeholder="Title"
                                     type="text"
-                                    value={groupTitle}
-                                    onChange={(e) => setGroupTitle(e.target.value)}
+                                    value={props.groupTitle}
+                                    onChange={(e) => props.setGroupTitle(e.target.value)}
                                 />
                                 {props.validated && groupTitleErr && <GroupCreatorErrorText>Please enter a title for the group.</GroupCreatorErrorText>}
                             </Form.Group>
@@ -116,8 +119,8 @@ export default function GroupCreatorModal(props) {
                                     as="textarea"
                                     rows={3}
                                     placeholder="Description"
-                                    value={groupDescription}
-                                    onChange={(e) => setGroupDescription(e.target.value)}
+                                    value={props.groupDescription}
+                                    onChange={(e) => props.setGroupDescription(e.target.value)}
                                 />
                             </Form.Group>
                         </GroupCreatorItem>
@@ -135,13 +138,18 @@ export default function GroupCreatorModal(props) {
                         {props.validated && groupEmojiErr && <GroupCreatorErrorText>Please select group emoji.</GroupCreatorErrorText>}
                         {props.showEmojis && <Picker style={{ width: '100%' }} set='google' emojiSize={28.75} onSelect={addEmoji} />}
                     </GroupCreatorEmojiItem>
-
                 </Modal.Body>
 
                 <Modal.Footer>
                     <GroupCreatorButtonWrapper>
-                        <GroupCreatorButton onClick={handleGroupCreate}>
-                            Create group
+                        <GroupCreatorButton onClick={handleGroupCreate}> { isRequestSent
+                            ? <GroupCreatorButtonIconWrapper>
+                                <LoadingIconWrapper size="20px">
+                                    <img src={LoadingIcon} alt="LoadingIcon" width="20px" heigth="20px" />
+                                </LoadingIconWrapper>
+                            </GroupCreatorButtonIconWrapper>
+                            : "Create group"
+                            }
                         </GroupCreatorButton>
                     </GroupCreatorButtonWrapper>
                 </Modal.Footer>
