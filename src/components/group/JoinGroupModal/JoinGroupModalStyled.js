@@ -49,16 +49,11 @@ const JoinGroupErrorText = styled.div`
 color: red;
 `;
 
-const JoinGroupButtonIconWrapper = styled.div`
-padding: 0% 43% 0% 43%;
-`;
-
 export {
   JoinGroupForm,
   JoinGroupHeader,
   JoinGroupButtonWrapper,
   JoinGroupButton,
   JoinGroupItem,
-  JoinGroupErrorText,
-  JoinGroupButtonIconWrapper
+  JoinGroupErrorText
 };

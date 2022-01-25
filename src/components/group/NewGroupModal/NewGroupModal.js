@@ -26,7 +26,7 @@ export default function NewGroupModal(props) {
             </Modal.Header>
 
             <Modal.Body>
-                <NewGroupBody>Create a new group or join existing one.</NewGroupBody>
+                <NewGroupBody>Please select your option.</NewGroupBody>
             </Modal.Body>
 
             <Modal.Footer>

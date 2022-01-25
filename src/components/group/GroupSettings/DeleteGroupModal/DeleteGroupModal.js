@@ -10,6 +10,7 @@ import {
     DeleteGroupModalButtonTextGreen,
     DeleteGroupModalButtonTextRed
 } from "./DeleteGroupModalStyled"
+axios.defaults.withCredentials = true;
 const API_URL = "https://dev-swzz-be-app.azurewebsites.net/";
 
 export default function DeleteGroupModal(props) {

@@ -82,10 +82,6 @@ text-align: center;
 }
 `;
 
-const GroupCreatorButtonIconWrapper = styled.div`
-padding: 0% 43% 0% 43%;
-`;
-
 const GroupCreatorErrorText = styled.div`
 color: red;
 `;
@@ -101,6 +97,5 @@ export {
   GroupCreatorEmojiWrapper,
   GroupCreatorEmojiButtonIcon,
   GroupCreatorEmojiButtonEmoji,
-  GroupCreatorButtonIconWrapper,
   GroupCreatorErrorText
 };
