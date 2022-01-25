@@ -41,7 +41,7 @@ export default function App() {
   function handleGetUserGroups(no) {
     getUserGroupsRequest(setGroups, setIsGroupsLoaded);
   }
-  console.log(groups)
+  
   return (
       <Routes>
         <Route exact path="/start" element={

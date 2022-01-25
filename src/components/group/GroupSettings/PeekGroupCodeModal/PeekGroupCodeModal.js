@@ -10,6 +10,7 @@ import {
     PeekGroupCodeButtonWrapper,
     PeekGroupCodeButton
 } from "./PeekGroupCodeModalStyled.js";
+axios.defaults.withCredentials = true;
 const API_URL = "https://dev-swzz-be-app.azurewebsites.net/";
 
 export default function PeekGroupCodeModal(props) {
@@ -36,11 +37,14 @@ export default function PeekGroupCodeModal(props) {
     }
 
     async function resetGroupCodeRequest() {
-        setIsGroupCodeLoaded(false)
+        setIsGroupCodeLoaded(false);
         try {
             await axios.put(API_URL + "group/code?groupId=" + props.groupId).then(
-                getGroupCodeRequest(),
-                props.setCopied(false)
+                response => {
+                    setGroupCode([response.data]);
+                    setIsGroupCodeLoaded(true);
+                    props.setCopied(false);
+                }
             );
         } catch (error) {
             console.error(error);

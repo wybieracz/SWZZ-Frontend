@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import TaskList from "../../task/TaskList/TaskList";
 import GroupMembers from "./GroupMembers";
+import GroupSettingsManager from "../GroupSettings/GroupSettingsManager/GroupSettingsManager"
 import { getGroupUsersRequest, changeGroupUserRole, getGroupIdFromLocation, deleteGroupUser } from "./GroupUtilities";
 import { unassignedGroupUser } from "../../task/DefaultData/DefaultData";
 import GroupUsersModal from "../GroupUsersModal/GroupUsersModal";
@@ -13,12 +14,21 @@ export default function Group({ user, isUserLoaded, groups, isGroupsLoaded }) {
   const [groupUsersModalShow, setGroupUsersModalShow] = useState(false);
   const [groupUsers, setGroupUsers] = useState([]);
   const [groupUser, setGroupUser] = useState(() => getGroupUserById(user.userId));
-  const navigate = useNavigate();
 
   const groupData = groups.filter(group => {
     return group.groupDTO.groupId == groupId
   })[0];
-  
+
+  const [showEmojis, setShowEmojis] = useState(false);
+  const [groupEmoji, setGroupEmoji] = useState("✅");
+  const [validated, setValidated] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [groupSettingsModalManagerShow, setGroupSettingsModalManagerShow] = useState(false);
+  const [groupSettingsModalShow, setGroupSettingsModalShow] = useState(false);
+  const [peekGroupCodeModalShow, setPeekGroupCodeModalShow] = useState(false);
+  const [editGroupAttributesModalShow, setEditGroupAttributesModalShow] = useState(false);
+  const [deleteGroupModalShow, setDeleteGroupModalShow] = useState(false);
+
   function getGroupUserById(userId) {
     const result = groupUsers.filter(user => { return user.userDTO.userId == userId })[0];
     if (result) return result;
@@ -48,7 +58,13 @@ export default function Group({ user, isUserLoaded, groups, isGroupsLoaded }) {
       <GroupBody>
         <GroupTitle>{groupData.groupDTO.icon + " " + groupData.groupDTO.name}</GroupTitle>
         <RightWrapper>
-          <GroupEditButton onClick={() => navigate(`settings`)}>Settings</GroupEditButton>
+        {groupUser.role === "Administrator" ?
+                <GroupEditButton onClick={() => { setGroupSettingsModalManagerShow(true); setGroupSettingsModalShow(true); }}>
+                  Settings
+                </GroupEditButton>
+                :
+                null
+              }
           <GroupMembers user={user}
             isUserLoaded={isUserLoaded}
             groupUsers={groupUsers}
@@ -62,6 +78,41 @@ export default function Group({ user, isUserLoaded, groups, isGroupsLoaded }) {
         getGroupUserById={getGroupUserById}
         groupUsers={groupUsers}
       />
+      {groupUser.role === "Administrator" ?
+            <GroupSettingsManager
+              show={groupSettingsModalManagerShow}
+              onHide={() => {
+                setValidated(false);
+                setShowEmojis(false);
+                setGroupEmoji("✅");
+                setCopied(false);
+                setGroupSettingsModalShow(false);
+                setPeekGroupCodeModalShow(false);
+                setEditGroupAttributesModalShow(false);
+                setDeleteGroupModalShow(false);
+                setGroupSettingsModalManagerShow(false);
+              }}
+              groupSettingsModalShow={groupSettingsModalShow}
+              peekGroupCodeModalShow={peekGroupCodeModalShow}
+              editGroupAttributesModalShow={editGroupAttributesModalShow}
+              deleteGroupModalShow={deleteGroupModalShow}
+              handlePeekGroupCode={() => { setPeekGroupCodeModalShow(true); setGroupSettingsModalShow(false); }}
+              handleEditGroupAttributes={() => { setEditGroupAttributesModalShow(true); setGroupSettingsModalShow(false); }}
+              handleDeleteGroup={() => { setDeleteGroupModalShow(true); setGroupSettingsModalShow(false); }}
+              groupId={groupData.groupDTO.groupId}
+              groupName={groupData.groupDTO.name}
+              groupEmoji={groupEmoji}
+              setGroupEmoji={(props) => setGroupEmoji(props)}
+              validated={validated}
+              setValidated={(props) => setValidated(props)}
+              showEmojis={showEmojis}
+              setShowEmojis={(props) => setShowEmojis(props)}
+              copied={copied}
+              setCopied={(props) => setCopied(props)}
+            />
+            :
+            null
+          }
       <GroupUsersModal
         show={groupUsersModalShow}
         onHide={() => setGroupUsersModalShow(false)}
