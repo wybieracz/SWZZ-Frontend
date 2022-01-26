@@ -30,9 +30,6 @@ export default function Options({ user, isUserLoaded }) {
                     <OptionsButton onClick={() => setChangePasswordModalShow(true)}>
                         Change password
                     </OptionsButton>
-                    <OptionsDeleteButton onClick={() => setDeleteAccountModalShow(true)}>
-                        Delete account
-                    </OptionsDeleteButton>
                 </OptionsButtonWrapper>
             </OptionsBody>
             <ChangePasswordModal
