@@ -72,7 +72,7 @@ async function getTasks(isPersonal, setElements, setIsLoaded, groupId) {
 
 async function removeTaskRequest(taskId) {
   try {
-    await axios.delete(`${API_URL}task?id=${taskId}`)
+    await axios.delete(`${API_URL}task?taskId=${taskId}`)
   } catch (error) {
     console.error(error);
   }
