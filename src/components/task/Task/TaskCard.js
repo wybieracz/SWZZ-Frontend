@@ -3,7 +3,7 @@ import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { DeleteIcon, EditIcon, OkIcon } from "../../../vectors/Icons";
 import { Green, GreenLight, Grey, GreyLight, GreyMedium, Raspberry, RaspberryLight } from "../../../colors/Colors.js";
-import { CardHeader, CardFooter, Buttons, DragItem } from "./TaskStyled";
+import { CardHeader, CardFooter, Buttons, DragItem, TaskContent } from "./TaskStyled";
 import TaskCommissionee from "./TaskCommissionee/TaskCommissionee";
 import TaskGroup from "./TaskGroup/TaskGroup";
 import { ActionButton } from "../TaskList/TaskListButtonsStyled";
@@ -23,7 +23,7 @@ export default function TaskCard({ element, index, remove, edit, assign, setIsUn
                         {...provided.dragHandleProps}
                     >
                         <CardHeader>{element.taskItemDTO.title}</CardHeader>
-                        <span>{element.taskItemDTO.description}</span>
+                        <TaskContent>{element.taskItemDTO.description}</TaskContent>
                         <CardFooter>
                         { isPersonal ? <TaskGroup element={element} groups={groups} isGroupsLoaded={isGroupsLoaded} /> :
                             <TaskCommissionee element={element}

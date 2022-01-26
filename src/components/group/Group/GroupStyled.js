@@ -20,6 +20,9 @@ font-size: xx-large;
 word-wrap: break-word;
 width: 70%;
 text-align: left;
+align-items: left;
+justify-content: left;
+display: flex;
 `;
 
 const RightWrapper = styled.div`
@@ -50,6 +53,27 @@ display: flex;
 }
 `;
 
+const GroupInfoButton = styled.button`
+border-radius: 50%;
+border: 0px;
+background: #E4E4E4;
+color: #FFFFFF;
+height: 20px;
+width: 20px;
+display: flex;
+align-items: center;
+justify-content: center;
+text-overflow: ellipsis;
+overflow: hidden;
+font-size: 9px;
+font-weight: 700;
+float: right;
+margin: 17px 0px 0px 10px;
+&:hover {
+  background: #D1D1D1;
+}
+`;
+
 const GroupMembersButton = styled.button`
 border-radius: 50%;
 border: 0px;
@@ -74,4 +98,18 @@ const GroupMembersWrapper = styled.div`
 margin: 0px 20px 0px 0px;
 `;
 
-export { GroupBody, GroupTitle, GroupEditButton, RightWrapper, GroupMembersButton, GroupMembersWrapper };
+const GroupInfoHeader = styled.div`
+font-size: 30px;
+font-weight: bold;
+text-align: center;
+`;
+
+const GroupInfoBody = styled.div`
+font-size: medium;
+word-wrap: break-word;
+display: table;
+table-layout: fixed;
+width: 100%;
+`;
+
+export { GroupBody, GroupTitle, GroupInfoButton, GroupEditButton, RightWrapper, GroupMembersButton, GroupMembersWrapper, GroupInfoHeader, GroupInfoBody };

@@ -31,8 +31,8 @@ margin: 3%;
 const LoginButton = styled.button`
 border-radius: 40px;
 background: #2B2B2B;
-border: 2px solid #2B2B2B;
-color: #E4E4E4;
+border: 0px;
+color: #FFFFFF;
 font-size: 18px;
 font-weight: 700;
 height: 40px;
@@ -40,7 +40,6 @@ width: 324px;
 text-align: center;
 &:hover{
   background: #545454;
-  border: 2px solid #545454;
 }
 `;
 

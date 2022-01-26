@@ -26,22 +26,20 @@ margin: 3%;
 
 const NewGroupButton = styled.button`
 border-radius: 40px;
-background: ${Grey};
-height: 50px;
+background: #2B2B2B;
+height: 40px;
 width: 250px;
 display: flex;
 align-items: center;
 justify-content: center;
 text-overflow: ellipsis;
 overflow: hidden;
-border: 2px solid ${GreyNight};
+border: 0px;
 font-size: 18px;
 font-weight: 700;
-color: ${GreyNight};
+color: #FFFFFF;
 &:hover{
-  background: ${GreyDark};
-  border: 2px solid ${GreyDark};
-  color: #E4E4E4;
+  background: #545454;
 }
 `;
 

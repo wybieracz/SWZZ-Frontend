@@ -21,6 +21,12 @@ export default function TaskGroup({ element, groups, isGroupsLoaded }) {
         } else return unknown
     }
 
+    function handleGroupName(name) {
+        const result = `${name}`
+        if(result.length < 25) return result
+        else return `${result.slice(0,24)}..`
+    }
+
     useEffect(() => {
         setGroup(getGroupById(groups, element.taskItemDTO.groupId));
     }, [element, groups, isGroupsLoaded]);
@@ -28,7 +34,7 @@ export default function TaskGroup({ element, groups, isGroupsLoaded }) {
     return(
         <TaskGroupWrapper>
             <TaskGroupButton onClick={navigateToGroup} background={groupColorGenerator(element.taskItemDTO.groupId)}>
-            {group.groupDTO.name}
+            {handleGroupName(group.groupDTO.name)}
             </TaskGroupButton>
         </TaskGroupWrapper>
     )

@@ -24,8 +24,8 @@ margin: 3%;
 
 const DeleteGroupModalButton = styled.button`
 border-radius: 40px;
-background: rgb(209, 209, 209);
-color: #adadad;
+background: ${props => (props.background)};
+color: #FFFFFF;
 height: 40px;
 width: 250px;
 display: flex;
@@ -33,28 +33,17 @@ align-items: center;
 justify-content: center;
 text-overflow: ellipsis;
 overflow: hidden;
+border: 0px;
+font-size: 20px;
+font-weight: 700;
 &:hover{
-  background:rgb(161, 161, 161);
+  background: ${props => (props.backgroundHover)};
 }
-`;
-
-const DeleteGroupModalButtonTextGreen = styled.span`
-font-size: 18px;
-font-weight: bold;
-color: green;
-`;
-
-const DeleteGroupModalButtonTextRed = styled.span`
-font-size: 18px;
-font-weight: bold;
-color: red;
 `;
 
 export {
   DeleteGroupHeader,
   DeleteGroupBody,
   DeleteGroupModalButtonWrapper,
-  DeleteGroupModalButton,
-  DeleteGroupModalButtonTextGreen,
-  DeleteGroupModalButtonTextRed
+  DeleteGroupModalButton
 }

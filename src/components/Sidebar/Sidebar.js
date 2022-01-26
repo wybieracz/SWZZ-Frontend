@@ -29,6 +29,12 @@ export default function Sidebar({ user, isUserLoaded, groups, isGroupsLoaded, cl
         else return `${result.slice(0,16)}..`
     }
 
+    function handleGroupName(name) {
+        const result = `${name}`
+        if(result.length < 19) return result
+        else return `${result.slice(0,18)}..`
+    }
+
     function handleOptions() {
         navigate("/options")
     }
@@ -59,7 +65,7 @@ export default function Sidebar({ user, isUserLoaded, groups, isGroupsLoaded, cl
                         {isGroupsLoaded ? groups.map((group, index) => (
                             <MenuItem key={index}>
                                 <SidebarContentItem onClick={() => handleGroup(group)}>
-                                    <SidebarContentText>{group.groupDTO.icon + " " + group.groupDTO.name}</SidebarContentText>
+                                    <SidebarContentText>{group.groupDTO.icon + " " + handleGroupName(group.groupDTO.name)}</SidebarContentText>
                                 </SidebarContentItem>
                             </MenuItem>
                         )) : null}

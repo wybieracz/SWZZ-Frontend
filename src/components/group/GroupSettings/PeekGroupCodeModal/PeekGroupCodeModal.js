@@ -19,8 +19,8 @@ export default function PeekGroupCodeModal(props) {
     const [isGroupCodeLoaded, setIsGroupCodeLoaded] = useState(false);
 
     useEffect(() => {
-        getGroupCodeRequest();
-    }, [props.groupId]);
+        if(props.groupUser.groupId == props.groupId && props.groupUser.role === "Administrator") getGroupCodeRequest();
+    }, [props.groupId, props.groupUser]);
 
     async function getGroupCodeRequest() {
         try {
@@ -32,7 +32,6 @@ export default function PeekGroupCodeModal(props) {
             );
         } catch (error) {
             console.error(error);
-            alert("Something went wrong :(")
         }
     }
 
@@ -72,8 +71,8 @@ export default function PeekGroupCodeModal(props) {
                     {isGroupCodeLoaded ?
                         <span>{groupCode}</span>
                         :
-                        <LoadingIconWrapper size="40px">
-                            <img src={LoadingIcon} alt="LoadingIcon" width="40px" heigth="40px" />
+                        <LoadingIconWrapper size="20px">
+                            <img src={LoadingIcon} alt="LoadingIcon" width="20px" heigth="20px" />
                         </LoadingIconWrapper>
                     }
                 </PeekGroupCodeBody>

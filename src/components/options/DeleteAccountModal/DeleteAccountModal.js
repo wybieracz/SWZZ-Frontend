@@ -1,13 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import { Modal } from 'react-bootstrap';
+import { Raspberry, RaspberryLight, Green, GreenLight } from "../../../colors/Colors";
 import {
     DeleteAccountHeader,
     DeleteAccountBody,
     DeleteAccountModalButtonWrapper,
-    DeleteAccountModalButton,
-    DeleteAccountModalButtonTextGreen,
-    DeleteAccountModalButtonTextRed
+    DeleteAccountModalButton
 } from "./DeleteAccountModalStyled"
 
 export default function DeleteAccountModal(props) {
@@ -45,16 +44,16 @@ export default function DeleteAccountModal(props) {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <DeleteAccountBody>Your account will be deleted. This process cannot be undone. Are you sure?</DeleteAccountBody>
+                    <DeleteAccountBody>Your account will be deleted. <br />This process cannot be undone. Are you sure?</DeleteAccountBody>
                 </Modal.Body>
 
                 <Modal.Footer>
                     <DeleteAccountModalButtonWrapper>
-                        <DeleteAccountModalButton onClick={handleDeleteAccount}>
-                            <DeleteAccountModalButtonTextGreen>Yes</DeleteAccountModalButtonTextGreen>
+                        <DeleteAccountModalButton onClick={handleDeleteAccount} background={GreenLight} backgroundHover={Green}>
+                            Yes
                         </DeleteAccountModalButton>
-                        <DeleteAccountModalButton onClick={props.onHide}>
-                            <DeleteAccountModalButtonTextRed>No</DeleteAccountModalButtonTextRed>
+                        <DeleteAccountModalButton onClick={props.onHide} background={RaspberryLight} backgroundHover={Raspberry}>
+                            No
                         </DeleteAccountModalButton>
                     </DeleteAccountModalButtonWrapper>
                 </Modal.Footer>

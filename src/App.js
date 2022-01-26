@@ -12,6 +12,7 @@ import GroupSettings from "./components/group/GroupSettings/GroupSettings/GroupS
 import { getUserNameRequest, getUserGroupsRequest } from "./AppUtility";
 import { unassignedUser } from "./components/task/DefaultData/DefaultData";
 import { clearUserAndGroups } from "./AppUtility";
+import { useNavigate } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css";
 
@@ -23,15 +24,17 @@ export default function App() {
   const [groups, setGroups] = useState([]);
   const [isGroupsLoaded, setIsGroupsLoaded] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     if(isLogged) {
-      getUserNameRequest(setUser, setIsUserLoaded);
-      getUserGroupsRequest(setGroups, setIsGroupsLoaded);
+      getUserNameRequest(setUser, setIsUserLoaded, navigate, setIsLogged);
+      getUserGroupsRequest(setGroups, setIsGroupsLoaded, navigate, setIsLogged);
     }
   }, [isLogged]);
 
   useEffect(() => {
-    if(user) setIsLogged(true);
+    if(user && user!==0) setIsLogged(true);
   }, [user]);
 
   function handleClearUserAndGroups() {
@@ -61,7 +64,7 @@ export default function App() {
         <Route exact path="/group/:id" element={
           <ProtectedRoute>
             <Sidebar user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} clearUserAndGroups={handleClearUserAndGroups} setIsLogged={setIsLogged} getUserGroups={handleGetUserGroups} />
-            <Group user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} />
+            <Group user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} getUserGroups={handleGetUserGroups} />
           </ProtectedRoute>} />
         <Route exact path="/options" element={
           <ProtectedRoute>

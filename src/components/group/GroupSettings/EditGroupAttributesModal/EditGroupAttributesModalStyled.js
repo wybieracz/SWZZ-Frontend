@@ -22,20 +22,21 @@ margin: 3%;
 
 const EditGroupAttributesButton = styled.button`
 border-radius: 40px;
-background: rgb(209, 209, 209);
-color: #adadad;
+background: #2B2B2B;
 height: 40px;
 width: 484px;
-text-align: center;
-&:hover{
-  background:rgb(161, 161, 161);
-}
-`;
-
-const EditGroupAttributesButtonText = styled.div`
+display: inline;
+align-items: center;
+justify-content: center;
+text-overflow: ellipsis;
+overflow: hidden;
+border: 0px;
 font-size: 18px;
-font-weight: bold;
-color: rgb(46, 46, 46);
+font-weight: 700;
+color: #FFFFFF;
+&:hover{
+  background: #545454;
+}
 `;
 
 const EditGroupAttributesItem = styled.div`
@@ -83,17 +84,21 @@ const EditGroupAttributesErrorText = styled.div`
 color: red;
 `;
 
+const EditGroupAttributesButtonIconWrapper = styled.div`
+padding: 0% 43% 0% 43%;
+`;
+
 export {
   EditGroupAttributesForm,
   EditGroupAttributesHeader,
   EditGroupAttributesButtonWrapper,
   EditGroupAttributesButton,
-  EditGroupAttributesButtonText,
   EditGroupAttributesItem,
   EditGroupAttributesEmojiItem,
   EditGroupAttributesLabel,
   EditGroupAttributesEmojiWrapper,
   EditGroupAttributesEmojiButtonIcon,
   EditGroupAttributesEmojiButtonEmoji,
-  EditGroupAttributesErrorText
+  EditGroupAttributesErrorText,
+  EditGroupAttributesButtonIconWrapper
 };

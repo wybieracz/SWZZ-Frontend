@@ -17,7 +17,7 @@ export default function StartPage({ setIsLogged }) {
   const [validated, setValidated] = useState(false);
   const [loginModalShow, setLoginModalShow] = useState(false);
   const [signupModalShow, setSignupModalShow] = useState(false);
-
+  
   return (
     <>
       <StartBody>

@@ -6,9 +6,10 @@ import GroupSettingsManager from "../GroupSettings/GroupSettingsManager/GroupSet
 import { getGroupUsersRequest, changeGroupUserRole, getGroupIdFromLocation, deleteGroupUser } from "./GroupUtilities";
 import { unassignedGroupUser } from "../../task/DefaultData/DefaultData";
 import GroupUsersModal from "../GroupUsersModal/GroupUsersModal";
-import { GroupBody, GroupTitle, GroupEditButton, RightWrapper } from "./GroupStyled";
+import { GroupBody, GroupTitle, GroupInfoButton, GroupEditButton, RightWrapper, GroupInfoWrapper } from "./GroupStyled";
+import GroupInfo from "./GroupInfo";
 
-export default function Group({ user, isUserLoaded, groups, isGroupsLoaded }) {
+export default function Group({ user, isUserLoaded, groups, isGroupsLoaded, getUserGroups }) {
   const path = useLocation().pathname;
   const groupId = getGroupIdFromLocation(path);
   const [groupUsersModalShow, setGroupUsersModalShow] = useState(false);
@@ -16,6 +17,7 @@ export default function Group({ user, isUserLoaded, groups, isGroupsLoaded }) {
   const [groupSettingsModalShow, setGroupSettingsModalShow] = useState(false);
   const [groupUsers, setGroupUsers] = useState([]);
   const [groupUser, setGroupUser] = useState(() => getGroupUserById(user.userId));
+  const [groupInfoModalShow, setGroupInfoModalShow] = useState(false);
 
   const groupData = groups.filter(group => {
     return group.groupDTO.groupId == groupId
@@ -23,8 +25,8 @@ export default function Group({ user, isUserLoaded, groups, isGroupsLoaded }) {
 
   function getGroupUserById(userId) {
     const result = groupUsers.filter(user => { return user.userDTO.userId == userId })[0];
-    if (result) return result;
-    else return unassignedGroupUser;
+    if (result) return { ...result, groupId: groupId };
+    else return { ...unassignedGroupUser, groupId: 0};
   }
 
   function handleChangeGroupUserRole(userId, role) {
@@ -48,7 +50,16 @@ export default function Group({ user, isUserLoaded, groups, isGroupsLoaded }) {
       {(isGroupsLoaded && groupData) ?
         <>
           <GroupBody>
-            <GroupTitle>{groupData.groupDTO.icon + " " + groupData.groupDTO.name}</GroupTitle>
+            <GroupTitle>
+              {groupData.groupDTO.icon + " " + groupData.groupDTO.name}
+              <GroupInfoButton onClick={() => setGroupInfoModalShow(true) }>?</GroupInfoButton>
+              <GroupInfo 
+                show={groupInfoModalShow}
+                onHide={() => setGroupInfoModalShow(false)}
+                groupName={groupData.groupDTO.name}
+                groupDescription={groupData.groupDTO.description}
+              />
+            </GroupTitle>
             <RightWrapper>
               {groupUser.role === "Administrator" ?
                 <GroupEditButton onClick={() => { setGroupSettingsModalManagerShow(true); setGroupSettingsModalShow(true); }}>
@@ -76,9 +87,9 @@ export default function Group({ user, isUserLoaded, groups, isGroupsLoaded }) {
               setGroupSettingsModalManagerShow={(props) => setGroupSettingsModalManagerShow(props)}
               groupSettingsModalShow={groupSettingsModalShow}
               setGroupSettingsModalShow={(props) => setGroupSettingsModalShow(props)}
-              groupId={groupData.groupDTO.groupId}
-              groupName={groupData.groupDTO.name}
-              groupEmoji={groupData.groupDTO.icon}
+              groupDTO={groupData.groupDTO}
+              groupUser={groupUser}
+              getUserGroups={getUserGroups}
             />
             :
             null

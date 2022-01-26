@@ -47,7 +47,7 @@ export default function GroupCreatorModal(props) {
         if (valid) {
             setIsRequestSent(true)
             try {
-                await axios.post(API_URL + "group", { name: props.groupTitle, icon: props.groupEmoji }).then(
+                await axios.post(API_URL + "group", { name: props.groupTitle, icon: props.groupEmoji, description: props.groupDescription }).then(
                     response => {
                         props.getUserGroups(response.data)
                         navigate(`/group/${response.data}`)

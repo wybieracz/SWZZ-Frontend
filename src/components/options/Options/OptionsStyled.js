@@ -49,7 +49,7 @@ color: #2B2B2B;
 &:hover{
   background: #545454;
   border: 2px solid #545454;
-  color: #E4E4E4;
+  color: #FFFFFF;
 }
 `;
 
@@ -70,8 +70,8 @@ font-weight: 700;
 color: ${Raspberry};
 &:hover{
   background: ${Raspberry};
-  border: 2px solid #FFFFFF;
-  color: #E4E4E4;
+  border: 2px solid ${Raspberry};
+  color: #FFFFFF;
 }
 `;
 

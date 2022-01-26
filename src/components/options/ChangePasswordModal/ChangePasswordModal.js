@@ -7,7 +7,6 @@ import {
     ChangePasswordErrorText,
     ChangePasswordButtonWrapper,
     ChangePasswordButton,
-    ChangePasswordButtonText,
     ChangePasswordItem
 } from "./ChangePasswordModalStyled";
 
@@ -164,7 +163,7 @@ export default function ChangePasswordModal(props) {
                 <Modal.Footer>
                     <ChangePasswordButtonWrapper>
                         <ChangePasswordButton onClick={handlePasswordChange}>
-                            <ChangePasswordButtonText>Change password</ChangePasswordButtonText>
+                            Change password
                         </ChangePasswordButton>
                     </ChangePasswordButtonWrapper>
                 </Modal.Footer>

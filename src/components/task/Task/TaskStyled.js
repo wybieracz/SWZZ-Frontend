@@ -7,7 +7,6 @@ word-wrap: break-word;
 display: table;
 table-layout: fixed;
 width: 100%;
-word-wrap: break-word;
 `;
 
 const Buttons = styled.div`
@@ -33,4 +32,12 @@ flex-direction: column;
 width: 100%;
 `;
 
-export { CardHeader, CardFooter, Buttons, DragItem }
+const TaskContent = styled.div`
+font-size: large;
+word-wrap: break-word;
+display: table;
+table-layout: fixed;
+width: 100%;
+`;
+
+export { CardHeader, CardFooter, Buttons, DragItem, TaskContent }

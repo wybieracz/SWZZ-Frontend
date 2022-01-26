@@ -3,48 +3,51 @@ import { Form, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Picker } from "emoji-mart";
+import { LoadingIconWrapper } from "../../../images/Icons/IconsStyled.js";
+import LoadingIcon from "../../../../bitmaps/Load_White.png";
 import "emoji-mart/css/emoji-mart.css";
 import {
     EditGroupAttributesForm,
     EditGroupAttributesHeader,
     EditGroupAttributesButtonWrapper,
     EditGroupAttributesButton,
-    EditGroupAttributesButtonText,
     EditGroupAttributesItem,
     EditGroupAttributesEmojiItem,
     EditGroupAttributesLabel,
     EditGroupAttributesEmojiWrapper,
     EditGroupAttributesEmojiButtonEmoji,
-    EditGroupAttributesErrorText
+    EditGroupAttributesErrorText,
+    EditGroupAttributesButtonIconWrapper
 } from "./EditGroupAttributesModalStyled.js";
 axios.defaults.withCredentials = true;
 const API_URL = "https://dev-swzz-be-app.azurewebsites.net/";
 
 export default function EditGroupAttributesModal(props) {
 
-    const [groupName, setGroupName] = useState("");
-    const [groupDescription, setGroupDescription] = useState("");
-
     const [groupNameErr, setGroupNameErr] = useState(true);
+    const [isRequestSent, setIsRequestSent] = useState(false);
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        groupName.length > 0 ? setGroupNameErr(false) : setGroupNameErr(true);
-    }, [groupName]);
+        if(props.groupName) props.groupName.length > 0 ? setGroupNameErr(false) : setGroupNameErr(true);
+    }, [props.groupName]);
 
     async function EditGroupAttributesChangeRequest() {
         props.setValidated(true);
         if (!groupNameErr) {
+            setIsRequestSent(true)
             try {
-                await axios.put(API_URL + "group/attributes", { groupId: props.groupId, name: groupName, icon: props.groupEmoji }).then(
+                await axios.put(API_URL + "group/attributes", { groupId: props.groupId, name: props.groupName, icon: props.groupEmoji, description: props.groupDescription }).then(
                     response => {
-                        alert("You have successfully edited group attributes.")
+                        props.getUserGroups(props.groupId)
                         navigate(`/group/${props.groupId}`)
+                        setIsRequestSent(false)
                     }
                 );
             } catch (error) {
                 console.error(error);
+                setIsRequestSent(false)
                 alert("Something went wrong :(")
             }
         }
@@ -92,8 +95,8 @@ export default function EditGroupAttributesModal(props) {
                                     required
                                     placeholder="Name"
                                     type="text"
-                                    value={groupName}
-                                    onChange={(e) => setGroupName(e.target.value)}
+                                    value={props.groupName}
+                                    onChange={(e) => props.setGroupName(e.target.value)}
                                 />
                                 {props.validated && groupNameErr && <EditGroupAttributesErrorText>Please enter a name for the group.</EditGroupAttributesErrorText>}
                             </Form.Group>
@@ -106,8 +109,8 @@ export default function EditGroupAttributesModal(props) {
                                     as="textarea"
                                     rows={3}
                                     placeholder="Description"
-                                    value={groupDescription}
-                                    onChange={(e) => setGroupDescription(e.target.value)}
+                                    value={props.groupDescription ? props.groupDescription : ""}
+                                    onChange={(e) => props.setGroupDescription(e.target.value)}
                                 />
                             </Form.Group>
                         </EditGroupAttributesItem>
@@ -128,7 +131,12 @@ export default function EditGroupAttributesModal(props) {
                 <Modal.Footer>
                     <EditGroupAttributesButtonWrapper>
                         <EditGroupAttributesButton onClick={EditGroupAttributesChangeRequest}>
-                            <EditGroupAttributesButtonText>Edit group attributes</EditGroupAttributesButtonText>
+                            { isRequestSent
+                                ? <EditGroupAttributesButtonIconWrapper>
+                                    <LoadingIconWrapper size="20px"><img src={LoadingIcon} alt="LoadingIcon" width="20px" heigth="20px" /></LoadingIconWrapper>
+                                </EditGroupAttributesButtonIconWrapper>
+                                : "Edit group attributes"
+                            }
                         </EditGroupAttributesButton>
                     </EditGroupAttributesButtonWrapper>
                 </Modal.Footer>

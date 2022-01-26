@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { unassignedUser } from "./components/task/DefaultData/DefaultData";
 
-async function getUserNameRequest(setUsername, setIsUserLoaded) {
+async function getUserNameRequest(setUsername, setIsUserLoaded, navigate, setIsLogged) {
     try {
         await axios.get("https://dev-swzz-be-app.azurewebsites.net/user").then(
             response => {
@@ -11,10 +11,14 @@ async function getUserNameRequest(setUsername, setIsUserLoaded) {
         );
     } catch (error) {
         console.error(error);
+        setIsLogged(false)
+        setIsUserLoaded(false)
+        localStorage.clear();
+        navigate("/start")
     }
 }
 
-async function getUserGroupsRequest(setGroups, setIsGroupsLoaded) {
+async function getUserGroupsRequest(setGroups, setIsGroupsLoaded, navigate, setIsLogged) {
     try {
         await axios.get("https://dev-swzz-be-app.azurewebsites.net/user/groups").then(
             response => {
@@ -24,6 +28,10 @@ async function getUserGroupsRequest(setGroups, setIsGroupsLoaded) {
         );
     } catch (error) {
         console.error(error);
+        setIsLogged(false)
+        setIsGroupsLoaded(false)
+        localStorage.clear();
+        navigate("/start")
     }
 }
 

@@ -30,14 +30,12 @@ align-items: center;
 justify-content: center;
 text-overflow: ellipsis;
 overflow: hidden;
-margin: 20px max(25px, 10%) 0px max(25px, 10%);
-border: 2px solid #2B2B2B;
+border: 0px;
 font-size: 18px;
 font-weight: 700;
-color: #E4E4E4;
+color: #FFFFFF;
 &:hover{
   background: #545454;
-  border: 2px solid #545454;
 }
 `;
 

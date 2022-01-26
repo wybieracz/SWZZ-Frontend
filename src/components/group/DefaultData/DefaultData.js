@@ -2,7 +2,8 @@ const unknown = {
     "groupDTO": {
       "groupId": 0,
       "name": "Unknown",
-      "icon": "⛔"
+      "icon": "⛔",
+      "description" : "Unknown"
     },
     "groupPermissions": {
       "canEditAttributes": false,
