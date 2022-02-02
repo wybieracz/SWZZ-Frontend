@@ -6,8 +6,9 @@ import { OkIcon } from "../../../vectors/Icons";
 import { ActionButton } from "../TaskList/TaskListButtonsStyled";
 import { Grey, GreyMedium } from "../../../colors/Colors.js";
 import TaskCommissionee from "./TaskCommissionee/TaskCommissionee";
+import TaskGroup from "./TaskGroup/TaskGroup";
 
-export default function TaskEditor ({ element, index, title, handleTitleChange, description, handleDescriptionChange, handleSubmit, getGroupUserById, groupUsers, assign }) {
+export default function TaskEditor ({ element, index, title, handleTitleChange, description, handleDescriptionChange, handleSubmit, getGroupUserById, groupUsers, assign, isPersonal, groups, isGroupsLoaded }) {
 
     return (
         <Draggable draggableId={element.taskItemDTO.taskId.toString()} index={index}>
@@ -28,12 +29,14 @@ export default function TaskEditor ({ element, index, title, handleTitleChange, 
                         </Form.Group>
                     </Form>
                     <CardFooter>
-                    <TaskCommissionee element={element}
+                    { isPersonal ? <TaskGroup element={element} groups={groups} isGroupsLoaded={isGroupsLoaded} />
+                     : <TaskCommissionee element={element}
                             index={index}
                             assign={assign}
                             getGroupUserById={getGroupUserById}
                             groupUsers={groupUsers}
-                    />
+                        />
+                    }
                     <Buttons>
                         <ActionButton onClick={handleSubmit} background={Grey} hoverBackground={GreyMedium}><OkIcon /></ActionButton>
                     </Buttons>

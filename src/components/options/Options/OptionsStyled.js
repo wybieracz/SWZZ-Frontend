@@ -75,11 +75,16 @@ color: ${Raspberry};
 }
 `;
 
+const ButtonIconWrapper = styled.div`
+padding: 0% 43% 0% 43%;
+`;
+
 export {
   OptionsBody,
   OptionsHeader,
   OptionsText,
   OptionsButtonWrapper,
   OptionsButton,
-  OptionsDeleteButton
+  OptionsDeleteButton,
+  ButtonIconWrapper
 };

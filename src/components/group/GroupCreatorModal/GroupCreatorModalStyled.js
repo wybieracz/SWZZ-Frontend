@@ -8,7 +8,7 @@ max-width: 480px;
 const GroupCreatorHeader = styled.div`
 font-size: 30px;
 font-weight: bold;
-text-align: center;
+text-align: left;
 `;
 
 const GroupCreatorButtonWrapper = styled.div`

@@ -33,8 +33,7 @@ export default function TaskCard({ element, index, remove, edit, assign, setIsUn
                             groupUsers={groupUsers}
                             isGroupsLoaded={isGroupsLoaded}
                         />
-                        }
-                        { !isPersonal ?                                             
+                        }                                           
                         <Buttons>
                             <ActionButton onClick={() => remove(element.taskItemDTO.status, index)}
                                 disabled={!element.taskPermissions.canDelete}
@@ -67,7 +66,6 @@ export default function TaskCard({ element, index, remove, edit, assign, setIsUn
                                 </ActionButton> )
                             : null}
                         </Buttons>
-                        : null }
                         </CardFooter>
                     </DragItem>
                 );

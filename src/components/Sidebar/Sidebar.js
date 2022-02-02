@@ -25,14 +25,14 @@ export default function Sidebar({ user, isUserLoaded, groups, isGroupsLoaded, cl
 
     function handleUserName() {
         const result = `${user.name} ${user.surname}`
-        if(result.length < 17) return result
-        else return `${result.slice(0,16)}..`
+        if(result.length < 15) return result
+        else return `${result.slice(0,14)}..`
     }
 
     function handleGroupName(name) {
         const result = `${name}`
-        if(result.length < 19) return result
-        else return `${result.slice(0,18)}..`
+        if(result.length < 15) return result
+        else return `${result.slice(0,14)}..`
     }
 
     function handleOptions() {

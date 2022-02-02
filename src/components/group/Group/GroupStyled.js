@@ -17,12 +17,15 @@ const GroupTitle = styled.div`
 color: #2B2B2B!important;
 font-weight: bold;
 font-size: xx-large;
-word-wrap: break-word;
 width: 70%;
+max-width: 70%;
 text-align: left;
 align-items: left;
 justify-content: left;
+word-wrap: break-word;
+word-break:break-all;
 display: flex;
+table-layout: fixed;
 `;
 
 const RightWrapper = styled.div`
@@ -59,7 +62,9 @@ border: 0px;
 background: #E4E4E4;
 color: #FFFFFF;
 height: 20px;
+min-height: 20px;
 width: 20px;
+min-width: 20px;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -67,8 +72,8 @@ text-overflow: ellipsis;
 overflow: hidden;
 font-size: 9px;
 font-weight: 700;
-float: right;
-margin: 17px 0px 0px 10px;
+display: inline;
+margin: 18px 0px 0px 10px;
 &:hover {
   background: #D1D1D1;
 }
@@ -101,7 +106,11 @@ margin: 0px 20px 0px 0px;
 const GroupInfoHeader = styled.div`
 font-size: 30px;
 font-weight: bold;
-text-align: center;
+text-align: left;
+display: table;
+table-layout: fixed;
+width: 100%;
+word-wrap: break-word;
 `;
 
 const GroupInfoBody = styled.div`

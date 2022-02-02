@@ -69,7 +69,7 @@ export default function App() {
         <Route exact path="/options" element={
           <ProtectedRoute>
             <Sidebar user={user} isUserLoaded={isUserLoaded} groups={groups} isGroupsLoaded={isGroupsLoaded} clearUserAndGroups={handleClearUserAndGroups} setIsLogged={setIsLogged} getUserGroups={handleGetUserGroups} />
-            <Options user={user} isUserLoaded={isUserLoaded} />
+            <Options user={user} isUserLoaded={isUserLoaded} clearUserAndGroups={handleClearUserAndGroups} setIsLogged={setIsLogged} />
           </ProtectedRoute>} />
         <Route path="*" element={<NotFound />} />
       </Routes>

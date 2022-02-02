@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Form, Modal } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 import {
     ChangePasswordForm,
     ChangePasswordHeader,
@@ -9,6 +8,9 @@ import {
     ChangePasswordButton,
     ChangePasswordItem
 } from "./ChangePasswordModalStyled";
+import { LoadingIconWrapper } from "../../images/Icons/IconsStyled.js";
+import LoadingIcon from "../../../bitmaps/Load_White.png";
+import { ButtonIconWrapper } from "../Options/OptionsStyled";
 
 export default function ChangePasswordModal(props) {
 
@@ -23,10 +25,9 @@ export default function ChangePasswordModal(props) {
     const [PasswordErr, setPasswordErr] = useState(false);
 
     const [valid, setValid] = useState(false);
+    const [isRequestSent, setIsRequestSent] = useState(false);
 
     const validPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
-
-    const navigate = useNavigate();
 
     useEffect(() => {
         validPassword.test(oldPassword) ? setOldPasswordErr(false) : setOldPasswordErr(true);
@@ -51,7 +52,7 @@ export default function ChangePasswordModal(props) {
     async function handlePasswordChange() {
         props.setValidated(true);
         if (valid) {
-
+            setIsRequestSent(true)
             let item = { oldPassword, newPassword };
 
             let result = await fetch("https://dev-swzz-be-app.azurewebsites.net/user/password", {
@@ -66,11 +67,12 @@ export default function ChangePasswordModal(props) {
             result = result.status
 
             if (result >= 200 && result < 300) {
+                setIsRequestSent(false)
                 alert("Your password has been changed.")
-                navigate("/")
             }
             else {
-                setPasswordErr(true);
+                setPasswordErr(true)
+                setIsRequestSent(false)
             }
         }
     }
@@ -163,7 +165,12 @@ export default function ChangePasswordModal(props) {
                 <Modal.Footer>
                     <ChangePasswordButtonWrapper>
                         <ChangePasswordButton onClick={handlePasswordChange}>
-                            Change password
+                            { isRequestSent
+                                ? <ButtonIconWrapper>
+                                    <LoadingIconWrapper size="20px"><img src={LoadingIcon} alt="LoadingIcon" width="20px" heigth="20px" /></LoadingIconWrapper>
+                                </ButtonIconWrapper>
+                                : "Change password"
+                            }
                         </ChangePasswordButton>
                     </ChangePasswordButtonWrapper>
                 </Modal.Footer>

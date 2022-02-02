@@ -10,7 +10,7 @@ import {
     OptionsDeleteButton
 } from "./OptionsStyled";
 
-export default function Options({ user, isUserLoaded }) {
+export default function Options({ user, isUserLoaded, clearUserAndGroups, setIsLogged }) {
 
     const [validated, setValidated] = useState(false);
     const [changePasswordModalShow, setChangePasswordModalShow] = useState(false);
@@ -30,6 +30,9 @@ export default function Options({ user, isUserLoaded }) {
                     <OptionsButton onClick={() => setChangePasswordModalShow(true)}>
                         Change password
                     </OptionsButton>
+                    <OptionsDeleteButton onClick={() => setDeleteAccountModalShow(true)}>
+                        Delete account
+                    </OptionsDeleteButton>
                 </OptionsButtonWrapper>
             </OptionsBody>
             <ChangePasswordModal
@@ -41,6 +44,8 @@ export default function Options({ user, isUserLoaded }) {
             <DeleteAccountModal
                 show={deleteAccountModalShow}
                 onHide={() => setDeleteAccountModalShow(false)}
+                clearUserAndGroups={clearUserAndGroups}
+                setIsLogged={setIsLogged}
             />
         </>
     );

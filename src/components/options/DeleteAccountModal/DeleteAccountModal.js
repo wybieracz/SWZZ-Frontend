@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { Modal } from 'react-bootstrap';
 import { Raspberry, RaspberryLight, Green, GreenLight } from "../../../colors/Colors";
@@ -7,16 +7,39 @@ import {
     DeleteAccountBody,
     DeleteAccountModalButtonWrapper,
     DeleteAccountModalButton
-} from "./DeleteAccountModalStyled"
+} from "./DeleteAccountModalStyled";
+import { LoadingIconWrapper } from "../../images/Icons/IconsStyled.js";
+import LoadingIcon from "../../../bitmaps/Load_White.png";
+import { ButtonIconWrapper } from "../Options/OptionsStyled";
+import axios from 'axios';
+axios.defaults.withCredentials = true;
+const API_URL = "https://dev-swzz-be-app.azurewebsites.net/";
 
 export default function DeleteAccountModal(props) {
 
+    const [isRequestSent, setIsRequestSent] = useState(false);
+
     const navigate = useNavigate();
 
-    function handleDeleteAccount() {
-        alert("Your account has been deleted.")
-        localStorage.clear()
-        navigate("/")
+    async function handleDeleteAccount() {
+        setIsRequestSent(true)
+        try {
+            await axios.delete(API_URL + "user").then(
+                response => {
+                    setIsRequestSent(false)
+                    props.clearUserAndGroups()
+                    props.setIsLogged(false)
+                    localStorage.clear()
+                    navigate("/")
+                    alert("Your account has been deleted.")
+                }
+            );
+        } catch (error) {
+            console.error(error);
+            setIsRequestSent(false)
+            alert("Something went wrong :(")
+        }
+
     }
 
     function onKeyDown(event) {
@@ -50,7 +73,12 @@ export default function DeleteAccountModal(props) {
                 <Modal.Footer>
                     <DeleteAccountModalButtonWrapper>
                         <DeleteAccountModalButton onClick={handleDeleteAccount} background={GreenLight} backgroundHover={Green}>
-                            Yes
+                            { isRequestSent
+                                ? <ButtonIconWrapper>
+                                    <LoadingIconWrapper size="20px"><img src={LoadingIcon} alt="LoadingIcon" width="20px" heigth="20px" /></LoadingIconWrapper>
+                                </ButtonIconWrapper>
+                                : "Yes"
+                            }
                         </DeleteAccountModalButton>
                         <DeleteAccountModalButton onClick={props.onHide} background={RaspberryLight} backgroundHover={Raspberry}>
                             No

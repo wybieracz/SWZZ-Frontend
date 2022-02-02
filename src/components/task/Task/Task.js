@@ -24,6 +24,9 @@ export default function Task ({ element, index, remove, edit, assign, getGroupUs
             getGroupUserById={getGroupUserById}
             groupUsers={groupUsers}
             assign={assign}
+            isPersonal={isPersonal}
+            groups={groups}
+            isGroupsLoaded={isGroupsLoaded}
             />
         )
     }

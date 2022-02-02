@@ -4,7 +4,11 @@ import { GreyLight, Raspberry } from "../../../../colors/Colors";
 const GroupSettingsHeader = styled.div`
 font-size: 30px;
 font-weight: bold;
-text-align: center;
+text-align: left;
+word-wrap: break-word;
+display: table;
+table-layout: fixed;
+width: 100%;
 `;
 
 const GroupSettingsText = styled.div`

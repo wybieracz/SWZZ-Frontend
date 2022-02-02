@@ -4,7 +4,7 @@ import TaskCreator from "../TaskCreator/TaskCreator";
 import React from "react";
 import { ColumnHeader, ColumnBody, TaskListColumnContainer } from "./TaskListColumnStyled";
 
-export default function TaskListColumn ({ elements, isPersonal, groupId, status, remove, edit, add, assign, getGroupUserById, groupUsers, groups, isGroupsLoaded }) {
+export default function TaskListColumn ({ elements, isPersonal, groupId, status, remove, edit, add, assign, getGroupUserById, groupUsers, groups, isGroupsLoaded, groupUser }) {
   return (
     <TaskListColumnContainer>
       <ColumnHeader>{status}</ColumnHeader>
@@ -26,7 +26,7 @@ export default function TaskListColumn ({ elements, isPersonal, groupId, status,
               />
             ))}
             {provided.placeholder}
-            {(!isPersonal && status === "ToDo") ? <TaskCreator groupId={groupId} add={add} /> : null}
+            {(!isPersonal && status === "ToDo" && groupUser.role !== "DefaultUser") ? <TaskCreator groupId={groupId} add={add} /> : null}
           </ColumnBody>
         )}
       </Droppable>

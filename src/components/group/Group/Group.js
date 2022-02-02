@@ -6,7 +6,7 @@ import GroupSettingsManager from "../GroupSettings/GroupSettingsManager/GroupSet
 import { getGroupUsersRequest, changeGroupUserRole, getGroupIdFromLocation, deleteGroupUser } from "./GroupUtilities";
 import { unassignedGroupUser } from "../../task/DefaultData/DefaultData";
 import GroupUsersModal from "../GroupUsersModal/GroupUsersModal";
-import { GroupBody, GroupTitle, GroupInfoButton, GroupEditButton, RightWrapper, GroupInfoWrapper } from "./GroupStyled";
+import { GroupBody, GroupTitle, GroupInfoButton, GroupEditButton, RightWrapper } from "./GroupStyled";
 import GroupInfo from "./GroupInfo";
 
 export default function Group({ user, isUserLoaded, groups, isGroupsLoaded, getUserGroups }) {
@@ -80,6 +80,7 @@ export default function Group({ user, isUserLoaded, groups, isGroupsLoaded, getU
             groupId={groupData.groupDTO.groupId}
             getGroupUserById={getGroupUserById}
             groupUsers={groupUsers}
+            groupUser={groupUser}
           />
           {groupUser.role === "Administrator" ?
             <GroupSettingsManager

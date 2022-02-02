@@ -9,7 +9,7 @@ import LoadingIcon from "../../../bitmaps/Load_Medium_Grey.png";
 
 const columns = ["ToDo", "Doing", "Closed"];
 
-export default function TaskList({ isPersonal, groupId, getGroupUserById, groupUsers, groups, isGroupsLoaded }) {
+export default function TaskList({ isPersonal, groupId, getGroupUserById, groupUsers, groups, isGroupsLoaded, groupUser }) {
   
   const [elements, setElements] = useState(emptyTasklist);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -91,6 +91,7 @@ export default function TaskList({ isPersonal, groupId, getGroupUserById, groupU
                 groupUsers={groupUsers}
                 groups={groups}
                 isGroupsLoaded={isGroupsLoaded}
+                groupUser={groupUser}
               />
             ))}
           </ListGrid>
